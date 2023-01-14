@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Mccms产品 - Powered by Mccms</title>
+<link rel="stylesheet" href="<?=install_path?>packs/install/images/css.css" />
+</head>
+<body>
+	<div class="wrap">
+		<div class="header">
+			<h1 class="logo">logo</h1>
+			<div class="icon_install">安装向导</div>
+			<div class="version">v1</div>
+		</div>
+		<?php if($install=='ok'){ ?>
+		<div class="section">
+	        <div class="">
+				<div class="success_tip cc error_tip">
+					<ul class="mb10 f14">
+						<li id="J_html_error">您已经安装过，<br>需要重新安装 请先删除<font color=red>./caches/install.lock</font>文件</li>
+					</ul>
+					<div class="error_return"><a href="javascript:window.history.go(-1);">返回上一页</a></div>
+				</div>
+	        </div>
+		</div>
+		<?php }else{ ?>
+		<div class="main cc">
+			<pre class="pact" readonly="readonly">漫城cms（简称Mccms） 软件使用协议
+桂林崇胜网络科技有限公司独立拥有漫城cms产品软件著作权(版权登记号：2020SR0504054)，mccms.cn保留所有权力。
+感谢您选择 Mccms board 建站系统, 希望我们的产品能够帮您把网站发展的更快、更好、更强！
+Mccms board 建站系统由mccms.cn(以下简称本公司或崇胜网络科技)独立开发，全部核心技术归属 桂林崇胜网络科技有限公司 。
+官方网站为 http://www.mccms.cn
+ 
+本授权协议适用于 Mccms 任何版本，本公司拥有对本授权协议的最终解释权和修改权。
+ 
+Mccms board 建站系统(以下简称 Mccms)使用限制 
+  1、您在使用 Mccms 时应遵守中华人民共和国相关法律法规、您所在国家或地区之法令及相关国际惯例，不将 Mccms 用于任何非法目的，也不以任何非法方式使用 Mccms。
+  2、Mccms 著作权已在中华人民共和国国家版权局注册，并受到法律和国际公约保护。如果您需要采用 Mccms 系统的部分程序构架其他程序系统，请务必取得我们的同意。否则我们将追究责任!修改后的代码，未经书面许可，严禁公开发布，更不得利用其从事盈利业务。
+  3、所有用户均可查看 Mccms 的全部源代码,也可以根据自己的需要对其进行修改！但无论如何，既无论用途如何、是否经过修改或美化、修改程度如何，只要您使用 Mccms 的任何整体或部分程序算法，都必须保留页脚处的本公司下属网站(http://www.chshcms.cn，http://www.mccms.cn)链接地址“及相关版权信息”，不能清除或修改。
+  4、未经商业授权,不得将本软件用于商业用途(企业网站或以盈利为目的经营性网站)，否则我们将保留追究的权力。有关 Mccms 授权包含的服务范围，技术支持等，请参看 http://www.mccms.cn 
+  5、Mccms 中集成交易或支付接口，通过交易或支付接口产生的交易行为与本公司无关，您不得利用本服务从事侵害他人合法权益之行为，否则应承担所有相关法律责任，您应承担赔偿责任。上述行为包括但不限于： 
+    a、侵害他人名誉权、隐私权、商业秘密、商标权、著作权、专利权等合法权益。 
+    b、从事不法交易行为，如贩卖枪支、毒品、禁药、盗版软件、黄色淫秽物品、其他本公司认为不得使用本服务进行交易的物品等。 
+    c、提供赌博资讯或以任何方式引诱他人参与赌博。
+    d、从事任何可能含有电脑病毒或是可能侵害本服务系统、资料之行为。 
+    e、其他本公司有正当理由认为不适当之行为。 
+ 
+Mccms 免责声明
+  1、利用 Mccms 构建的网站的任何信息内容以及导致的任何版权纠纷和法律争议及后果，Mccms 官方不承担任何责任。
+  2、Mccms 损坏包括程序的使用(或无法再使用)中所有一般化、特殊化、偶然性的或必然性的损坏(包括但不限于数据的丢失，自己或第三方所维护数据的不正确修改，和其他程序协作过程中程序的崩溃等)，Mccms 官方不承担任何责任。
+ 
+电子文本形式的授权协议如同双方书面签署的协议一样，具有完全的和等同的法律效力。您一旦安装使用Mccms，即被视为完全理解并接受本协议的各项条款，在享有上述条款授予的权力的同时，受到相关的约束和限制。协议许可范围以外的行为，将直接违反本授权协议并构成侵权，本公司有权随时终止授权，责令停止损害，并保留追究相关责任的权力。</pre>
+		</div>
+		<div class="bottom tac">
+			<a href="<?=links('install','save1')?>" class="btn">接 受</a>
+		</div>
+	<?php } ?>
+	</div>
+	<div class="footer">
+		&copy; 2008-2020 <a href="http://www.mccms.cn" target="_blank">mccms.cn</a>（桂林崇胜网络科技有限公司旗下品牌）
+	</div>
+</body>
+</html>
+

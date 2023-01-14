@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>最新漫画 - [mccms_title]</title>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<meta name="keywords" content="[mccms_keywords]">
+<meta name="description" content="[mccms_description]">
+[mccms_packs]
+</head>
+<body class="p-update">
+<div style='display:none;'><img src='[mccms_tpl]images/app_logo.png' /></div>
+[mccms_head]
+<script>$('#nav_update').addClass('active');</script>
+<div class="update-page-wr">
+    <div class="update__head">
+        <i class="iconfont icon-ic_newlist_title"></i>
+        <span><b class="day">今天</b>更新了 <b class="hl">0</b> 本漫画，持续更新中...</span>
+        <ul class="update-handles fr">
+            {mccms:week}
+            <li id="w_[week:i]" class="handle__item{if:'[week:num]' == '[mccms_week]'} active{end if}" data-count="[mccms_count_comic_addtime>-[week:kstime]|addtime<-[week:jstime]|yid-0]" data-id="[week:i]">[week:name]</li>
+            {/mccms:week}
+        </ul>
+    </div>
+    {mccms:week}
+    <div id="week_[week:i]" class="update-list clearfix{if:'[week:i]' == '1'} active{end if}{if:'[week:i]' > '1'} hide{end if}">
+        {mccms:comic table="comic" field="*" where="addtime>[week:kstime] and addtime<[week:jstime]" limit="150" order="addtime desc"}
+        <div class="common-comic-item">
+            <a class="cover" href="[comic:link]" target="_blank"><img class="lazy" data-original="[comic:pic]" src="[mccms_tpl]images/bg_loadimg_3x4.png" alt="[comic:name]"></a>
+              <p class="comic__title"><a href="[comic:link]" target="_blank">[comic:name]</a></p>
+              <p class="comic-update">更至：<a class="hl" href="[comic:piclink]]" target="_blank">[comic:zdy zd=comic_chapter,name,id,mid]</a></p>
+        </div>
+        {/mccms:comic}
+    </div>
+    {/mccms:week}
+</div>
+[mccms_bottom]
+</body>
+</html>

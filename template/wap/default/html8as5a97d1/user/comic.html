@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>[mccms_title]</title>
+  <meta name="keywords" content="[mccms_keywords]">
+  <meta name="description" content="[mccms_description]">
+  [mccms_packs]
+</head>
+<body class="p-user-buy">
+  <header class="header">
+    <a class="go-back" href="[mccms_url_user]"><i class="ift-back"></i></a>
+    <span>我的购买</span>
+  </header>
+  <main class="main pay-main under-header">
+  	{if:[mccms_pagenum] == 0}
+    <div class="no-buy">
+      <div class="no-collect-bg"></div>
+      <p class="txt">主人还没购买任何漫画咯~</p>
+    </div>
+    <div class="recommend">
+      <h2 class="title">相关推荐</h2>
+      <div class="recommend-list">
+        <ul class="clearfix">
+        	{mccms:comic table="comic" limit="3" order="rhits desc"}
+          <li class="comic-item">
+            <a href="[comic:link]"><img class="cover" src="[comic:pic]" alt="[comic:name]"></a>
+            <div class="comic-info-box">
+              <p class="comic-name">[comic:name]</p>
+            </div>
+          </li>
+          {/mccms:comic}
+        </ul>
+      </div>
+    </div>
+    {end if}
+    {mccms:comic table="comic_buy" page="20" order="id desc"}
+			<div class="comic-list-item clearfix">
+				<a class="cover" href="[comic:link]"><img src="[comic:pic]" alt=""></a>
+				<div class="comic-item-info">
+					<p class="comic-name"><a href="[comic:link]">[comic:name]</a></p>
+					<p class="comic-author">[comic:author]</p>
+					<p class="comic-read-at">已买了[comic:count]个章节</p>
+					<p class="comic-update-at">更新至：[comic:zdy zd=comic_chapter,name,id,mid]</p>
+				</div>
+				<span class="auto-pay" data-status="{if:[comic:auto] == 0}1{else}0{end if}" data-id="[comic:id]">{if:[comic:auto] == 0}自动购买{else}取消自动购买{end if}</span>
+			</div>
+    {/mccms:comic}
+  </main>
+  {if:[mccms_pagejs] > 1}
+  <div class="getmore" onclick="location.href='[mccms_pagedown]';">点击加载下一页</div>
+  {end if}
+<script>
+$(function(){
+  user.comic_buy('comic');
+});
+</script>
+</body>
+</html>

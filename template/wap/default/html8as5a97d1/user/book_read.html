@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>[mccms_title]</title>
+  <meta name="keywords" content="[mccms_keywords]">
+  <meta name="description" content="[mccms_description]">
+  [mccms_packs_book]
+  <link rel="stylesheet" href="[mccms_tpl]book/css/bookshelf.css">
+</head>
+<body class="story-bookshelf">
+<!-- 头部 -->
+<header class="header-bar">
+  <div class="l-toolbar">
+    <a class="go-back"></a>
+  </div>
+  <div class="item-nav">
+    <a href="[mccms_url_user_read_book]" class="j-nav-item item active">历史</a>
+    <a href="[mccms_url_user_fav_book]" class="j-nav-item item">收藏</a>
+    <a href="[mccms_url_user_buy_book]" class="j-nav-item item">订购</a>
+  </div>
+  <div class="r-toolbar">
+    <div class="j-toolbar-editor status-editor">
+      <i class="j-toolbar-editor__i i-editor"></i>
+      <div class="j-toolbar-editor__text text hide">完成</div>
+    </div>
+  </div>
+</header>
+<!-- 历史 -->
+<div class="mescroll story-bookshelf__history-list">
+  <ul>
+  {mccms:read table="book_read" page="20" order="id desc"}
+    <li class="j-his-item item" data-id="[read:id]">
+      <div class="item-select">
+        <i class="i-choose"></i>
+      </div>
+      <div class="j-his-link item-link" data-href="[read:infolink]">
+        <div class="item-cover">
+          <img class="lazy cover loaded" src="[mccms_tpl]img/bg_loading_img_3.4.png" data-src="[read:zdy zd=book,pic,bid]" alt="[read:zdy zd=book,name,bid]"> 
+        </div>
+        <div class="item-info">
+          <div class="title">[read:zdy zd=book,name,bid]</div>
+          <div class="look">看至：[read:zdy zd=book_chapter,name,cid,id]</div>
+          <div class="update">更至：[read:zdy zd=book_chapter,name,bid,bid]</div>
+        </div>
+      </div>
+      <div class="j-his-continue item-continue">
+        <a class="btn-continue" href="[read:readlink]">
+          <i class="i-continue"></i>
+          <div class="text">续看</div>
+        </a>
+      </div>
+    </li>
+  {/mccms:read}
+  </ul>
+  {if:[mccms_pagejs] > 1}
+  <div class="getmore" style="margin-top: 20px;" onclick="location.href='[mccms_pagedown]';">点击加载下一页</div>
+  {end if}
+  <!-- 为空 -->
+  <div class="j-his-empty{if:[mccms_pagenum] > 0} hide{end if}">
+    <div class="item-status__empty">
+      <div class="tip-text">主人,还没有看过一部小说</div>
+      <div class="tip-des">不妨去追一部小说吧~</div>
+      <a class="tip-btn" href="[mccms_custom_book-hot]">去「排行」看看</a>
+    </div>
+  </div>
+  <!-- 页脚工具栏 -->
+  <div class="j-his-toolbar item-toolbar">
+    <div class="j-his-btn-selectall btn-selectall"><i class="i-selectall"></i><span>全选</span></div>
+    <div class="j-his-btn-delete btn-delete disabled">删除</div>
+  </div>
+</div>
+<script>
+$(function(){
+  book.shelfcase('read');
+})
+</script>
+</body>
+</html>

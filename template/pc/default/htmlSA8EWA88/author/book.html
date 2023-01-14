@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>[mccms_title]</title>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<meta name="keywords" content="[mccms_keywords]">
+<meta name="description" content="[mccms_description]">
+[mccms_packs_author]
+</head>
+<body class="p-author-index">
+[mccms_head_author]
+<!-- 内容 -->
+<div class="main-container">
+  [mccms_left_author]
+  <script>$('#left-book').addClass('aside-user--selected');</script>
+  <!-- main-content -->
+  <div class="user-right">
+    <div class="user-right-top">
+      <h3>我的小说</h3>
+      <p class="comic-totle">共<span color="#FF620E" id="comic_count_num">[mccms_pagenum]</span>部小说</p>
+      <a href="[mccms_url_author_book_add]" class="comic-add">新增小说</a>
+    </div>
+    <div class="my-comic-box">
+      <div class="box-container">
+      {mccms:book table="book" page="15" order="addtime desc"}
+        <div class="comic-box-item" id="comic-[book:id]">
+          <div class="cover">
+            <a href="[mccms_url_author_book_info_[book:id]]">
+              <img src="[book:pic]">
+            </a>
+            <a href="[mccms_url_author_book_info_[book:id]]" title="替换《[book:name]》封面" class="change-cover">替换</a>
+          </div>
+          <div class="info">
+            <div class="info-row1 clearfix">
+              <span class="name">[book:name]</span>
+              <span class="time">更新时间：[book:addtime style=Y-m-d H:i:s]</span>
+            </div>
+            <div class="info-row2 clearfix">
+              <span>收藏：[book:shits]</span>
+              <span>人气：[book:hits]</span>
+              <span class="status">小说状态：
+                {if:[book:yid]==0}
+                  {if2:[book:sid]==1}
+                    <font color=red>已锁定</font>
+                  {else2}
+                    <font color=#080>已发布</font>
+                  {end if2}
+                {else}
+                <font color=#f60>未发布</font>
+                {end if}
+              </span>
+              <span class="status">审核状态：
+                {if:[book:yid]==0}<font color=#080>已通过</font>{end if}
+                {if:[book:yid]==1}<font color=#f60>待审核</font>{end if}
+                {if:[book:yid]==2}未通过<span style="cursor:pointer; color: #ff620e" class="check-reason" data-reason="[book:msg]">[查看原因]</span>{end if}
+              </span>
+            </div>
+            <div class="info-row3 clearfix">
+              <a href="[mccms_url_author_book_info_[book:id]]" title="修改《[book:name]》基本信息">修改小说</a>
+              <span class="btns">
+                {if:[book:yid] == 2}<a style="background: #f60;" class="del btn" href="javascript:void(0);" data-id="[book:id]">删除</a>{end if}
+                <a href="[mccms_url_author_bookchapter_add_[book:id]]" class="add btn">新增章节</a>
+                <a href="[mccms_url_author_bookchapter_index_[book:id]]" class="manage btn">管理章节</a>
+              </span>
+            </div>
+          </div>
+        </div>
+      {/mccms:book}
+      </div>
+      <div class="pagination--center{if:[mccms_pagejs] < 2} hide{end if}" id="collection-pagination">
+        <div class="layui-box layui-laypage layui-laypage-mkz">
+          <a href="[mccms_pageup]" class="layui-laypage-prev">&lt;</a>
+          [mccms_pagenum_10]
+          <a href="[mccms_pagedown]" class="layui-laypage-next">&gt;</a>
+        </div>
+      </div>
+    </div>
+    <div class="comic-empty{if:[mccms_pagenum] > 0} hide{end if}">
+      <span class="txt">你没有创建任何小说</span>
+      <div class="empty-bg"></div>
+    </div>
+  </div>
+</div>
+[mccms_bottom_author]
+<script type="text/javascript">
+$(function(){
+  $('.check-reason').click(function(){
+    mccms.layer.open({
+      title: '审核不通过理由',
+      content: $(this).data('reason')
+    });
+  });
+  $('.del').click(function(){
+    var id = $(this).data('id');
+    mccms.layer.open({
+      content: '主人，确定要删除小说么？(┬＿┬)',
+      yes: function(index, layero){
+        $.post(Mcpath.web+'index.php/author/book/del', {id: id}).done(function (res) {
+          if (res.code == 1) {
+            mccms.msg('删除成功',1);
+            $('#comic-'+id).remove();
+          } else {
+            mccms.msg(res.msg);
+          }
+        });
+        mccms.layer.close(index);
+      }
+    });
+  });
+})
+</script>
+</body>
+</html>

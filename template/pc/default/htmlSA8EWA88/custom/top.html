@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>[mccms_title]</title>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<meta name="keywords" content="[mccms_keywords]">
+<meta name="description" content="[mccms_description]">
+[mccms_packs]
+</head>
+<body class="p-top">
+<div style='display:none;'><img src='[mccms_tpl]images/app_logo.png' /></div>
+[mccms_head]
+<script>$('#nav_hot').addClass('active');</script>
+<div class="top-head-wr">
+    <div class="top-head__bg"></div>
+</div>
+<div class="top-nav">
+    <ul class="clearfix">
+        <li class="top-nav__item active"><a href="[mccms_custom_top]"><i class="iconfont icon-ic_ranking_qb"></i> 全部榜单</a></li>
+        <li class="top-nav__item"><a href="[mccms_custom_hot]">年度榜</a></li>
+        <li class="top-nav__item"><a href="[mccms_custom_month]">本月榜</a></li>
+        <li class="top-nav__item"><a href="[mccms_custom_week]">本周榜</a></li>
+        <li class="top-nav__item"><a href="[mccms_custom_day]">今日榜</a></li>
+        <li class="top-nav__item"><a href="[mccms_custom_ascension]">上升榜</a></li>
+        <li class="top-nav__item"><a href="[mccms_custom_score]">评分榜</a></li>
+        <li class="top-nav__item"><a href="[mccms_custom_fav]">收藏榜</a></li>
+        <li class="top-nav__item"><a href="[mccms_custom_reward]">打赏榜</a></li>
+        <li class="top-nav__item"><a href="[mccms_custom_ticket]">月票榜</a></li>
+        <li class="top-nav__item"><a href="[mccms_custom_pay]">收费榜</a></li>
+    </ul>
+</div>
+<div class="top-list__wr clearfix">
+    <div class="top-list">
+        <p class="top-list__head">
+            <span>年度榜</span>
+            <a class="more" href="[mccms_custom_hot]">^更多^</a>
+        </p>
+        <div class="top-list__con">
+            {mccms:comic table="comic" field="*" limit="10" order="hits desc"}
+            {if:[comic:i] == 1}
+            <div class="top-list__item--first">
+                <a class="cover" href="[comic:link]"><img class="lazy" data-original="[comic:pic]" src="[mccms_tpl]images/bg_loadimg_3x4.png" alt="[comic:name]"></a>
+                <p class="comic-title"><a href="[comic:link]">[comic:name]</a></p>
+                <p class="comic-author">作者：<a href="[comic:authorlink]">[comic:author]</a></p>
+                <p class="comic-feature">{if2:'[comic:text]'==''}[comic:content len=12]{else2}[comic:text]{end if2}</p>
+                <p class="comic-update">更至：<a class="hl" href="[comic:piclink]">[comic:zdy zd=comic_chapter,name,id,mid]</a></p>
+                <p class="comic-count">总点击：[comic:hits wan=1]</p>
+                <span class="tag--first"></span>
+            </div>
+            {else}
+            <div class="top-list__item">
+                <span class="tag tag--[comic:i]">[comic:i]</span>
+                <p class="comic-title"><a href="[comic:link]">[comic:name]</a></p>
+                <p class="comic-count">总点击：[comic:hits wan=1]</p>
+                <div class="top-list__item-detail hide">
+                    <a class="cover" href="[comic:link]"><img class="lazy" src="[comic:pic]" alt="[comic:name]"></a>
+                    <p class="comic-title"><a href="[comic:link]">[comic:name]</a></p>
+                    <p class="comic-author">作者：<a href="[comic:authorlink]">[comic:author]</a></p>
+                    <p class="comic-feature">{if2:'[comic:text]'==''}[comic:content len=12]{else2}[comic:text]{end if2}</p>
+                    <p class="comic-update">更至：<a class="hl" href="[comic:piclink]">[comic:zdy zd=comic_chapter,name,id,mid]</a></p>
+                    <p class="comic-count">总点击：[comic:hits wan=1]</p>
+                </div>
+            </div>
+            {end if}
+            {/mccms:comic}
+        </div>
+    </div>
+    <div class="top-list">
+        <p class="top-list__head">
+            <span>本月榜</span>
+            <a class="more" href="[mccms_custom_month]">^更多^</a>
+        </p>
+        <div class="top-list__con">
+            {mccms:comic table="comic" field="*" limit="10" order="yhits desc"}
+            {if:[comic:i] == 1}
+            <div class="top-list__item--first">
+                <a class="cover" href="[comic:link]"><img class="lazy" data-original="[comic:pic]" src="[mccms_tpl]images/bg_loadimg_3x4.png" alt="[comic:name]"></a>
+                <p class="comic-title"><a href="[comic:link]">[comic:name]</a></p>
+                <p class="comic-author">作者：<a href="[comic:authorlink]">[comic:author]</a></p>
+                <p class="comic-feature">{if2:'[comic:text]'==''}[comic:content len=12]{else2}[comic:text]{end if2}</p>
+                <p class="comic-update">更至：<a class="hl" href="[comic:piclink]">[comic:zdy zd=comic_chapter,name,id,mid]</a></p>
+                <p class="comic-count">月点击：[comic:yhits wan=1]</p>
+                <span class="tag--first"></span>
+            </div>
+            {else}
+            <div class="top-list__item">
+                <span class="tag tag--[comic:i]">[comic:i]</span>
+                <p class="comic-title"><a href="[comic:link]">[comic:name]</a></p>
+                <p class="comic-count">月点击：[comic:yhits wan=1]</p>
+                <div class="top-list__item-detail hide">
+                    <a class="cover" href="[comic:link]"><img class="lazy" src="[comic:pic]" alt="[comic:name]"></a>
+                    <p class="comic-title"><a href="[comic:link]">[comic:name]</a></p>
+                    <p class="comic-author">作者：<a href="[comic:authorlink]">[comic:author]</a></p>
+                    <p class="comic-feature">{if2:'[comic:text]'==''}[comic:content len=12]{else2}[comic:text]{end if2}</p>
+                    <p class="comic-update">更至：<a class="hl" href="[comic:piclink]">[comic:zdy zd=comic_chapter,name,id,mid]</a></p>
+                    <p class="comic-count">月点击：[comic:yhits wan=1]</p>
+                </div>
+            </div>
+            {end if}
+            {/mccms:comic}
+        </div>
+    </div>
+    <div class="top-list top-list--collect">
+        <p class="top-list__head">
+            <span>本周榜</span>
+            <a class="more" href="[mccms_custom_week]">^更多^</a>
+        </p>
+        <div class="top-list__con">
+            {mccms:comic table="comic" field="*" limit="10" order="zhits desc"}
+            {if:[comic:i] == 1}
+            <div class="top-list__item--first">
+                <a class="cover" href="[comic:link]"><img class="lazy" data-original="[comic:pic]" src="[mccms_tpl]images/bg_loadimg_3x4.png" alt="[comic:name]"></a>
+                <p class="comic-title"><a href="[comic:link]">[comic:name]</a></p>
+                <p class="comic-author">作者：<a href="[comic:authorlink]">[comic:author]</a></p>
+                <p class="comic-feature">{if2:'[comic:text]'==''}[comic:content len=12]{else2}[comic:text]{end if2}</p>
+                <p class="comic-update">更至：<a class="hl" href="[comic:piclink]">[comic:zdy zd=comic_chapter,name,id,mid]</a></p>
+                <p class="comic-count">周点击：[comic:zhits wan=1]</p>
+                <span class="tag--first"></span>
+            </div>
+            {else}
+            <div class="top-list__item">
+                <span class="tag tag--[comic:i]">[comic:i]</span>
+                <p class="comic-title"><a href="[comic:link]">[comic:name]</a></p>
+                <p class="comic-count">周点击：[comic:zhits wan=1]</p>
+                <div class="top-list__item-detail hide">
+                    <a class="cover" href="[comic:link]"><img class="lazy" src="[comic:pic]" alt="[comic:name]"></a>
+                    <p class="comic-title"><a href="[comic:link]">[comic:name]</a></p>
+                    <p class="comic-author">作者：<a href="[comic:authorlink]">[comic:author]</a></p>
+                    <p class="comic-feature">{if2:'[comic:text]'==''}[comic:content len=12]{else2}[comic:text]{end if2}</p>
+                    <p class="comic-update">更至：<a class="hl" href="[comic:piclink]">[comic:zdy zd=comic_chapter,name,id,mid]</a></p>
+                    <p class="comic-count">周点击：[comic:zhits wan=1]</p>
+                </div>
+            </div>
+            {end if}
+            {/mccms:comic}
+        </div>
+    </div>
+    <div class="top-list">
+        <p class="top-list__head">
+            <span>今日榜</span>
+            <a class="more" href="[mccms_custom_day]">^更多^</a>
+        </p>
+        <div class="top-list__con">
+            {mccms:comic table="comic" field="*" limit="10" order="rhits desc"}
+            {if:[comic:i] == 1}
+            <div class="top-list__item--first">
+                <a class="cover" href="[comic:link]"><img class="lazy" data-original="[comic:pic]" src="[mccms_tpl]images/bg_loadimg_3x4.png" alt="[comic:name]"></a>
+                <p class="comic-title"><a href="[comic:link]">[comic:name]</a></p>
+                <p class="comic-author">作者：<a href="[comic:authorlink]">[comic:author]</a></p>
+                <p class="comic-feature">{if2:'[comic:text]'==''}[comic:content len=12]{else2}[comic:text]{end if2}</p>
+                <p class="comic-update">更至：<a class="hl" href="[comic:piclink]">[comic:zdy zd=comic_chapter,name,id,mid]</a></p>
+                <p class="comic-count">日点击：[comic:rhits wan=1]</p>
+                <span class="tag--first"></span>
+            </div>
+            {else}
+            <div class="top-list__item">
+                <span class="tag tag--[comic:i]">[comic:i]</span>
+                <p class="comic-title"><a href="[comic:link]">[comic:name]</a></p>
+                <p class="comic-count">日点击：[comic:rhits wan=1]</p>
+                <div class="top-list__item-detail hide">
+                    <a class="cover" href="[comic:link]"><img class="lazy" src="[comic:pic]" alt="[comic:name]"></a>
+                    <p class="comic-title"><a href="[comic:link]">[comic:name]</a></p>
+                    <p class="comic-author">作者：<a href="[comic:authorlink]">[comic:author]</a></p>
+                    <p class="comic-feature">{if2:'[comic:text]'==''}[comic:content len=12]{else2}[comic:text]{end if2}</p>
+                    <p class="comic-update">更至：<a class="hl" href="[comic:piclink]">[comic:zdy zd=comic_chapter,name,id,mid]</a></p>
+                    <p class="comic-count">日点击：[comic:rhits wan=1]</p>
+                </div>
+            </div>
+            {end if}
+            {/mccms:comic}
+        </div>
+    </div>
+    <div class="top-list">
+        <p class="top-list__head">
+            <span>收藏榜</span>
+            <a class="more" href="[mccms_custom_fav]">^更多^</a>
+        </p>
+        <div class="top-list__con">
+            {mccms:comic table="comic" field="*" limit="10" order="shits desc"}
+            {if:[comic:i] == 1}
+            <div class="top-list__item--first">
+                <a class="cover" href="[comic:link]"><img class="lazy" data-original="[comic:pic]" src="[mccms_tpl]images/bg_loadimg_3x4.png" alt="[comic:name]"></a>
+                <p class="comic-title"><a href="[comic:link]">[comic:name]</a></p>
+                <p class="comic-author">作者：<a href="[comic:authorlink]">[comic:author]</a></p>
+                <p class="comic-feature">{if2:'[comic:text]'==''}[comic:content len=12]{else2}[comic:text]{end if2}</p>
+                <p class="comic-update">更至：<a class="hl" href="[comic:piclink]">[comic:zdy zd=comic_chapter,name,id,mid]</a></p>
+                <p class="comic-count">总收藏：[comic:shits wan=1]</p>
+                <span class="tag--first"></span>
+            </div>
+            {else}
+            <div class="top-list__item">
+                <span class="tag tag--[comic:i]">[comic:i]</span>
+                <p class="comic-title"><a href="[comic:link]">[comic:name]</a></p>
+                <p class="comic-count">总收藏：[comic:shits wan=1]</p>
+                <div class="top-list__item-detail hide">
+                    <a class="cover" href="[comic:link]"><img class="lazy" src="[comic:pic]" alt="[comic:name]"></a>
+                    <p class="comic-title"><a href="[comic:link]">[comic:name]</a></p>
+                    <p class="comic-author">作者：<a href="[comic:authorlink]">[comic:author]</a></p>
+                    <p class="comic-feature">{if2:'[comic:text]'==''}[comic:content len=12]{else2}[comic:text]{end if2}</p>
+                    <p class="comic-update">更至：<a class="hl" href="[comic:piclink]">[comic:zdy zd=comic_chapter,name,id,mid]</a></p>
+                    <p class="comic-count">总收藏：[comic:shits wan=1]</p>
+                </div>
+            </div>
+            {end if}
+            {/mccms:comic}
+        </div>
+    </div>
+    <div class="top-list top-list--collect">
+        <p class="top-list__head">
+            <span>评分榜</span>
+            <a class="more" href="[mccms_custom_week]">^更多^</a>
+        </p>
+        <div class="top-list__con">
+            {mccms:comic table="comic" field="*" limit="10" order="score desc"}
+            {if:[comic:i] == 1}
+            <div class="top-list__item--first">
+                <a class="cover" href="[comic:link]"><img class="lazy" data-original="[comic:pic]" src="[mccms_tpl]images/bg_loadimg_3x4.png" alt="[comic:name]"></a>
+                <p class="comic-title"><a href="[comic:link]">[comic:name]</a></p>
+                <p class="comic-author">作者：<a href="[comic:authorlink]">[comic:author]</a></p>
+                <p class="comic-feature">{if2:'[comic:text]'==''}[comic:content len=12]{else2}[comic:text]{end if2}</p>
+                <p class="comic-update">更至：<a class="hl" href="[comic:piclink]">[comic:zdy zd=comic_chapter,name,id,mid]</a></p>
+                <p class="comic-count">总得分：[comic:score]</p>
+                <span class="tag--first"></span>
+            </div>
+            {else}
+            <div class="top-list__item">
+                <span class="tag tag--[comic:i]">[comic:i]</span>
+                <p class="comic-title"><a href="[comic:link]">[comic:name]</a></p>
+                <p class="comic-count">总得分：[comic:score]</p>
+                <div class="top-list__item-detail hide">
+                    <a class="cover" href="[comic:link]"><img class="lazy" src="[comic:pic]" alt="[comic:name]"></a>
+                    <p class="comic-title"><a href="[comic:link]">[comic:name]</a></p>
+                    <p class="comic-author">作者：<a href="[comic:authorlink]">[comic:author]</a></p>
+                    <p class="comic-feature">{if2:'[comic:text]'==''}[comic:content len=12]{else2}[comic:text]{end if2}</p>
+                    <p class="comic-update">更至：<a class="hl" href="[comic:piclink]">[comic:zdy zd=comic_chapter,name,id,mid]</a></p>
+                    <p class="comic-count">总得分：[comic:score]</p>
+                </div>
+            </div>
+            {end if}
+            {/mccms:comic}
+        </div>
+    </div>
+    <div class="top-list">
+        <p class="top-list__head">
+            <span>打赏榜</span>
+            <a class="more" href="[mccms_custom_reward]">^更多^</a>
+        </p>
+        <div class="top-list__con">
+            {mccms:comic table="comic" field="*" limit="10" order="cion desc"}
+            {if:[comic:i] == 1}
+            <div class="top-list__item--first">
+                <a class="cover" href="[comic:link]"><img class="lazy" data-original="[comic:pic]" src="[mccms_tpl]images/bg_loadimg_3x4.png" alt="[comic:name]"></a>
+                <p class="comic-title"><a href="[comic:link]">[comic:name]</a></p>
+                <p class="comic-author">作者：<a href="[comic:authorlink]">[comic:author]</a></p>
+                <p class="comic-feature">{if2:'[comic:text]'==''}[comic:content len=12]{else2}[comic:text]{end if2}</p>
+                <p class="comic-update">更至：<a class="hl" href="[comic:piclink]">[comic:zdy zd=comic_chapter,name,id,mid]</a></p>
+                <p class="comic-count">总礼物：[comic:cion wan=1]</p>
+                <span class="tag--first"></span>
+            </div>
+            {else}
+            <div class="top-list__item">
+                <span class="tag tag--[comic:i]">[comic:i]</span>
+                <p class="comic-title"><a href="[comic:link]">[comic:name]</a></p>
+                <p class="comic-count">总礼物：[comic:cion wan=1]</p>
+                <div class="top-list__item-detail hide">
+                    <a class="cover" href="[comic:link]"><img class="lazy" src="[comic:pic]" alt="[comic:name]"></a>
+                    <p class="comic-title"><a href="[comic:link]">[comic:name]</a></p>
+                    <p class="comic-author">作者：<a href="[comic:authorlink]">[comic:author]</a></p>
+                    <p class="comic-feature">{if2:'[comic:text]'==''}[comic:content len=12]{else2}[comic:text]{end if2}</p>
+                    <p class="comic-update">更至：<a class="hl" href="[comic:piclink]">[comic:zdy zd=comic_chapter,name,id,mid]</a></p>
+                    <p class="comic-count">总礼物：[comic:cion wan=1]</p>
+                </div>
+            </div>
+            {end if}
+            {/mccms:comic}
+        </div>
+    </div>
+    <div class="top-list">
+        <p class="top-list__head">
+            <span>收藏榜</span>
+            <a class="more" href="[mccms_custom_ticket]">^更多^</a>
+        </p>
+        <div class="top-list__con">
+            {mccms:comic table="comic" field="*" limit="10" order="ticket desc"}
+            {if:[comic:i] == 1}
+            <div class="top-list__item--first">
+                <a class="cover" href="[comic:link]"><img class="lazy" data-original="[comic:pic]" src="[mccms_tpl]images/bg_loadimg_3x4.png" alt="[comic:name]"></a>
+                <p class="comic-title"><a href="[comic:link]">[comic:name]</a></p>
+                <p class="comic-author">作者：<a href="[comic:authorlink]">[comic:author]</a></p>
+                <p class="comic-feature">{if2:'[comic:text]'==''}[comic:content len=12]{else2}[comic:text]{end if2}</p>
+                <p class="comic-update">更至：<a class="hl" href="[comic:piclink]">[comic:zdy zd=comic_chapter,name,id,mid]</a></p>
+                <p class="comic-count">总月票：[comic:ticket wan=1]</p>
+                <span class="tag--first"></span>
+            </div>
+            {else}
+            <div class="top-list__item">
+                <span class="tag tag--[comic:i]">[comic:i]</span>
+                <p class="comic-title"><a href="[comic:link]">[comic:name]</a></p>
+                <p class="comic-count">总月票：[comic:ticket wan=1]</p>
+                <div class="top-list__item-detail hide">
+                    <a class="cover" href="[comic:link]"><img class="lazy" src="[comic:pic]" alt="[comic:name]"></a>
+                    <p class="comic-title"><a href="[comic:link]">[comic:name]</a></p>
+                    <p class="comic-author">作者：<a href="[comic:authorlink]">[comic:author]</a></p>
+                    <p class="comic-feature">{if2:'[comic:text]'==''}[comic:content len=12]{else2}[comic:text]{end if2}</p>
+                    <p class="comic-update">更至：<a class="hl" href="[comic:piclink]">[comic:zdy zd=comic_chapter,name,id,mid]</a></p>
+                    <p class="comic-count">总月票：[comic:ticket wan=1]</p>
+                </div>
+            </div>
+            {end if}
+            {/mccms:comic}
+        </div>
+    </div>
+    <div class="top-list top-list--collect">
+        <p class="top-list__head">
+            <span>收费榜</span>
+            <a class="more" href="[mccms_custom_pay]">^更多^</a>
+        </p>
+        <div class="top-list__con">
+            {mccms:comic table="comic" field="*" where="pay>0" limit="10" order="zhits desc"}
+            {if:[comic:i] == 1}
+            <div class="top-list__item--first">
+                <a class="cover" href="[comic:link]"><img class="lazy" data-original="[comic:pic]" src="[mccms_tpl]images/bg_loadimg_3x4.png" alt="[comic:name]"></a>
+                <p class="comic-title"><a href="[comic:link]">[comic:name]</a></p>
+                <p class="comic-author">作者：<a href="[comic:authorlink]">[comic:author]</a></p>
+                <p class="comic-feature">{if2:'[comic:text]'==''}[comic:content len=12]{else2}[comic:text]{end if2}</p>
+                <p class="comic-update">更至：<a class="hl" href="[comic:piclink]">[comic:zdy zd=comic_chapter,name,id,mid]</a></p>
+                <p class="comic-count">周点击：[comic:zhits wan=1]</p>
+                <span class="tag--first"></span>
+            </div>
+            {else}
+            <div class="top-list__item">
+                <span class="tag tag--[comic:i]">[comic:i]</span>
+                <p class="comic-title"><a href="[comic:link]">[comic:name]</a></p>
+                <p class="comic-count">周点击：[comic:zhits wan=1]</p>
+                <div class="top-list__item-detail hide">
+                    <a class="cover" href="[comic:link]"><img class="lazy" src="[comic:pic]" alt="[comic:name]"></a>
+                    <p class="comic-title"><a href="[comic:link]">[comic:name]</a></p>
+                    <p class="comic-author">作者：<a href="[comic:authorlink]">[comic:author]</a></p>
+                    <p class="comic-feature">{if2:'[comic:text]'==''}[comic:content len=12]{else2}[comic:text]{end if2}</p>
+                    <p class="comic-update">更至：<a class="hl" href="[comic:piclink]">[comic:zdy zd=comic_chapter,name,id,mid]</a></p>
+                    <p class="comic-count">周点击：[comic:zhits wan=1]</p>
+                </div>
+            </div>
+            {end if}
+            {/mccms:comic}
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+$(function(){
+    $('.top-list__item').hover(function() {
+        $(this).children('.top-list__item-detail').show();
+    },function(){
+        $(this).children('.top-list__item-detail').hide();
+    });
+});
+</script>
+[mccms_bottom]
+</body>
+</html>

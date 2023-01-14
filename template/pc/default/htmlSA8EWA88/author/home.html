@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>[mccms_title]</title>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<meta name="keywords" content="[mccms_keywords]">
+<meta name="description" content="[mccms_description]">
+[mccms_packs]
+<style>
+.comic-list__head span{margin-right: 40px;position: relative;height: 36px;display: inline-block;cursor: pointer;}
+.comic-list__head span.on em{position: absolute;bottom:0;width: 90%;left:5%;height: 2px;background: #f60;}
+</style>
+</head>
+<body class="p-author-comic">
+<div style='display:none;'><img src='[mccms_tpl]images/app_logo.png' /></div>
+[mccms_head]
+<div class="au-home-container">
+    <div class="au-home__head">
+      <div class="avatar"><img style="width:100%;" src="[author:pic]" alt="[author:nichen]"></div>
+      <p class="author-name">[author:nichen]</p>
+      <p class="comic-count">漫画：<span class="hl">[author:count zd=comic,id,uid]</span> 部作品</p>
+      <p class="comic-count">小说：<span class="hl">[author:count zd=book,id,uid]</span> 部作品</p>
+    </div>
+    <p class="comic-list__head"><span data-type="comic" class="on">TA的漫画<em></em></span><span data-type="book">TA的小说<em></em></span></p>
+    <div class="comic-list clearfix comic_list">
+      	<div class="comic-list__con" style="min-height: 300px;">
+		    {mccms:comic table="comic" where="uid=[author_id]" limit="30" sort="addtime desc"}
+        	<div class="common-comic-item">
+	            <a class="cover" href="[comic:link]"><img class="lazy" data-original="[comic:pic]" src="[mccms_tpl]images/bg_loadimg_3x4.png" alt="[comic:name]" style="display: inline-block;"></a>
+	            <p class="comic__title"><a href="[comic:link]">[comic:name]</a></p>
+	            <p class="comic-update">更至：<a class="hl" href="[comic:piclink]">[comic:zdy zd=comic_chapter,name,id,mid]</a></p>
+	            <p class="comic-count">人气：[comic:hits wan=1]</p>
+          	</div>
+		    {/mccms:comic}
+      	</div>
+    </div>
+    <div class="comic-list clearfix book_list" style="display:none;">
+        <div class="comic-list__con" style="min-height: 300px;">
+        {mccms:book table="book" where="uid=[author_id]" limit="30" sort="addtime desc"}
+          <div class="common-comic-item">
+              <a class="cover" href="[book:infolink]"><img class="lazy" data-original="[book:pic]" src="[mccms_tpl]images/bg_loadimg_3x4.png" alt="[book:name]" style="display: inline-block;"></a>
+              <p class="comic__title"><a href="[book:infolink]">[book:name]</a></p>
+              <p class="comic-update">更至：<a class="hl" href="[book:readlink]">[book:zdy zd=book_chapter,name,id,bid]</a></p>
+              <p class="comic-count">人气：[book:hits wan=1]</p>
+            </div>
+        {/mccms:book}
+        </div>
+    </div>
+</div>
+[mccms_bottom]
+<script type="text/javascript">
+$('.comic-list__head span').click(function(){
+  var type = $(this).data('type');
+  $('.comic-list__head span').removeClass('on');
+  $(this).addClass('on');
+  $('.comic-list').hide();
+  $('.'+type+'_list').show();
+  //图片懒加载
+  $("img.lazy").lazyload({
+    effect : "fadeIn",
+  　　threshold : 10
+  });
+});
+</script>
+</body>
+</html>

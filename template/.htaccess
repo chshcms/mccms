@@ -1,0 +1,4 @@
+<FilesMatch (.*)\.(php|tpl)$>
+Order allow,deny
+deny from all
+</FilesMatch>

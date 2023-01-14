@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>[mccms_title]</title>
+  <meta name="keywords" content="[mccms_keywords]">
+  <meta name="description" content="[mccms_description]">
+  [mccms_packs]
+</head>
+<body>
+  <header class="header">
+    <a href="[mccms_url_user]" class="go-back"><i class="ift-back"></i></a>
+    <span>修改资料</span>
+    <a href="[mccms_url_user_info_pass]" style="position: absolute;right: .48rem;color: #ff7830;font-size: 14px;">修改密码</a>
+  </header>
+  <main class="main register-main under-header">
+    <form id="registerForm" name="register" method="POST">
+      {if:[user:nameedit] == 1}<div class="label-tips">用户名可作登陆名只能修改一次,请谨慎修改</div>{end if}
+      <div class="phone-input info">
+        <div class="input-wrap">
+        	<label>用户名：</label>
+        	{if:[user:nameedit] == 1}
+						<input type="text" name="name" class="user-name" autocomplete="off" value="[user:name]" placeholder="用户名可作登陆名只能修改一次,请谨慎修改"/>
+        	{else}
+          	<input type="text" name="name" class="user-name" value="[user:name]" style="background-color: #f1f1f1;" disabled>
+          {end if}
+        </div>
+      </div>
+      <div class="phone-input info">
+        <div class="input-wrap">
+        	<label>昵称：</label>
+        	<input class="user-nichen" type="text" name="nichen" value="[user:nichen]" placeholder="请输入昵称或者笔名"/>
+        </div>
+      </div>
+      <div class="phone-input info">
+        <div class="input-wrap">
+        	<label>QQ：</label>
+        	<input type="text" class="user-qq" name="qq" value="[user:qq]" placeholder="请输入联系QQ"/>
+        </div>
+      </div>
+      <div class="phone-input info">
+        <div class="input-wrap">
+        	<label>邮箱：</label>
+        	<input type="text" class="user-email" name="email" value="[user:email]" placeholder="请输入联系邮箱"/>
+        </div>
+      </div>
+      <div class="phone-input info">
+        <div class="input-wrap">
+        	<label>性别：</label>
+        	<div class="sex">
+						<span data-sex="男" {if:'[user:sex]' == '男'} class="on"{end if}>男</span>
+						<span data-sex="女"{if:'[user:sex]' == '女'} class="on"{end if}>女</span>
+						<span data-sex="保密"{if:'[user:sex]' == '保密'} class="on"{end if}>保密</span>
+					</div>
+        	<input type="hidden" class="user-sex" name="sex" value="[user:sex]" />
+        </div>
+      </div>
+      <div class="phone-input info">
+        <div class="input-wrap">
+        	<label>城市：</label>
+        	<div class="city">
+	        	<select class="user-province" name="province" id="province"></select>
+	        	<select class="user-city" name="city" id="city"></select>
+						<select class="user-area" name="area" id="area"></select>
+					</div>
+        </div>
+      </div>
+      <div class="phone-input info" style="height:60px;">
+        <div class="input-wrap">
+        	<label>简介：</label>
+        	<textarea maxlength="150" name="text" placeholder="向仰慕你的漫友们介绍下自己吧,别超过100字哦" class="user-text">[user:text]</textarea>
+        </div>
+      </div>
+      <button class="info-btn">提交</button>
+    </form>
+  </main>
+<script src="[mccms_tpl]js/city.js"></script>
+<script>
+$(function(){
+	user.info('[user:province]','[user:city]','[user:area]');
+})
+</script>
+</body>
+</html>

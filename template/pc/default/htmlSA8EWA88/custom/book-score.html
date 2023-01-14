@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>小说评分榜_好看的小说排行榜_经典小说推荐 - [mccms_name]</title>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="keywords" content="[mccms_keywords]">
+    <meta name="description" content="[mccms_description]">
+    [mccms_packs_book]
+    <link rel="stylesheet" href="[mccms_tpl]book/css/top.css">
+</head>
+<body class="story-top story-header--fixed">
+    <div style='display:none;'><img src='[mccms_tpl]images/app_logo.png' /></div>
+    [mccms_head_book]
+    <script>$('.story-header__nav--top').addClass('active');</script>
+    <div class="story-top__banner"></div>
+    <div class="story-top__nav container--response">
+        <div class="item"><a href="[mccms_custom_book-top]" class="link">全部榜单</a></div>
+        <div class="item"><a href="[mccms_custom_book-hot]" class="link">人气榜</a></div>
+        <div class="item"><a href="[mccms_custom_book-fav]" class="link">收藏榜</a></div>
+        <div class="item"><a href="[mccms_custom_book-gift]" class="link">打赏榜</a></div>
+        <div class="item"><a href="[mccms_custom_book-ticket]" class="link">月票榜</a></div>
+        <div class="item"><a href="[mccms_custom_book-news]" class="link">上升榜</a></div>
+        <div class="item active"><a href="[mccms_custom_book-score]" class="link">评分榜</a></div>
+    </div>
+    <div class="story-top__rank container--response">
+        <div class="story-top__rank-item clearfix">
+            <div class="header">
+                <div class="title">
+                    <i class="icon__cx"></i>
+                    <span>评分榜</span>
+                </div>
+            </div>
+            <div class="j-rank-item-con clearfix list" style="display: block;">
+                <!-- item -->
+                {mccms:book table="book" field="*" where="" limit="99" order="score desc"}
+                <div class="item">
+                    <a href="[book:infolink]">
+                        <img class="lazy cover loaded" src="[mccms_tpl]book/images/load_3x4.png" data-src="[book:pic]" alt="[book:name]">
+                    </a>
+                    <div class="info">
+                        <div class="title">
+                            <a href="[book:infolink]">[book:name]</a>
+                            <i class="top[book:i]">[book:i]</i>
+                        </div>
+                        <div class="multi">[book:zdy zd=book_class,name,cid] · [book:author]</div>
+                        <div class="desc">[book:content]</div>
+                        <div class="num">评分：[book:score]分</div>
+                    </div>
+                </div>
+                {/mccms:book}
+            </div>
+        </div>
+    </div>
+    [mccms_bottom_book]
+</body>
+</html>

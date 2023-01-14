@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>[mccms_title]</title>
+  <meta name="keywords" content="[mccms_keywords]">
+  <meta name="description" content="[mccms_description]">
+  <script>var _json_ = [mccms_json];</script>
+  [mccms_packs_book]
+  <link rel="stylesheet" href="[mccms_tpl]book/css/categoryinfo.css">
+</head>
+<body class="story-category-info">
+<div style='display:none;'><img src='[mccms_tpl]img/app_logo.png'/></div>
+<!-- 头部 -->
+<header class="header-bar">
+  <a class="go-back"></a>
+  <span class="j-info__theme-name title">[title]</span>
+  <a href="[mccms_custom_book-search]" class="i-search"></a>
+</header>
+<!-- 分类-菜单 -->
+<div class="story-category-info__toolbar">
+  <div class="multi-item">
+    <div class="j-info-nav item{if:'[order]' == 'hits'} active{end if}" data-order="hits">人气</div>
+    <div class="j-info-nav item{if:'[order]' == 'shits'} active{end if}" data-order="shits">收藏</div>
+    <div class="j-info-nav item{if:'[order]' == 'addtime'} active{end if}" data-order="addtime">更新</div>
+  </div>
+  <div class="j-info-filter filter-item">
+    筛选 <i class="i-filter"></i>
+  </div>
+</div>
+<div class="mescroll story-category-info__list">
+  <ul class="book-list">
+  {mccms:book table="book" field="*" page="20" order="hits desc"}
+    <li class="story-category-info__item">
+      <a href="[book:infolink]" class="item-link">
+        <div class="item-cover">
+          <img class="lazy cover loaded" src="[mccms_tpl]img/bg_loading_img_3.4.png" data-src="[book:pic]" alt="[book:name]"> 
+        </div>
+        <div class="item-info">
+          <div class="title">[book:name]</div>
+          <div class="desc">[book:content]</div>
+          <div class="l-row">
+            <div class="author">[book:author]</div>
+            <div class="count">[book:text_num wan=1]字</div>
+          </div>
+        </div>
+      </a>
+    </li>
+  {/mccms:book}
+  </ul>
+  <div class="mescroll-upwarp" style="visibility: visible; display: none;"><p class="upwarp-tip">正在加载中...</p></div>
+</div>
+<div class="xuan-box hide">
+  <div class="j-dialog__multi-filter dialog-multi-filter">
+    <div class="item-header">
+      <i class="j-filter-close i-close"></i>
+      <h2 class="title">小说筛选</h2>
+    </div>
+    <div class="item-content">
+      <div class="j-filter__row item-row">
+        <h3>分类</h3>
+        <div class="group list-box">
+          <div data-cid="0" class="j-filter__item item{if:'[list]' == '0'} active{end if}">全部</div>
+          {mccms:class table="book_class" field="*" where="fid=0" limit="all" order="xid asc"}
+          <div data-cid="[class:id]" class="j-filter__item item{if:'[class:id]' == '[list]'} active{end if}">[class:name]</div>
+          {/mccms:class}
+        </div>
+      </div>
+      <div class="j-filter__row item-row">
+        <h3>选择题材</h3>
+        <div class="group tags-box">
+          <div data-tags="" class="j-filter__item item{if:'[tags]' == ''} active{end if}">全部</div>
+          {book:tags len="100"}
+          <div data-tags="[tags:i]" class="j-filter__item item{if:'[tags:i]' == '[tags]'} active{end if}">[tags:name]</div>
+          {/book:tags}
+        </div>
+      </div>
+      <div class="j-filter__row item-row">
+        <h3>小说字数</h3>
+        <div class="group size-box">
+          <div data-size="0" class="j-filter__item item item--large{if:'[size]' == '0'} active{end if}">全部</div>
+          <div data-size="1" class="j-filter__item item item--large{if:'[size]' == '1'} active{end if}">30万字以上</div>
+          <div data-size="2" class="j-filter__item item item--large{if:'[size]' == '2'} active{end if}">30万-50万字</div>
+          <div data-size="3" class="j-filter__item item item--large{if:'[size]' == '3'} active{end if}">50万-100万字</div>
+          <div data-size="4" class="j-filter__item item item--large{if:'[size]' == '4'} active{end if}">100万-200万字</div>
+          <div data-size="5" class="j-filter__item item item--large{if:'[size]' == '5'} active{end if}">200万字以上</div>
+        </div>
+      </div>
+      <div class="j-filter__row item-row">
+        <h3>资费</h3>
+        <div class="group pay-box">
+          <div data-pay="0" class="j-filter__item item{if:'[pay]' == '0'} active{end if}">全部</div>
+          <div data-pay="1" class="j-filter__item item{if:'[pay]' == '1'} active{end if}">免费</div>
+          <div data-pay="2" class="j-filter__item item{if:'[pay]' == '2'} active{end if}">付费</div>
+          <div data-pay="3" class="j-filter__item item{if:'[pay]' == '3'} active{end if}">VIP</div>
+        </div>
+      </div>
+      <div class="j-filter__row item-row">
+        <h3>进度</h3>
+        <div class="group finish-box">
+          <div data-finish="0" class="j-filter__item item{if:'[finish]' == '0'} active{end if}">全部</div>
+          <div data-finish="1" class="j-filter__item item{if:'[finish]' == '1'} active{end if}">连载中</div>
+          <div data-finish="2" class="j-filter__item item{if:'[finish]' == '2'} active{end if}">完结</div>
+        </div>
+      </div>
+    </div>
+    <div class="item-footer">
+      <div class="j-filter__reset btn btn--reset">重置</div>
+      <div class="j-filter__submit btn btn--submit">确定</div>
+    </div>
+  </div>
+</div>
+[mccms_bottom_book]
+<script>
+$(function(){
+  if($('.book-list li').length == 0){
+    $('.book-list').html('<div class="mescroll-empty"><p class="empty-tip"></p><div class="upwarp-empty"><div class="tip--bg"></div><p class="tip--title">主人,没有相匹配小说</p><p class="tip--small">换个筛选条件试试</p></div><p></p></div>');
+  }
+  book.category();
+})
+</script>
+</body>
+</html>

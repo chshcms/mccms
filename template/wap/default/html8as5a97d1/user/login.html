@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>[mccms_title]</title>
+  <meta name="keywords" content="[mccms_keywords]">
+  <meta name="description" content="[mccms_description]">
+  [mccms_packs]
+</head>
+<body>
+  <div class="login-page">
+    <div class="login-header">
+      <header>
+        <a class="go-back"><i class="ift-back"></i></a>
+        <a href="[mccms_url_user_login_pass]" class="forgot">忘记密码？</a>
+      </header>
+    </div>
+    <main class="main login-main">
+      <form id="loginForm" action="" name="login" method="POST">
+        <div class="user-input">
+          <lable class="user-icon"><i class="ift-login_name"></i></lable>
+          <input class="username" type="text" name="username" placeholder="用户名／手机号" autocomplete="off">
+        </div>
+        <div class="password-input">
+          <lable class="password-icon"><i class="ift-login_key2"></i></lable>
+          <input class="userpass" type="password" name="password" placeholder="登录密码" autocomplete="off">
+        </div>
+        <div class="user-input piccode hide">
+          <lable class="user-icon"><i class="ift-login_key"></i></lable>
+          <input class="pcode" type="text" name="pcode" placeholder="输入验证码" maxlength="4" autocomplete="off">
+          <img title="点击刷新验证码" style="position: absolute; right: 1px; top: 1px; width: 99px; height: 92%; cursor: pointer; display: inline-block;" class="code_pic" src="[mccms_url_api_code]">
+        </div>
+        <button class="login-btn">登录</button>
+      </form>
+      <p class="fast-register"><a href="[mccms_url_user_login_reg]"><i class="ift-login_gosign"></i>闪电注册</a></p>
+    </main>
+    <div class="other-login clearfix">
+      <p>使用以下方式登录</p>
+      <a class="qq-login" href="[mccms_url_user_open_index_qq]"><i class="ift-login_qq"></i></a>
+      <a class="wb-login" href="[mccms_url_user_open_index_weibo]"><i class="ift-login_wb"></i></a>
+    </div>
+  </div>
+<script>
+$(function(){
+	user.login();
+})
+</script>
+</body>
+</html>

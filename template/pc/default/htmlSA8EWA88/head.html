@@ -1,0 +1,187 @@
+<div class="in-header">
+	<div class="in-header__wrap container--response">
+    	<a class="in-header__logo" href="[mccms_weburl]"></a>
+    	<div class="in-header__nav">
+      		<ul class="clearfix">
+		        <li id="nav_index" class="nav-item">
+		        	<a href="[mccms_weburl]">首页</a>
+		        	<div class="underline"></div>
+		        </li>
+		        <li id="nav_update" class="nav-item">
+			        <a href="[mccms_custom_update]">更新</a>
+			        <div class="underline"></div>
+		        </li>
+		        <li id="nav_hot" class="nav-item">
+		        	<a href="[mccms_custom_top]">排行</a>
+		        	<div class="underline"></div>
+		        </li>
+		        <li id="nav_type" class="nav-item">
+		        	<a href="[mccms_url_category]">分类</a>
+		        	<div class="underline"></div>
+		        </li>
+                <li id="nav_book" class="nav-item">
+                    <a href="[mccms_url_book]">小说</a>
+                    <div class="underline"></div>
+                    <img class="new" src="[mccms_tpl]images/ic_nav_newxs.png" alt="new">
+                </li>
+      		</ul>
+        </div>
+        <div class="in-header__search">
+            <input class="input j-header-input" type="text" placeholder="请输入漫画标题或者作者名">
+            <span class="button"></span>
+            <i class="iconfont icon-ic_head_search"></i>
+            <div class="in-dialog--search hide">
+                <div class="search-hot-wr">
+                    <p class="dialog-title">今日热搜</p>
+                    <div class="search-hot">
+                        <script class="hot-search-tpl" type="text/html">
+                          {{#layui.each(d, function(index, item) { }}
+                            <div class="search-hot__item {{ index == 0 ? 'active' : '' }}">
+                                <p class="search-item__name">
+                                    <span class="num {{ index < 3 ? 'num--' + (index + 1) : '' }}">{{ index + 1 }}</span>
+                                    <span class="comic-title">{{ item.name }}</span>
+                                </p>
+                                <a class="search-item__detail fl" href="{{ item.url }}">
+                                    <span class="num {{ index < 3 ? 'num--' + (index + 1) : '' }}">{{ index + 1 }}</span>
+                                    <span class="cover"><img src="{{ item.pic}}" alt="{{ item.name }}"></span>
+                                    <p class="title">{{ item.name }}</p>
+                                    <p class="text">作者：{{ item.author }}</p>
+                                    <p class="text">{{ item.text}}</p>
+                                </a>
+                            </div>
+                          {{# }) }}
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="in-header__user">
+            <ul class="fl clearfix">
+                <li class="user-item j-user-msg">
+                    <a href="[mccms_url_user_message]" rel="nofollow">
+                        <i class="iconfont icon-ic_head_inform"></i>
+                        <span class="item-text">消息</span>
+                    </a>
+                </li>
+                <li class="user-item j-header-his">
+                    <a href="[mccms_url_user_read]" rel="nofollow">
+                        <i class="iconfont icon-ic_head_footprint"></i>
+                        <span class="item-text">历史</span>
+                    </a>
+                    <div class="in-dialog--his hide">
+                        <p class="in-dialog__title">我看过的<a class="more" href="[mccms_url_user_read]">查看全部></a></p>
+                        <p class="in-dialog__offline">登录同步看到各端数据，<a class="hl" href="[mccms_url_user_login]">请登录</a></p>
+                        <ul class="in-dialog__user-list hide"></ul>
+                        <script class="header-his-tpl" type="text/html">
+                            {{# layui.each(d, function(index, item) { }}
+                            <li class="list-item">
+                                <a class="cover" href="{{ item.url }}"><img src="{{ item.pic}}" alt="{{ item.name }}"></a>
+                                <p class="comic-title"><a href="{{ item.url }}">{{ item.name }}</a></p>
+                                <p class="read-at">读至：<a href="{{ item.chapter_url }}">{{ item.chapter_name }}</a></p>
+                                <p class="update">更至：<a class="hl" href="{{ item.chapter_xurl }}">{{ item.chapter_xname }}</a></p>
+                                <a class="read" href="{{ item.chapter_url }}">续看></a>
+                            </li>
+                            {{# }) }}
+                        </script>
+                        <div class="in-dialog__empty">还没有看过的漫画，<a class="hl" href="[mccms_url_category]">去追一部</a></div>
+                        <span class="triangle"><i class="iconfont icon-ic_nav_toast_sj"></i></span>
+                    </div>
+                </li>
+                <li class="user-item j-header-coll">
+                    <a href="[mccms_url_user_fav]" rel="nofollow">
+                        <i class="iconfont icon-ic_head_coll"></i>
+                        <span class="item-text">收藏</span>
+                    </a>
+                    <div class="in-dialog--coll hide">
+                        <p class="in-dialog__title">我收藏的<a class="more" href="[mccms_url_user_fav]">查看全部></a></p>
+                        <ul class="in-dialog__user-list">
+                        <script class="header-coll-tpl" type="text/html">
+                        {{# layui.each(d, function(index, item) { }}
+                            <li class="list-item">
+                                <a class="cover" href="{{ item.url }}"><img src="{{ item.pic}}" alt="{{ item.name }}"></a>
+                                <p class="comic-title"><a href="{{ item.url }}">{{ item.name }}</a></p>
+                                <p class="read-at">读至：<a href="{{ item.chapter_url }}">{{ item.chapter_name }}</a></p>
+                                <p class="update">更至：<a class="hl" href="{{ item.chapter_xurl }}">{{ item.chapter_xname }}</a></p>
+                                <a class="read" href="{{ item.chapter_url }}">续看></a>
+                            </li>
+                        {{# }) }}
+                        </script>
+                        </ul>
+                        <div class="in-dialog__empty coll hide">还没有收藏的漫画，<a class="hl" href="[mccms_url_category]">去追一部</a></div>
+                        <div class="in-dialog__empty offline">登录查看收藏记录，<a class="hl" href="[mccms_url_user_login]">去登录</a></div>
+                        <span class="triangle"><i class="iconfont icon-ic_nav_toast_sj"></i></span>
+                    </div>
+                </li>
+                <li class="user-item">
+                    <a href="[mccms_url_author_comic_add]">
+                        <i class="iconfont icon-ic_head_tg"></i>
+                        <span class="item-text">投稿</span>
+                    </a>
+                </li>
+                <!--
+                <li class="user-item j-header-down">
+                    <a href="" rel="nofollow">
+                        <i class="iconfont icon-ic_head_app"></i>
+                        <span class="item-text">下载APP</span>
+                    </a>
+                    <div class="in-dialog--download hide">
+                        <img class="qr-code" src="[mccms_tpl]images/pic_screen1_ewm.png" alt="下载二维码">
+                        <p class="text"><i class="iconfont icon-ic_nav_app_"></i> 海量免费漫画</p>
+                        <p class="text"><i class="iconfont icon-ic_nav_app_1"></i> 流畅阅读体验</p>
+                        <p class="text"><i class="iconfont icon-ic_nav_app_2"></i> 无码高清画质</p>
+                        <span class="triangle"><i class="iconfont icon-ic_nav_toast_sj"></i></span>
+                    </div>
+                </li>
+            	-->
+            </ul>
+            <div class="j-header-avatar in-header__avatar fl">
+                <a href="[mccms_url_user]"><img class="j-user-avatar" src="[mccms_tpl]images/pic_login_defaulthead.png" alt="用户头像"></a>
+                <div class="j-dialog-avatar dialog__header-avatar hide">
+                    <div class="in-dialog--avatar">
+                        <span class="triangle"><i class="iconfont icon-ic_nav_toast_sj"></i></span>
+                        <div class="j-dialog-tourist row-1">
+                            <p class="base-info">
+                                <a class="j-user-name nickname" href="[mccms_url_user_login]">游客</a>
+                                <i class="vip-tag icon icon-vip-tag"></i>
+                                <a class="j-user-logout logout" href="[mccms_url_user_login]">登录领更多</a>
+                            </p>
+                            <p class="expire">VIP到期：<span class="j-user-vip-time">体验已到期</span></p>
+                        </div>
+                        <div class="row-2">
+                            <div class="fund-item">
+                                <div class="fund-item__icon"><i class="icon-user-yb"></i></div>
+                                <div class="fund-item__info">金币<br><span class="j-user-gold">0</span></div>
+                            </div>
+                            <div class="fund-item">
+                                <div class="fund-item__icon"><i class="icon-user-yp"></i></div>
+                                <div class="fund-item__info">月票<br><span class="j-user-ticket">0</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <script class="userinfo" type="text/html">
+                        <span class="triangle"><i class="iconfont icon-ic_nav_toast_sj"></i></span>
+                        <div class="j-dialog-user row-1">
+                            <p class="base-info">
+                                <a class="j-user-name nickname" href="[mccms_url_user]">{{d.nichen}}</a>
+                                <i class="j-user-vip vip-tag icon-vip-tag icon-vip-type2"></i>
+                                <a class="j-user-logout logout" href="javascript:;">退出登录</a>
+                            </p>
+                            <p class="expire">VIP到期：<span class="j-user-vip-time">{{d.viptime}}</span></p>
+                            <a class="j-agin-buy-vip buy-vip" href="javascript:;">续费VIP</a>
+                        </div>
+                        <div class="row-2">
+                            <div class="fund-item">
+                                <div class="fund-item__icon"><i class="icon-user-yb"></i></div>
+                                <div class="fund-item__info">金币<br><span class="j-user-gold">{{d.cion}}</span></div>
+                            </div>
+                            <div class="fund-item">
+                                <div class="fund-item__icon"><i class="icon-user-yp"></i></div>
+                                <div class="fund-item__info">月票<br><span class="j-user-ticket">{{d.ticket}}</span></div>
+                            </div>
+                        </div>
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

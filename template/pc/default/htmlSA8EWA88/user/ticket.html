@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>[mccms_title]</title>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<meta name="keywords" content="[mccms_keywords]">
+<meta name="description" content="[mccms_description]">
+[mccms_packs_user]
+</head>
+<body class="page-user">
+[mccms_head_user]
+<!-- 内容 -->
+<div class="main-container">
+  [mccms_left_user]
+  <!-- main-content -->
+  <div class="main-content--aside">
+    <!-- title -->
+    <div class="main-content_title">
+      <h3>月票消费记录</h3>
+      <div class="main-content__select-date" style="margin-top: 12px;margin-right: 22px;">
+        <span>选择时间</span>
+        <select class="j-comment-time comment-select-time" name="comment_select_time">
+          <option value="0">全部</option>
+          <option value="7"{if:'[day]' == '7'} selected{end if}>近七天</option>
+          <option value="90"{if:'[day]' == '90'} selected{end if}>最近3月</option>
+          <option value="180"{if:'[day]' == '180'} selected{end if}>最近半年</option>
+          <option value="365"{if:'[day]' == '365'} selected{end if}>最近一年</option>
+        </select>
+      </div>
+    </div>
+    <div class="main-content__logs">
+      <!-- tab-title -->
+      <div class="layui-tab layui-tab-brief layui-tab-mkz" lay-filter="record">
+        <ul class="layui-tab-title">
+          <li><a href="[mccms_url_user_buy]">[mccms_cionname]</a></li>
+          <li class="layui-this"><a href="[mccms_url_user_buy_ticket]">月票</a></li>
+        </ul>
+        <div class="layui-tab-content">
+          <div class="layui-tab-item layui-show">
+            <div class="j-vip-table logs-table">
+              <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th>详情</th>
+                    <th>寄语</th>
+                    <th width="8%">数量</th>
+                    <th width="20%">时间</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {mccms:buy table="ticket" page="10" order="id desc"}
+                  <tr>
+                    <td>
+                      打赏了 <b>[buy:num]</b> 张月票给 <a style="color:#f60;" href="[buy:link]" target="_blank">[buy:zdy zd=comic,name,mid]</a>
+                    </td>
+                    <td>[buy:text]</td>
+                    <td>-[buy:num]</td>
+                    <td>[buy:addtime style=Y-m-d H:i:s]</td>
+                  </tr>
+                {/mccms:buy}
+                {if:[mccms_pagenum] == 0}<tr><td align="center" colspan="3">没有记录!!</td></tr>{end if}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- pagination -->
+      <div class="pagination--center{if:[mccms_pagejs] < 2} hide{end if}" id="collection-pagination">
+        <div class="layui-box layui-laypage layui-laypage-mkz">
+          <a href="[mccms_pageup]" class="layui-laypage-prev">&lt;</a>
+          [mccms_pagenum_10]
+          <a href="[mccms_pagedown]" class="layui-laypage-next">&gt;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+[mccms_bottom_user]
+<script>
+$(function(){
+  $('#left-buy').addClass('aside-user--selected');
+  $(".comment-select-time").change(function(){
+    var day = $(this).val();
+    window.location.href = '[mccms_url_user_buy_ticket]/'+day;
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>[mccms_title]</title>
+  <meta name="keywords" content="[mccms_keywords]">
+  <meta name="description" content="[mccms_description]">
+  [mccms_packs_book]
+  <link rel="stylesheet" href="[mccms_tpl]book/css/bookshelf.css">
+</head>
+<body class="story-bookshelf">
+<!-- 头部 -->
+<header class="header-bar">
+  <div class="l-toolbar">
+    <a class="go-back"></a>
+  </div>
+  <div class="item-nav">
+    <a href="[mccms_url_user_read_book]" class="j-nav-item item">历史</a>
+    <a href="[mccms_url_user_fav_book]" class="j-nav-item item">收藏</a>
+    <a href="[mccms_url_user_buy_book]" class="j-nav-item item active">订购</a>
+  </div>
+</header>
+<!-- 订购 -->
+<div class="mescroll story-bookshelf__buy-list">
+  <ul>
+  {mccms:book table="book_buy" page="10" order="id desc"}
+    <li class="j-buy-item item">
+      <a class="j-buy-link item-link" data-href="[book:infolink]">
+        <div class="item-cover">
+          <img class="lazy cover loaded" src="[mccms_tpl]img/bg_loading_img_3.4.png" data-src="[book:pic]" alt="[book:name]"> 
+        </div>
+        <div class="item-info">
+          <div class="title">[book:name]</div>
+          <div class="look">更至：[book:zdy zd=book_chapter,name,id,bid]</div>
+          <div class="update">已购买：[book:count]个章节</div>
+        </div>
+      </a>
+      <div class="item-autobuy">
+        <div class="j-auto-buy btn-autobuy{if:[book:auto] == 1} active{end if}" data-id="[book:id]" data-auto="[book:auto]">
+          <i class="i-continue"></i>
+          <div class="text">
+            {if:[book:auto] == 0}取消{else}开启{end if}自<br>动购买
+          </div>
+        </div>
+      </div>
+    </li>
+  {/mccms:book}
+  </ul>
+  {if:[mccms_pagejs] > 1}
+  <div class="getmore" style="margin-top: 20px;" onclick="location.href='[mccms_pagedown]';">点击加载下一页</div>
+  {end if}
+  <!-- 为空 -->
+  <div class="j-buy-empty{if:[mccms_pagenum] > 0} hide{end if}">
+    <div class="item-status__empty">
+      <div class="tip-text">主人,还没购买过一部小说</div>
+      <div class="tip-des">优质小说等你宠幸</div>
+    </div>
+  </div>
+</div>
+<script>
+$(function(){
+  book.shelfcase('buy');
+})
+</script>
+</body>
+</html>

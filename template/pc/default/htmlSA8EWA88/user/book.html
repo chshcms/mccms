@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>[mccms_title]</title>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<meta name="keywords" content="[mccms_keywords]">
+<meta name="description" content="[mccms_description]">
+[mccms_packs_user]
+</head>
+<body class="page-user">
+[mccms_head_user]
+<!-- 内容 -->
+<div class="main-container">
+  [mccms_left_user]
+  <!-- main-content -->
+  <div class="main-content--aside">
+    <!-- title -->
+    <div class="main-content_title">
+      <h3>我的购买</h3>
+      <div class="main-content_subtitle">
+        共
+        <strong class="j-collection-count">[mccms_pagenum]</strong>部作品
+      </div>
+    </div>
+    <div class="main-content__buy">
+      <!-- comic-list -->
+      <div class="j-collection-list main-content__comic-list">
+        <ul class="user-comic-list--buy">
+          {mccms:book table="book_buy" page="10" order="id desc"}
+          <li class="user-comic-item" data-id="[book:id]">
+            <a class="user-comic-item__cover" href="[book:infolink]" target="_blank">
+              <img src="[book:pic]">
+            </a>
+            <div class="user-comic-item__detail">
+              <div class="user-comic-item--name">
+                <a class="text-overflow" href="[book:infolink]" target="_blank">[book:name]</a>
+              </div>
+              <div class="user-comic-item--latest text-overflow">更至：[book:zdy zd=book_chapter,name,id,bid]</div>
+              <div class="user-comic-item--text">已买了[book:count]个章节</div>
+                <a class="j-auto-btn user-comic-item__btn auto-on"{if:[book:auto] == 0} style="display: none;"{end if} data-status="0" data-id="[book:id]">取消自动购买</a>
+                <a class="j-auto-btn user-comic-item__btn auto-off active"{if:[book:auto] == 1} style="display: none;"{end if} data-status="1" data-id="[book:id]">开启自动购买</a>
+            </div>
+          </li>
+          {/mccms:book}
+          {if:[mccms_pagenum]==0}
+            <div class="no-buy"></div>
+          {end if}
+        </ul>
+      </div>
+      <div class="pagination--center{if:[mccms_pagejs] < 2} hide{end if}" id="collection-pagination">
+        <div class="layui-box layui-laypage layui-laypage-mkz">
+          <a href="[mccms_pageup]" class="layui-laypage-prev">&lt;</a>
+          [mccms_pagenum_10]
+          <a href="[mccms_pagedown]" class="layui-laypage-next">&gt;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+[mccms_bottom_user]
+<script>
+$(function(){
+  $('#left-book').addClass('aside-user--selected');
+  buy_init('book');
+});
+</script>
+</body>
+</html>

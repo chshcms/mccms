@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>[mccms_title]</title>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<meta name="keywords" content="[mccms_keywords]">
+<meta name="description" content="[mccms_description]">
+[mccms_packs_user]
+<link rel="stylesheet" href="[mccms_tpl]css/cropper.min.css">
+</head>
+<body class="page-user">
+[mccms_head_user]
+<!-- 内容 -->
+<div class="main-container">
+  [mccms_left_user]
+  <!-- main-content -->
+  <div class="main-content--aside">
+    <!-- title -->
+    <div class="main-content_title">
+      <h3>个人资料</h3>
+    </div>
+    <div class="main-content__profile clearfix">
+      <!-- left -->
+      <div class="main-content__profile--left">
+        <style type="text/css">
+        .layui-form-label{width: 90px;}
+        .layui-input-block{margin-left: 120px;}
+        .layui-form-item .form__profile-input--city{width: 143px;}
+        </style>
+        <form class="layui-form">
+          <!-- 用户名 -->
+          <div class="layui-form-item">
+            <label class="layui-form-label"><em class="label-required-symbol">*</em>用户名：</label>
+            <div class="layui-input-block">
+              {if:[user:nameedit] == 1}
+              <input type="text" name="name" class="user-name layui-input" lay-verify="required" autocomplete="off" value="[user:name]" />
+              {else}
+              <input type="button" name="name" class="user-name layui-input status-disabled" value="[user:name]">
+              {end if}
+              <div class="label-tips">用户名可作登陆名只能修改一次,请谨慎修改</div>
+            </div>
+          </div>
+          <!-- 昵称 -->
+          <div class="layui-form-item">
+            <label class="layui-form-label"><em class="label-required-symbol">*</em>昵称/笔名：</label>
+            <div class="layui-input-block">
+              <input type="text" class="layui-input" name="nichen" lay-verify="required" value="[user:nichen]" />
+            </div>
+          </div>
+          <!-- QQ -->
+          <div class="layui-form-item">
+            <label class="layui-form-label">QQ：</label>
+            <div class="layui-input-block">
+              <input type="text" class="layui-input" name="qq" value="[user:qq]" />
+            </div>
+          </div>
+          <!-- 邮箱 -->
+          <div class="layui-form-item">
+            <label class="layui-form-label">邮箱：</label>
+            <div class="layui-input-block">
+              <input type="text" class="layui-input" name="email" value="[user:email]" />
+            </div>
+          </div>
+          <!-- 性别 -->
+          <div class="layui-form-item">
+            <label class="layui-form-label">
+              <em class="label-required-symbol">*</em>性别：</label>
+            <div class="layui-input-block">
+              <input type="radio" name="sex" value="男" title="男"{if:'[user:sex]' == '男'} checked="checked"{end if}/>
+              <input type="radio" name="sex" value="女" title="女"{if:'[user:sex]' == '女'} checked="checked"{end if}/>
+              <input type="radio" name="sex" value="保密" title="保密"{if:'[user:sex]' == '保密'} checked="checked"{end if}/>
+            </div>
+          </div>
+          <!-- 所在城市 -->
+          <div class="layui-form-item">
+            <label class="layui-form-label">所在城市：</label>
+            <div class="layui-input-inline form__profile-input--city">
+              <select name="province" data-code="[user:province]" lay-filter="province">
+                <option value="">请选择省</option>
+              </select>
+            </div>
+            <div class="layui-input-inline form__profile-input--city">
+              <select name="city" data-code="[user:city]" lay-filter="city">
+                <option value="">请选择市</option>
+              </select>
+            </div>
+            <div class="layui-input-inline form__profile-input--city">
+              <select name="area" data-code="[user:area]" lay-filter="area">
+                <option value="">请选择县/区</option>
+              </select>
+            </div>
+          </div>
+          <!-- 自我描述 -->
+          <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">自我描述：</label>
+            <div class="layui-input-block">
+              <textarea maxlength="150" name="text" placeholder="向仰慕你的漫友们介绍下自己吧,别超过100字哦" class="layui-textarea">[user:text]</textarea>
+            </div>
+          </div>
+          <!-- 保存资料 -->
+          <div class="layui-form-item layui-form-text">
+            <div class="layui-input-block">
+              <button class="layui-btn layui-btn-danger" lay-submit="">保存资料</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <!-- right -->
+      <div class="main-content__profile--right">
+        <img class="j-user-avatar main-content__profile--avatar" src="[user:pic]" />
+        <button class="j-change-avatar main-content__profile--right-btn layui-btn layui-btn-danger">修改头像</button>
+      </div>
+    </div>
+  </div>
+</div>
+[mccms_bottom_user]
+<script src="[mccms_tpl]js/cropper.min.js"></script>
+<script src="[mccms_tpl]js/citydata.js"></script>
+<script>
+$(function(){
+  $('#left-info').addClass('aside-user--selected');
+  info();
+});
+</script>
+</body>
+</html>

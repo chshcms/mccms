@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>[mccms_title]</title>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<meta name="keywords" content="[mccms_keywords]">
+<meta name="description" content="[mccms_description]">
+[mccms_packs]
+</head>
+<body class="p-index">
+<div style='display:none;'><img src='[mccms_tpl]images/app_logo.png' /></div>
+[mccms_head]
+<script>$('#nav_index').addClass('active');</script>
+<div class="in-banner clearfix">
+    <div class="in-banner-slide fl">
+      	<div class="layui-carousel" lay-filter="mccms">
+	        <div carousel-item>
+	        	{mccms:comic table="comic" field="*" where="tid=1" limit="5" order="rhits desc"}
+	        	<div class="slide-item">
+	            	<a href="[comic:link]" target="_blank"><img class="lazy" data-original="[comic:pic]" src="[mccms_tpl]images/bg_loadimg_3x2.png" alt="[comic:name]"></a>
+	              	<p class="feature">[comic:name]</p>
+	            </div>
+	            {/mccms:comic}
+	        </div>
+      	</div>
+    </div>
+	{mccms:comic table="comic" field="*" where="tid=1" limit="5,6" order="rhits desc"}
+    <div class="in-banner--type{if:[comic:i] == 1 || [comic:i] == 6}1{else}2{end if}{if:[comic:i] == 6} last{end if} fl">
+    	<a href="[comic:link]" target="_blank">
+        	<img class="lazy" data-original="[comic:pic]" src="[mccms_tpl]images/bg_loadimg_16x9.png" alt="[comic:name]">
+    	</a>
+    	<p class="feature">[comic:name]</p>
+    </div>
+    {/mccms:comic}
+</div>
+<div class="in-nav">
+    <i class="icon icon-in-lx"></i>
+    <ul class="clearfix fl">
+    {mccms:type table="type" field="id,name" where="fid=1" limit="13" order="xid asc"}
+		<li class="in-nav__item"><a href="[mccms_url_category_tags_[type:id]]">[type:name]</a></li>
+    {/mccms:type}
+    </ul>
+    <i class="icon icon-in-rd"></i>
+    <ul class="clearfix fl">
+		<li class="in-nav__item"><a href="[mccms_url_category_order_hits]">最热</a></li>
+		<li class="in-nav__item"><a href="[mccms_url_category_order_addtime]">最新</a></li>
+    </ul>
+    <i class="icon icon-in-ff"></i>
+    <ul class="clearfix fl">
+		<li class="in-nav__item"><a href="[mccms_url_category_pay_1]">免费</a></li>
+		<li class="in-nav__item"><a href="[mccms_url_category_pay_2]">付费</a></li>
+    </ul>
+    <i class="icon icon-in-jd"></i>
+    <ul class="clearfix fl">
+		<li class="in-nav__item"><a href="[mccms_url_category_finish_1]">连载</a></li>
+		<li class="in-nav__item"><a href="[mccms_url_category_finish_2]">完结</a></li>
+    </ul>
+    <a class="fr" href="[mccms_url_category]">
+		<i class="icon icon-in-class"></i>
+		<span>全部分类</span>
+    </a>
+</div>
+<div class="in-sec-wr in-fine clearfix">
+    <div class="in-fine__big fl">
+    {mccms:type table="comic_type" field="mid" where="tid=39" limit="1" order="id desc"}
+    	{mccms:comic table="comic" field="*" where="id=[type:mid]" limit="1"}
+		<div class="in-fine__cover">
+			<a href="[comic:link]" target="_blank">
+				<img class="lazy" data-original="[comic:pic]" src="[mccms_tpl]images/bg_loadimg_3x2.png" alt="[comic:name]">
+			</a>
+			<div class="cover__tag">[comic:zdy zd=comic_chapter,name,id,mid]</div>
+			<i class="icon-in-kzjp"></i>
+		</div>
+		<div class="in-fine__info">
+			<p class="comic__title"><a href="[comic:link]" target="_blank">[comic:name]</a></p>
+			<p class="text">作者：[comic:author]</p>
+			<p class="text">{if:'[comic:text]'==''}[comic:content len=28]{else}[comic:text]{end if}</p>
+			<p class="text">人气：[comic:hits wan=1]</p>
+		</div>
+		{/mccms:comic}
+    {/mccms:type}
+    </div>
+    <!-- in-comictype-a * 10 -->
+	{mccms:type table="comic_type" field="mid" where="tid=39" limit="1,8" order="id desc"}
+    {mccms:comic table="comic" field="*" where="id=[type:mid]" limit="1"}
+    <div class="in-comic--type-a ">
+        <div class="cover">
+        	<a href="[comic:link]" target="_blank">
+				<img class="lazy" data-original="[comic:pic]" src="[mccms_tpl]images/bg_loadimg_3x2.png" alt="[comic:name]">
+			</a>
+          	<div class="cover__tag">[comic:zdy zd=comic_chapter,name,id,mid]</div>
+          	<i class="icon-in-kzjp"></i>
+        </div>
+        <p class="comic__title"><a href="[comic:link]" target="_blank">[comic:name]</a></p>
+        <p class="comic__feature">{if:'[comic:text]'==''}[comic:content len=12]{else}[comic:text]{end if}</p>
+    </div>
+	{/mccms:comic}
+	{/mccms:type}
+</div>
+<a class="in-ad" href="[mccms_path]">
+	<img class="lazy" data-original="[mccms_tpl]images/ad1.jpg">
+</a>
+<div class="in-sec-wr">
+    <div class="in-sec__head">
+    	<i class="icon icon-in-dj"></i>
+    	<span>独家作品</span>
+    	<a class="more" href="[mccms_url_category_copyright_47]">更多 <i class="iconfont icon-ic_vip_switch_r"></i></a>
+    </div>
+    <div class="in-sec__box clearfix">
+    	<div class="slide-wrapper">
+    	{mccms:type table="comic_type" field="mid" where="tid=47" limit="10" order="id desc"}
+    		{mccms:comic table="comic" field="*" where="id=[type:mid]" limit="1"}
+    		<div class="in-comic--type-b cs-item">
+	            <div class="cover">
+	            	<a href="[comic:link]" target="_blank"><img class="lazy-carousel lazy" data-original="[comic:pic]" src="[mccms_tpl]images/bg_loadimg_3x4.png" alt="[comic:name]"></a>
+	              	<div class="cover__tag">[comic:zdy zd=comic_chapter,name,id,mid]</div>
+	              	<div class="cover__score">[comic:score]</div>
+	              	<div class="cover__shadow"></div>
+	            </div>
+            	<p class="comic__title"><a href="[comic:link]" target="_blank">[comic:name]</a></p>
+            	<p class="comic__feature">{if:'[comic:text]'==''}[comic:content len=12]{else}[comic:text]{end if}</p>
+          	</div>
+			{/mccms:comic}
+		{/mccms:type}
+		</div>
+    	<div class="prev"><i class="layui-icon layui-icon-left"></i></div>
+    	<div class="next"><i class="layui-icon layui-icon-right"></i></div>
+    </div>
+</div>
+<div class="in-sec-wr">
+    <div class="in-sec__head">
+    	<i class="icon icon-in-ss"></i>
+    	<span>上升最快</span>
+    	<a class="more" href="[mccms_custom_ascension]">更多 <i class="iconfont icon-ic_vip_switch_r"></i></a>
+    </div>
+    <div class="in-sec__box clearfix">
+    	<div class="slide-wrapper">
+		{mccms:comic table="comic" field="*" where="addtime > [mccms_time]-86400*7" limit="10" order="hits desc"}
+    		<div class="in-comic--type-b cs-item">
+	            <div class="cover">
+	            	<a href="[comic:link]" target="_blank"><img class="lazy-carousel lazy" data-original="[comic:pic]" src="[mccms_tpl]images/bg_loadimg_3x4.png" alt="[comic:name]"></a>
+	              	<div class="cover__tag">[comic:zdy zd=comic_chapter,name,id,mid]</div>
+	            </div>
+	            <span class="comic__rank rank--[comic:i]">[comic:i]</span>
+            	<p class="comic__title"><a href="[comic:link]" target="_blank">[comic:name]</a></p>
+            	<p class="comic__feature">{if:'[comic:text]'==''}[comic:content len=12]{else}[comic:text]{end if}</p>
+          	</div>
+		{/mccms:comic}
+		</div>
+      	<div class="prev"><i class="layui-icon layui-icon-left"></i></div>
+      	<div class="next"><i class="layui-icon layui-icon-right"></i></div>
+    </div>
+</div>
+<div class="in-sec-wr">
+    <div class="in-sec__head">
+      <i class="icon icon-in-hz"></i>
+      <span>签约作品</span>
+      <a class="more" href="[mccms_url_category_quality_38]">更多 <i class="iconfont icon-ic_vip_switch_r"></i></a>
+    </div>
+    <div class="in-sec__box clearfix">
+      	<div class="slide-wrapper">
+    	{mccms:type table="comic_type" field="mid" where="tid=38" limit="10" order="id desc"}
+    		{mccms:comic table="comic" field="*" where="id=[type:mid]" limit="1"}
+    		<div class="in-comic--type-b cs-item">
+	            <div class="cover">
+	            	<a href="[comic:link]" target="_blank"><img class="lazy-carousel lazy" data-original="[comic:pic]" src="[mccms_tpl]images/bg_loadimg_3x4.png" alt="[comic:name]"></a>
+	              	<div class="cover__tag">[comic:zdy zd=comic_chapter,name,id,mid]</div>
+	              	<div class="cover__score">[comic:score]</div>
+	              	<div class="cover__shadow"></div>
+	            </div>
+            	<p class="comic__title"><a href="[comic:link]" target="_blank">[comic:name]</a></p>
+            	<p class="comic__feature">{if:'[comic:text]'==''}[comic:content len=12]{else}[comic:text]{end if}</p>
+          	</div>
+			{/mccms:comic}
+		{/mccms:type}
+		</div>
+      	<div class="prev"><i class="layui-icon layui-icon-left"></i></div>
+      	<div class="next"><i class="layui-icon layui-icon-right"></i></div>
+    </div>
+</div>
+<a class="in-ad" href="[mccms_path]">
+	<img class="lazy" data-original="[mccms_tpl]images/ad2.jpg">
+</a>
+<div class="in-sec-wr">
+    <div class="in-sec__head">
+		<i class="icon icon-in-vip"></i>
+		<span>收费专区</span>
+		<a class="more" href="[mccms_url_category_pay_2]">更多 <i class="iconfont icon-ic_vip_switch_r"></i></a>
+    </div>
+    <div class="in-sec__vip">
+    	<div class="in-sec__vip--top clearfix">
+    	{mccms:comic table="comic" field="*" where="pay=1" limit="1"}
+	        <div class="in-sec__vip-cover">
+	        	<a href="[comic:link]" target="_blank"><img class="lazy" data-original="[comic:pic]" src="[mccms_tpl]images/bg_loadimg_3x2.png" alt="[comic:name]"></a>
+	        </div>
+	        <div class="in-sec__vip-info">
+				<p class="comic__title">
+					<a href="[comic:link]" target="_blank">[comic:name]</a>
+					<b class="score">[comic:score]</b>
+				</p>
+				<ul class="clearfix">
+					{mccms:type table="comic_type" field="tid" where="mid=[comic:id]" limit="all"}
+					<li class="tag">[type:zdy zd=type,name,tid,id]</li>
+					{/mccms:type}
+				</ul>
+				<p class="text"><span class="hl">作者：</span><a href="[comic:authorlink]">[comic:author]</a></p>
+				<p class="text"><span class="hl">人气：</span>[comic:hits wan=1]</p>
+				<p class="text">
+					<span class="hl fl">简介：</span>
+					<span class="intro">[comic:content len=100]</span>
+				</p>
+				<div class="in-sec__vip-chapter clearfix">
+					{mccms:chapter table="comic_chapter" field="*" where="mid=[comic:id]" limit="9" order="id desc"}
+					<a class="chapter-link key-[chapter:i]" href="[chapter:piclink]" title="[chapter:name]">[chapter:name]</a>
+					{/mccms:chapter}
+					<a class="chapter-link" href="[comic:link]">...</a>
+					{mccms:chapter table="comic_chapter" field="*" where="mid=[comic:id]" limit="1" order="id asc"}
+					<a class="chapter-link" href="[chapter:piclink]" title="[chapter:name]">[chapter:name]</a>
+					{/mccms:chapter}
+				</div>
+        	</div>
+        {/mccms:comic}
+    	</div>
+    	<div class="in-sec__vip--bottom clearfix">
+      		<!-- in-comictype-a * 6 -->
+        	{mccms:comic table="comic" field="*" where="pay=1" limit="1,6"}
+        	<div class="in-comic--type-a key-[comic:i]">
+            	<div class="cover">
+              		<a href="[comic:link]" target="_blank"><img class="lazy" data-original="[comic:pic]" src="[mccms_tpl]images/bg_loadimg_3x2.png" alt="[comic:name]"></a>
+              		<div class="cover__tag">[comic:zdy zd=comic_chapter,name,id,mid]</div>
+            	</div>
+            	<p class="comic__title"><a href="[comic:link]" target="_blank">[comic:name]</a></p>
+            	<p class="comic__feature">[comic:text]</p>
+        	</div>
+			{/mccms:comic}
+		</div>
+    </div>
+</div>
+<div class="in-sec-wr">
+    <div class="in-sec__head">
+    	<i class="icon icon-in-wj"></i>
+      	<span>完结大作</span>
+      	<a class="more" href="[mccms_url_category_finish_2]">更多 <i class="iconfont icon-ic_vip_switch_r"></i></a>
+    </div>
+    <div class="in-sec__box clearfix">
+      	<div class="slide-wrapper">
+	      	{mccms:comic table="comic" field="*" where="serialize='完结'" limit="10" order="addtime desc"}
+			<div class="in-comic--type-b cs-item">
+	            <div class="cover">
+	            	<a href="[comic:link]" target="_blank"><img class="lazy-carousel lazy" data-original="[comic:pic]" src="[mccms_tpl]images/bg_loadimg_3x4.png" alt="[comic:name]"></a>
+		            <div class="cover__count">
+		                <i class="iconfont icon-ic_ranking_rq"></i>
+		                <span>[comic:hits wan=1]</span>
+		            </div>
+	            </div>
+	        	<p class="comic__title"><a href="[comic:link]" target="_blank">[comic:name]</a></p>
+	        	<p class="comic__feature">{if:'[comic:text]'==''}[comic:content len=12]{else}[comic:text]{end if}</p>
+	      	</div>
+			{/mccms:comic}
+		</div>
+      	<div class="prev"><i class="layui-icon layui-icon-left"></i></div>
+      	<div class="next"><i class="layui-icon layui-icon-right"></i></div>
+    </div>
+</div>
+<div class="in-sec-wr clearfix">
+    <div class="in-rank-box">
+      	<p class="head">
+        	<span>收藏榜</span>
+        	<a class="more fr" href="[mccms_custom_fav]">更多 <i class="iconfont icon-ic_vip_switch_r"></i></a>
+      	</p>
+      	<div class="rank-list">
+		{mccms:comic table="comic" field="*" limit="10" order="shits desc"}
+        	<div class="rank-item{if:[comic:i]==1} active{end if}">
+	            <div class="item--default">
+	              <span class="num num--[comic:i]">[comic:i]</span>
+	              <span class="comic-name"><a href="[comic:link]" target="_blank">[comic:name]</a></span>
+	              <span class="count">收藏：[comic:shits]</span>
+	            </div>
+	            <div class="item--detail hide">
+	              <a class="cover" href="[comic:link]"><img class="lazy" data-original="[comic:pic]" src="[mccms_tpl]images/bg_loadimg_3x4.png" alt="[comic:name]"></a>
+	              <p class="comic__title"><a href="[comic:link]" target="_blank">[comic:name]</a></p>
+	              <p class="comic__feature">{if:'[comic:text]'==''}[comic:content len=12]{else}[comic:text]{end if}</p>
+	              <p class="count">收藏：[comic:shits]</p>
+	              <span class="num num--[comic:i]">[comic:i]</span>
+	            </div>
+          	</div>
+		{/mccms:comic}
+		</div>
+    </div>
+    <div class="in-rank-box">
+		<p class="head">
+			<span>打赏榜</span>
+			<a class="more fr" href="[mccms_custom_reward]">更多 <i class="iconfont icon-ic_vip_switch_r"></i></a>
+		</p>
+      	<div class="rank-list">
+		{mccms:comic table="comic" field="*" limit="10" order="cion desc"}
+        	<div class="rank-item{if:[comic:i]==1} active{end if}">
+	            <div class="item--default">
+	              <span class="num num--[comic:i]">[comic:i]</span>
+	              <span class="comic-name"><a href="[comic:link]" target="_blank">[comic:name]</a></span>
+	              <span class="count">打赏：[comic:cion wan=1]</span>
+	            </div>
+	            <div class="item--detail hide">
+	              <a class="cover" href="[comic:link]"><img class="lazy" data-original="[comic:pic]" src="[mccms_tpl]images/bg_loadimg_3x4.png" alt="[comic:name]"></a>
+	              <p class="comic__title"><a href="[comic:link]" target="_blank">[comic:name]</a></p>
+	              <p class="comic__feature">{if:'[comic:text]'==''}[comic:content len=12]{else}[comic:text]{end if}</p>
+	              <p class="count">打赏：[comic:cion wan=1]</p>
+	              <span class="num num--[comic:i]">[comic:i]</span>
+	            </div>
+          	</div>
+		{/mccms:comic}
+		</div>
+    </div>
+    <div class="in-rank-box">
+		<p class="head">
+			<span>月票榜</span>
+			<a class="more fr" href="[mccms_custom_ticket]">更多 <i class="iconfont icon-ic_vip_switch_r"></i></a>
+		</p>
+      	<div class="rank-list">
+		{mccms:comic table="comic" field="*" limit="10" order="ticket desc"}
+        	<div class="rank-item{if:[comic:i]==1} active{end if}">
+	            <div class="item--default">
+	              <span class="num num--[comic:i]">[comic:i]</span>
+	              <span class="comic-name"><a href="[comic:link]" target="_blank">[comic:name]</a></span>
+	              <span class="count">总月票：[comic:ticket wan=1]</span>
+	            </div>
+	            <div class="item--detail hide">
+	              <a class="cover" href="[comic:link]"><img class="lazy" data-original="[comic:pic]" src="[mccms_tpl]images/bg_loadimg_3x4.png" alt="[comic:name]"></a>
+	              <p class="comic__title"><a href="[comic:link]" target="_blank">[comic:name]</a></p>
+	              <p class="comic__feature">{if:'[comic:text]'==''}[comic:content len=12]{else}[comic:text]{end if}</p>
+	              <p class="count">总月票：[comic:ticket wan=1]</p>
+	              <span class="num num--[comic:i]">[comic:i]</span>
+	            </div>
+          	</div>
+		{/mccms:comic}
+		</div>
+    </div>
+</div>
+<div class="in-sec-wr recent-wr clearfix">
+    <div class="in-sec-update">
+    	<div class="in-sec__head">
+	        <i class="icon icon-in-zf"></i>
+	        <span>最近更新</span>
+	        <a class="more" href="[mccms_custom_update]">更多 <i class="iconfont icon-ic_vip_switch_r"></i></a>
+      	</div>
+      	<div class="in-sec__box clearfix fl">
+		{mccms:comic table="comic" field="*" limit="10" order="addtime desc"}
+        	<div class="in-comic--type-b">
+	            <div class="cover">
+	            	<a href="[comic:link]" target="_blank"><img class="lazy" data-original="[comic:pic]" src="[mccms_tpl]images/bg_loadimg_3x4.png" alt="[comic:name]"></a>
+	            	<div class="cover__tag">[comic:zdy zd=comic_chapter,name,id,mid]</div>
+	            </div>
+	            <p class="comic__title"><a href="[comic:link]" target="_blank">[comic:name]</a></p>
+	            <p class="comic__feature">[comic:addtime style=m-d H:i]</p>
+          	</div>
+        {if:[comic:i]==5}</div><div class="in-sec__box clearfix fl mt-20">{end if}
+		{/mccms:comic}
+		</div>
+    </div>
+    <div class="in-rank-box--aside">
+    	<div class="in-sec__head">
+        	<i class="icon icon-in-ph"></i>
+        	<span>人气排行榜</span>
+      	</div>
+      	<div class="rank-list">
+        	<!-- rank-item * 19 -->
+        	{mccms:comic table="comic" field="*" limit="19" order="yhits desc"}
+        	<div class="rank-item key-[comic:i]">
+	            <span class="num num--[comic:i]">[comic:i]</span>
+	            <span class="comic-name"><a href="[comic:link]" target="_blank">[comic:name]</a></span>
+	            <i class="iconfont icon-ic_phlist_up"></i>
+	        </div>
+			{/mccms:comic}
+		</div>
+    </div>
+</div>
+<a class="in-ad" href="[mccms_path]">
+	<img class="lazy" data-original="[mccms_tpl]images/ad3.jpg">
+</a>
+<div class="in-friends">
+	<!--<p class="friend-head">友情链接</p>-->
+	<ul class="clearfix">
+		{mccms:link table="links" field="*" limit="all" order="id asc"}
+         <li class="friend-link""><a href="[link:url]" target="_blank">[link:name]</a></li>
+        {/mccms:link}
+	</ul>
+</div>
+[mccms_bottom]
+</body>
+</html>

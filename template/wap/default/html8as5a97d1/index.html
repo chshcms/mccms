@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>[mccms_title]</title>
+  <meta name="keywords" content="[mccms_keywords]">
+  <meta name="description" content="[mccms_description]">
+  [mccms_packs]
+</head>
+<body class="p-index">
+  <header class="header">
+    <h1 class="logo">
+      <a href="[mccms_path]"><img src="[mccms_tpl]img/logo.png" alt="[mccms_name]"></a>
+    </h1>
+    <a href="[mccms_custom_search]"><i class="ift-nav_search"></i></a>
+  </header>
+  <main class="main p-index-mn under-header">
+    <aside class="float-nav hide">
+      <header class="header">
+        <h1 class="logo">
+          <a href="[mccms_path]"><img src="[mccms_tpl]img/logo.png" alt="[mccms_name]"></a>
+        </h1>
+        <a href="[mccms_custom_search]"><i class="ift-nav_search"></i></a>
+      </header>
+    </aside>
+    <!-- banner 轮播 -->
+    <div class="banner">
+      <div class="swiper-wrapper">
+        {mccms:comic table="comic" where="tid=1" limit="5" order="yhits desc"}
+        <div class="swiper-slide">
+          <a href="[comic:link]">
+            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" style="background-image: url([mccms_tpl]img/bg_loading_img_3.2.png)"  data-src="[comic:pic]" alt="[comic:name]">
+          </a>
+        </div>
+        {/mccms:comic}
+      </div>
+      <div class="swiper-pagination"></div>
+      <div class="banner-bg"></div>
+    </div>
+    <div class="nav-menu">
+      <a class="menu-item" href="[mccms_custom_update]">
+        <img class="item-icon" src="[mccms_tpl]img/pic_index_gx.png" alt="更新">
+      </a>
+      <a class="menu-item" href="[mccms_custom_top]">
+        <img class="item-icon" src="[mccms_tpl]img/pic_index_ph.png" alt="排行">
+      </a>
+      <a class="menu-item" href="[mccms_url_book]">
+        <img class="item-icon" src="[mccms_tpl]img/pic_index_xs.png" alt="小说">
+      </a>
+    </div>
+    <div class="floor">
+      <h2 class="title"><a href="[mccms_url_category_quality_39]"><i class="icon i-hm-jp"></i><span>精品推荐</span><span class="more">更多<i class="i-hm-more"></i></span></a>
+      </h2>
+      <div class="floor-view">
+        <ul class="clearfix">
+        {mccms:type table="comic_type" field="mid" where="tid=39" limit="4" order="id desc"}
+          {mccms:comic table="comic" field="*" where="id=[type:mid]" limit="1"}
+          <li class="comic-item-jp">
+            <a href="[comic:link]">
+              <img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+              style="background-image: url([mccms_tpl]img/bg_loading_img_3.2.png)"  data-src="[comic:pic]" alt="[comic:name]">
+              <div class="comic-info-box">
+                <p class="comic-name">[comic:name]</p>
+                <p class="comic-des">{if:'[comic:text]'==''}[comic:content len=20]{else}[comic:text]{end if}</p>
+              </div>
+            </a>
+          </li>
+          {/mccms:comic}
+        {/mccms:type}
+        </ul>
+      </div>
+    </div>
+    <div class="floor dj">
+      <h2 class="title"><a href="[mccms_url_category_copyright_47]"><i class="icon i-hm-dj"></i><span>独家作品</span></i><span class="more">更多<i class="i-hm-more"></i></span></a></h2>
+      {mccms:type table="comic_type" field="mid" where="tid=47" limit="1" order="id desc"}
+      {mccms:comic table="comic" field="*" where="id=[type:mid]" limit="1"}
+      <div class="comic-big">
+        <a href="[comic:link]">
+          <img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+          style="background-image: url([mccms_tpl]img/bg_loading_img_3.2.png)"  data-src="[comic:pic]" alt="[comic:name]">
+          <p class="comic-name">[comic:name]</p>
+          <p class="comic-tip">{if:'[comic:text]'==''}[comic:content len=20]{else}[comic:text]{end if}</p>
+        </a>
+        <span class="comic-tag">[comic:hits wan=1]</span>
+      </div>
+      {/mccms:comic}
+      {/mccms:type}
+      <div class="floor-view">
+        <ul class="clearfix">
+        {mccms:type table="comic_type" field="mid" where="tid=47" limit="1,6" order="id desc"}
+          {mccms:comic table="comic" field="*" where="id=[type:mid]" limit="1"}
+          <li class="comic-item">
+            <a href="[comic:link]">
+              <img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+              style="background-image: url([mccms_tpl]img/bg_loading_img_3.4.png)"  data-src="[comic:pic]" alt="[comic:name]">
+              <div class="comic-info-box">
+                <p class="comic-name">[comic:name]</p>
+                <p class="comic-tip">{if:'[comic:text]'==''}[comic:content len=20]{else}[comic:text]{end if}</p>
+              </div>
+            </a>
+          </li>
+          {/mccms:comic}
+        {/mccms:type}
+        </ul>
+      </div>
+    </div>
+    <div class="m-hm-ad">
+      <a href="[mccms_path]"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="[mccms_tpl]img/ad1.jpg"></a>
+    </div>
+    <div class="floor">
+      <h2 class="title"><a href="[mccms_custom_ascension]"><i class="icon i-hm-ss"></i><span>上升最快</span></i><span class="more">更多<i class="i-hm-more"></i></span></a></h2>
+      <div class="floor-view">
+        <ul class="clearfix">
+          {mccms:comic table="comic" field="*" where="addtime > [mccms_time]-86400*7" limit="2" order="hits desc"}
+          <li class="m-up-item1 clearfix">
+            <div class="cover-wrap">
+              <a href="[comic:link]">
+                <img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" style="background-image: url([mccms_tpl]img/bg_loading_img_3.4.png)" data-src="[comic:pic]" alt="[comic:name]">
+              </a>
+            </div>
+            <div class="item-info">
+              <a href="[comic:link]">
+                <p class="comic-name">[comic:name]</p>
+                <div class="tag-box clearfix">
+                {mccms:type table="comic_type" field="tid" where="mid=[comic:id]" limit="3"}
+                  <span>[type:zdy zd=type,name,tid]</span>
+                {/mccms:type}
+                </div>
+                <p class="comic-click">周点击：<strong>[comic:zhits wan=1]</strong></p>
+                <p class="comic-feature">{if:'[comic:text]'==''}[comic:content len=12]{else}[comic:text]{end if}</p>
+              </a>
+            </div>
+          </li>
+          {/mccms:comic}
+          {mccms:comic table="comic" field="*" where="addtime > [mccms_time]-86400*7" limit="2,3" order="hits desc"}
+          <li class="comic-item">
+            <a href="[comic:link]"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" style="background-image: url([mccms_tpl]img/bg_loading_img_3.4.png)"  data-src="[comic:pic]" alt="[comic:name]"></a>
+            <div class="comic-info-box">
+              <p class="comic-name">[comic:name]</p>
+              <p class="comic-tip">{if:'[comic:text]'==''}[comic:content len=12]{else}[comic:text]{end if}</p>
+            </div>
+          </li>
+          {/mccms:comic}
+        </ul>
+      </div>
+    </div>
+    <div class="floor dj">
+      <h2 class="title"><a href="[mccms_custom_update]"><i class="icon i-hm-cx"></i><span>新作尝鲜</span></i><span class="more">更多<i class="i-hm-more"></i></span></a></h2>
+      {mccms:comic table="comic" field="*" limit="1" order="addtime desc"}
+      <div class="comic-big">
+        <a href="[comic:link]"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" style="background-image: url([mccms_tpl]img/bg_loading_img_3.2.png)" data-src="[comic:pic]" alt="[comic:name]"></a>
+        <div class="comic-info-box">
+          <p class="comic-name">[comic:name]</p>
+          <p class="comic-tip">{if:'[comic:text]'==''}[comic:content len=12]{else}[comic:text]{end if}</p>
+        </div>
+        <span class="comic-tag">[comic:hits wan=1]</span>
+      </div>
+      {/mccms:comic}
+      <div class="floor-view">
+        <ul class="clearfix">
+        {mccms:comic table="comic" field="*" limit="1,6" order="addtime desc"}
+          <li class="comic-item">
+              <a href="[comic:link]"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" style="background-image: url([mccms_tpl]img/bg_loading_img_3.4.png)" data-src="[comic:pic]" alt="[comic:name]"></a>
+              <div class="comic-info-box">
+                <p class="comic-name">[comic:name]</p>
+                <p class="comic-tip">{if:'[comic:text]'==''}[comic:content len=12]{else}[comic:text]{end if}</p>
+              </div>
+          </li>
+        {/mccms:comic}
+        </ul>
+      </div>
+    </div>
+    <div class="m-hm-ad">
+      <a href="[mccms_path]"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="[mccms_tpl]img/ad2.jpg"></a>
+    </div>
+    <div class="floor">
+      <h2 class="title"><a href="[mccms_url_category_quality_38]"><i class="icon i-hm-hz"></i><span>签约作品</span></i><span  class="more">更多<i class="i-hm-more"></i></span></a></h2>
+      {mccms:type table="comic_type" field="mid" where="tid=38" limit="1" order="id desc"}
+      {mccms:comic table="comic" field="*" where="id=[type:mid]" limit="1"}
+      <div class="comic-big">
+        <a href="[comic:link]"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" style="background-image: url([mccms_tpl]img/bg_loading_img_3.2.png)" data-src="[comic:pic]" alt="[comic:name]"></a>
+        <div class="comic-info-box">
+          <p class="comic-name">[comic:name]</p>
+          <p class="comic-tip">{if:'[comic:text]'==''}[comic:content len=12]{else}[comic:text]{end if}</p>
+        </div>
+        <span class="comic-tag">[comic:hits wan=1]</span>
+      </div>
+      {/mccms:comic}
+      {/mccms:type}
+      <div class="floor-view">
+        <ul class="clearfix">
+        {mccms:type table="comic_type" field="mid" where="tid=38" limit="1,6" order="id desc"}
+          {mccms:comic table="comic" field="*" where="id=[type:mid]" limit="1"}
+          <li class="comic-item">
+              <a href="[comic:link]"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" style="background-image: url([mccms_tpl]img/bg_loading_img_3.4.png)" data-src="[comic:pic]" alt="[comic:name]"></a>
+              <div class="comic-info-box">
+                <p class="comic-name">[comic:name]</p>
+                <p class="comic-tip">{if:'[comic:text]'==''}[comic:content len=12]{else}[comic:text]{end if}</p>
+              </div>
+          </li>
+        {/mccms:comic}
+        {/mccms:type}
+        </ul>
+      </div>
+    </div>
+  </main>
+<footer class="footer clearfix">
+  <span class="char-img"></span>
+</footer>
+[mccms_bottom]
+<script>
+$(function(){
+  $('#nav-index').addClass('z-active');
+})
+</script>
+</body>
+</html>

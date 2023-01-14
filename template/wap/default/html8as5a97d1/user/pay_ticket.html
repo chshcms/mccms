@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>[mccms_title]</title>
+  <meta name="keywords" content="[mccms_keywords]">
+  <meta name="description" content="[mccms_description]">
+  [mccms_packs]
+</head>
+<body class="p-order-gold">
+  <header class="header">
+    <a class="back-btn" href="javascript:history.back();"><i class="ift-back"></i></a>
+    <span>购买月票</span>
+  </header>
+  <main class="main under-header">
+    <div class="pay-user-info">
+      <span class="user-name">[user:nichen]</span>
+      <span class="user-gold">[mccms_cionname]余额：<b>[user:cion]</b></span>
+      <span class="user-ticket">月票余额：<b>[user:ticket]</b></span>
+    </div>
+    <div class="ticket-box">
+      <div class="ticket-itm pay-item " data-cion="[mccms_zhuan_100_3_[mccms_rmbtocion]]" data-num="100">
+        <span>100张月票</span>
+        <span class="ticket-btn">
+            100元
+        </span>
+      </div>
+      <div class="ticket-itm pay-item " data-cion="[mccms_zhuan_50_3_[mccms_rmbtocion]]" data-num="50">
+        <span>50张月票</span>
+        <span class="ticket-btn">
+            50元
+        </span>
+      </div>
+      <div class="ticket-itm pay-item " data-cion="[mccms_zhuan_20_3_[mccms_rmbtocion]]" data-num="20">
+        <span>20张月票</span>
+        <span class="ticket-btn">
+            20元
+        </span>
+      </div>
+      <div class="ticket-itm pay-item " data-cion="[mccms_zhuan_10_3_[mccms_rmbtocion]]" data-num="10">
+        <span>10张月票</span>
+        <span class="ticket-btn">
+            10元
+        </span>
+      </div>
+      <div class="ticket-itm pay-item " data-cion="[mccms_zhuan_5_3_[mccms_rmbtocion]]" data-num="5">
+        <span>5张月票</span>
+        <span class="ticket-btn">
+            5元
+        </span>
+      </div>
+      <div class="ticket-itm pay-item select" data-cion="[mccms_zhuan_1_3_[mccms_rmbtocion]]" data-num="1">
+        <span>1张月票</span>
+        <span class="ticket-btn">
+            1元
+        </span>
+      </div>
+    </div>
+    <div class="pay-func">
+      <div class="title">
+        <span>支付方式</span>
+      </div>
+      <ul class="item-box">
+        <li class="func-item J_buy_ticket" data-pay="cion">
+          <i class="i-order-pay gold"></i>
+          <p class="txt">[mccms_cionname]支付</p>
+        </li>
+        {if:[mccms_isalipay] == 0}
+        <li class="func-item J_buy_ticket" data-pay="alipay">
+          <i class="i-order-pay ali"></i>
+          <p class="txt">支付宝支付</p>
+        </li>
+        {end if}
+        {if:[mccms_iswxpay] == 0}
+        <li class="func-item J_buy_ticket" data-pay="wxpay">
+          <i class="i-order-pay wx"></i>
+          <p class="txt">微信支付</p>
+        </li>
+        {end if}
+        {if:[mccms_isqqpay] == 0}
+        <li class="func-item J_buy_ticket" data-pay="qqpay">
+          <i class="i-order-pay qq"></i>
+          <p class="txt">QQ钱包支付</p>
+        </li>
+        {end if}
+      </ul>
+    </div>
+    <div class="tip-box">
+      <p>温馨提示：</p>
+      <p>1.月票是[mccms_name]推出的一种虚拟道具，可用于支持自己喜欢的作品</p>
+      <p>2.通过赠送获得的月票下月清零；通过购买方式获得的月票次年清零</p>
+      <br/>
+      <p>联系电话：[mccms_tel]</p>
+      <p>联系邮箱：[mccms_mail]</p>
+      <p>联系QQ：[mccms_qq]</p>
+    </div>
+  </main>
+<script>
+$(function(){
+  user.payticket('[mccms_cionname]');
+});
+</script>
+</body>
+</html>

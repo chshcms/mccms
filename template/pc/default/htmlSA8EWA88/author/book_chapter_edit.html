@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>[mccms_title]</title>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<meta name="keywords" content="[mccms_keywords]">
+<meta name="description" content="[mccms_description]">
+[mccms_packs_author]
+</head>
+<body class="p-comic-info">
+[mccms_head_author]
+<!-- 内容 -->
+<div class="main-container">
+  [mccms_left_author]
+  <script>$('#left-book-add').addClass('aside-user--selected');</script>
+  <!-- main-content -->
+  <div class="user-right">
+    <div class="user-right-top">
+      <h3>修改章节</h3>
+    </div>
+    <div class="chapter-box" style="width: 90%;padding:30px 10px;">
+      <div class="chapter-name">
+        <label class="layui-form-label"><span style="color: #ff620e;">*</span>章节名称：</label>
+        <div class="layui-input-block">
+          <input id="chapterTitle" type="text" name="name" required lay-verify="required" placeholder="请输入章节名称" autocomplete="off" class="layui-input" value="[chapter:name]">
+        </div>
+      </div>
+      <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">章节内容：</label>
+        <div class="layui-input-block">
+          <textarea name="text" placeholder="请输入章节TXT文本内容" class="layui-textarea chapter-text" style="min-height:500px;line-height: 25px;">[chapter:text]</textarea>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="update-time mt-20 mb-20">
+        <label class="layui-form-label">预计更新时间：</label>
+        <input type="text" name="addtime" id="startTime" class="layui-input J_date_selector">
+      </div>
+      <label class="layui-form-label"></label>
+      <a class="sure-btn mr-20">确定提交</a>
+      <a href="javascript:history.back();" class="cancel-btn ">返回</a>
+    </div>
+  </div>
+</div>
+[mccms_bottom_author]
+<script type="text/javascript">
+var chapter_id = [chapter_id];
+var chapter_bid = [chapter_bid];
+mccms.laydate.render({
+  elem: '.J_date_selector',
+  type: 'datetime',
+  format: 'yyyy-MM-dd HH:mm:ss',
+  value: new Date(),
+  isInitValue: true
+})
+// 判断返回
+if (document.referrer === '') {
+  // 没有来源页面信息的时候，改成首页URL地址
+  $('.cancel-btn').attr('href', '[mccms_url_author_book]');
+} else {
+  $('.cancel-btn').attr('href', document.referrer);
+}
+$('.sure-btn').click(function () {
+  if($(this).hasClass('lock')) return;
+  var loading2 = layer.load(1);
+  var data = chapterAddData();
+  if(data.bid == 0 || data.id == 0) {
+    mccms.msg('参数错误!');
+    mccms.layer.close(loading2);
+    return false;
+  }
+  if (!$.trim(data.name)) {
+    mccms.msg('大人，章节名不能为空哦~');
+    mccms.layer.close(loading2);
+    return false;
+  }
+  if(data.text.length < 20) {
+    mccms.msg('大人，章节txt内容太少了哦~');
+    mccms.layer.close(loading2);
+    return false;
+  }
+  if (!data.addtime) {
+    mccms.msg('更新时间错误');
+    mccms.layer.close(loading2);
+    return false;
+  }
+  $(this).addClass('lock');
+  $.post(Mcpath.web+'index.php/author/bookchapter/save', data)
+    .done(function (res) {
+      mccms.layer.close(loading2);
+      if (res.code == 1) {
+        mccms.layer.msg('章节修改成功',{time:1000},function(){
+          location.href = res.url;
+        });
+      } else {
+        $(this).removeClass('lock');
+        mccms.layer.msg(res.message);
+      }
+    });
+});
+function chapterAddData() {
+  var title = $('#chapterTitle').val();
+  var t = $('#startTime').val().replace(/-/g, "/");
+  var start_time = Date.parse(t) / 1000;
+  var data = {};
+  data.name = $.trim(title);
+  data.addtime = start_time;
+  data.text = $('.chapter-text').val();
+  data.id = chapter_id;
+  data.bid = chapter_bid;
+  return data;
+}
+</script>
+</body>
+</html>

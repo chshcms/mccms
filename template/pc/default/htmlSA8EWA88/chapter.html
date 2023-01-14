@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>[mccms_title]</title>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<meta name="keywords" content="[mccms_keywords]">
+<meta name="description" content="[mccms_description]">
+<!-- Mccms core JS build, must be loaded -->
+<script>var Mcpath = {url:'[mccms_url]',web:'[mccms_path]',basepath:'[mccms_basepath]',tpl:'[mccms_tpl]'};</script>
+<link rel="stylesheet" href="[mccms_basepath]layui/css/layui.css">
+<script src="[mccms_basepath]layui/layui.all.js"></script>
+<script src="[mccms_basepath]mccms/base.js"></script>
+<!-- //Mccms core JS build, must be loaded -->
+<!-- This template needs to be built -->
+<link rel="shortcut icon" href="[mccms_tpl]images/favicon.ico" type="image/x-icon"/>
+<link rel="Bookmark" href="[mccms_tpl]images/favicon.ico"/>
+<link rel="stylesheet" href="[mccms_tpl]css/common_home.css">
+<link rel="stylesheet" href="[mccms_tpl]css/read.css">
+<script src="[mccms_tpl]js/jquery.lazyload.min.js"></script>
+<script src="[mccms_tpl]js/jquery.SuperSlide.2.1.3.js"></script>
+<script src="[mccms_tpl]js/index.js"></script>
+<!--[if lt IE 9]>
+	<script src="[mccms_tpl]js/respond.js"></script>
+<![endif]-->
+<script>
+window._bd_share_config = {"common" : {"bdSnsKey" : {},"bdText" : document.title,"bdUrl" : window.location.href,"bdDesc":'',"bdMini" : "2","bdMiniList" : false,"bdStyle" : "0","bdSize" : "32",},"share" : {}};
+with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+</head>
+<body class="p-read">
+<div style='display:none;'><img src='[mccms_tpl]images/app_logo.png' /></div>
+<div class="read-container" data-type="2">
+	<div class="read__header">
+	    <div class="read__logo">
+		    <a href="[mccms_path]"><img style="width: 86px;height: 35px;" src="[mccms_tpl]images/pic_nav_logo.png"></a>
+		    <a class="read__feed j-rd-feed" href="javascript:void(0);">反馈</a>
+	    </div>
+	    <div class="read__crumb">
+			<a href="[mccms_path]">首页</a>
+			<span><i class="iconfont icon-ic_vip_switch_r"></i></span>
+			<a href="[chapter:link]" class="crumb__title j-comic-title">[chapter:zdy zd=comic,name,mid]</a>
+			<span><i class="iconfont icon-ic_vip_switch_r"></i></span>
+			<h1 class="comic-title"><a class="last-crumb" href="[chapter:piclink]">[chapter:name]</a></h1>
+	    </div>
+	    <div class="page-index__btn">
+	      	<span class="j-pg-index">1</span>/<span class="count">[chapter:count zd=comic_pic,id,cid]</span>
+    	</div>
+		<div class="in-header__user">
+            <ul class="fl clearfix">
+                <li class="user-item j-user-msg">
+                    <a href="[mccms_url_user_message]" rel="nofollow">
+                        <i class="iconfont icon-ic_head_inform"></i>
+                        <span class="item-text">消息</span>
+                    </a>
+                </li>
+                <li class="user-item j-header-his">
+                    <a href="[mccms_url_user_history]" rel="nofollow">
+                        <i class="iconfont icon-ic_head_footprint"></i>
+                        <span class="item-text">历史</span>
+                    </a>
+                    <div class="in-dialog--his hide">
+                        <p class="in-dialog__title">我看过的<a class="more" href="[mccms_url_user_history]">查看全部></a></p>
+                        <p class="in-dialog__offline">登录同步看到各端数据，<a class="hl" href="[mccms_url_user_login]">请登录</a></p>
+                        <ul class="in-dialog__user-list hide"></ul>
+                        <script class="header-his-tpl" type="text/html">
+                            {{# layui.each(d, function(index, item) { }}
+                            <li class="list-item">
+                                <a class="cover" href="{{ item.url }}"><img src="{{ item.pic}}" alt="{{ item.name }}"></a>
+                                <p class="comic-title"><a href="{{ item.url }}">{{ item.name }}</a></p>
+                                <p class="read-at">读至：<a href="{{ item.chapter_url }}">{{ item.chapter_name }}</a></p>
+                                <p class="update">更至：<a class="hl" href="{{ item.chapter_xurl }}">{{ item.chapter_xname }}</a></p>
+                                <a class="read" href="{{ item.chapter_url }}">续看></a>
+                            </li>
+                            {{# }) }}
+                        </script>
+                        <div class="in-dialog__empty">还没有看过的漫画，<a class="hl" href="[mccms_url_category]">去追一部</a></div>
+                        <span class="triangle"><i class="iconfont icon-ic_nav_toast_sj"></i></span>
+                    </div>
+                </li>
+                <li class="user-item j-header-coll">
+                    <a href="[mccms_url_user_fav]" rel="nofollow">
+                        <i class="iconfont icon-ic_head_coll"></i>
+                        <span class="item-text">收藏</span>
+                    </a>
+                    <div class="in-dialog--coll hide">
+                        <p class="in-dialog__title">我收藏的<a class="more" href="[mccms_url_user_fav]">查看全部></a></p>
+                        <ul class="in-dialog__user-list">
+                        <script class="header-coll-tpl" type="text/html">
+                        {{# layui.each(d, function(index, item) { }}
+                            <li class="list-item">
+                                <a class="cover" href="{{ item.url }}"><img src="{{ item.pic}}" alt="{{ item.name }}"></a>
+                                <p class="comic-title"><a href="{{ item.url }}">{{ item.name }}</a></p>
+                                <p class="read-at">读至：<a href="{{ item.chapter_url }}">{{ item.chapter_name }}</a></p>
+                                <p class="update">更至：<a class="hl" href="{{ item.chapter_xurl }}">{{ item.chapter_xname }}</a></p>
+                                <a class="read" href="{{ item.chapter_url }}">续看></a>
+                            </li>
+                        {{# }) }}
+                        </script>
+                        </ul>
+                        <div class="in-dialog__empty coll hide">还没有收藏的漫画，<a class="hl" href="[mccms_url_category]">去追一部</a></div>
+                        <div class="in-dialog__empty offline">登录查看收藏记录，<a class="hl" href="[mccms_url_user_login]">去登录</a></div>
+                        <span class="triangle"><i class="iconfont icon-ic_nav_toast_sj"></i></span>
+                    </div>
+                </li>
+                <li class="user-item">
+                    <a href="[mccms_url_user_comic_add]">
+                        <i class="iconfont icon-ic_head_tg"></i>
+                        <span class="item-text">投稿</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="j-header-avatar in-header__avatar fl">
+                <a href="[mccms_url_user]"><img class="j-user-avatar" src="[mccms_tpl]images/pic_login_defaulthead.png" alt="用户头像"></a>
+                <div class="j-dialog-avatar dialog__header-avatar hide">
+                    <div class="in-dialog--avatar">
+                        <span class="triangle"><i class="iconfont icon-ic_nav_toast_sj"></i></span>
+                        <div class="j-dialog-tourist row-1">
+                            <p class="base-info">
+                                <a class="j-user-name nickname" href="[mccms_url_user_login]">游客</a>
+                                <i class="vip-tag icon icon-vip-tag"></i>
+                                <a class="j-user-logout logout" href="[mccms_url_user_login]">登录领更多</a>
+                            </p>
+                            <p class="expire">VIP到期：<span class="j-user-vip-time">体验已到期</span></p>
+                        </div>
+                        <div class="row-2">
+                            <div class="fund-item">
+                                <div class="fund-item__icon"><i class="icon-user-yb"></i></div>
+                                <div class="fund-item__info">金币<br><span class="j-user-gold">0</span></div>
+                            </div>
+                            <div class="fund-item">
+                                <div class="fund-item__icon"><i class="icon-user-yp"></i></div>
+                                <div class="fund-item__info">月票<br><span class="j-user-ticket">0</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <script class="userinfo" type="text/html">
+                        <span class="triangle"><i class="iconfont icon-ic_nav_toast_sj"></i></span>
+                        <div class="j-dialog-user row-1">
+                            <p class="base-info">
+                                <a class="j-user-name nickname" href="[mccms_url_user]">{{d.nichen}}</a>
+                                <i class="j-user-vip vip-tag icon-vip-tag icon-vip-type2"></i>
+                                <a class="j-user-logout logout" href="javascript:;">退出登录</a>
+                            </p>
+                            <p class="expire">VIP到期：<span class="j-user-vip-time">{{d.viptime}}</span></p>
+                            <a class="j-agin-buy-vip buy-vip" href="[mccms_url_user_pay_index_vip]">续费VIP</a>
+                        </div>
+                        <div class="row-2">
+                            <div class="fund-item">
+                                <div class="fund-item__icon"><i class="icon-user-yb"></i></div>
+                                <div class="fund-item__info">金币<br><span class="j-user-gold">{{d.cion}}</span></div>
+                            </div>
+                            <div class="fund-item">
+                                <div class="fund-item__icon"><i class="icon-user-yp"></i></div>
+                                <div class="fund-item__info">月票<br><span class="j-user-ticket">{{d.ticket}}</span></div>
+                            </div>
+                        </div>
+                    </script>
+                </div>
+            </div>
+        </div>
+  	</div>
+  	<div class="rd-article-wr clearfix" data-type="1">
+    {if:[chapter:vip] == 0 && [chapter:cion] == 0}
+  	{mccms:pic table="comic_pic" where="cid=[chapter_id]" limit="all" order="xid asc"}
+    	<div id="pic_[pic:id]" class="rd-article__pic hide" data-pid="[pic:id]" data-index="[pic:i]">
+        	<img class="lazy-read" data-original="[pic:img]" src="[mccms_tpl]images/lazyload_img.png" alt="[pic:i].jpg">
+      	</div>
+  	{/mccms:pic}
+    {end if}
+	</div>
+    <div class="rd-article__end hide">
+      	<a class="btn--next-chapter j-rd-next hide">
+			<span class="txt">下一话</span>
+			<i class="iconfont icon-ic_read_next_icon"></i>
+        </a>
+        <div class="last-chapter hide">
+			<p class="txt1">已经阅读到最后一话(๑•̀ω•́)</p>
+			<p class="txt2">作者大大正在爆肝赶稿中…</p>
+        </div>
+        <div class="end__handles clearfix">
+			<div class="btn--collect j-rd-collect" data-mid="[chapter:mid]">
+				<i class="iconfont icon-ic_read_coll"></i>
+				<span class="txt">收藏</span>
+				<span class="txt-hl">已收藏</span>
+			</div>
+			<div data-id="[chapter:mid]" data-name="[chapter:zdy zd=comic,name,mid]" data-rank="[chapter:ticket_rank]" data-ticket="[chapter:zdy zd=comic,ticket,mid]" class="btn--ticket j-rd-ticket">
+				<i class="iconfont icon-ic_read_ticket"></i>
+				<span class="txt">月票</span>
+			</div>
+			<div class="btn--reward j-rd-gift">
+				<i class="iconfont icon-ic_read_givemoney"></i>
+				<span class="txt">打赏</span>
+			</div>
+      	</div>
+    </div>
+    <div class="rd-article__down hide">
+    	<p>主人，漫画下架了</p>
+    	<p>我们去<a href="[mccms_custom_top]"> 排行榜 </a>看看~</p>
+    </div>
+</div>
+<div class="rd-aside">
+	<div class="rd-aside__item j-rd-catalog">
+		<i class="iconfont icon-ic_readtab_catalog"></i>
+		<span class="txt">章节</span>
+		<div class="aside__catalog">
+			<div class="catalog__head">
+				<p class="head-title">
+					<span class="fl">目录</span>
+					<span class="count fr">共[chapter:count zd=comic_chapter,mid,mid]话</span>
+				</p>
+			</div>
+			<div class="catalog__list"></div>
+          	<script class="rd-catalog-tpl" type="text/html">
+			{{# layui.each(d, function(index, item) { }}
+			    <a class="catalog__item id-{{item.id}}" href="{{ item.link }}">
+			      <span class="index">[{{ index + 1 }}]</span>
+			      <span class="comic-title">{{ item.name }}</span>
+                  {{# if(Math.ceil(item.cion) == 1) { }}
+                    <i class="icon-rd-cion"></i>
+                  {{# } }}
+			      {{# if(Math.ceil(item.vip) == 1) { }}
+			        <i class="icon-rd-vip"></i>
+			      {{# } }}
+			    </a>
+			{{# }) }}
+			</script>
+        </div>
+    </div>
+    <div class="rd-aside__item j-rd-collect" data-mid="[chapter:mid]">
+		<i class="iconfont icon-ic_readtab_coll"></i>
+		<span class="txt">收藏</span>
+		<span class="txt-hl">已收藏</span>
+    </div>
+    <div class="rd-aside__item j-rd-share">
+		<i class="iconfont icon-ic_readtab_share"></i>
+      	<span class="txt">分享</span>
+      	<div class="rd-share clearfix hide" id="bdshare" data-tag="share_1">
+	        <div class="share-list clearfix bdsharebuttonbox">
+				<a class="share-item qq" data-cmd="sqq"></a>
+				<a class="share-item wx" data-cmd="weixin"></a>
+				<a class="share-item wb" data-cmd="tsina"></a>
+				<a class="share-item kj" data-cmd="qzone"></a>
+	        </div>
+	        <div class="hover-block">
+	        	<span class="arrow-right"></span>
+	        </div>
+      	</div>
+    </div>
+    <div class="rd-aside__item j-rd-mod">
+		<i class="iconfont">&#xe67e;</i>
+		<span class="txt">翻页</span>
+    </div>
+    <div class="rd-aside__item j-rd-light">
+		<i class="iconfont icon-ic_readtab_light"></i>
+		<span class="txt">开灯</span>
+    </div>
+    <a class="rd-aside__item j-rd-prev" _href="[chapter_slink]">
+		<i class="iconfont icon-ic_readtab_pre"></i>
+		<span class="txt">上一话</span>
+    </a>
+    <a class="rd-aside__item j-rd-next" _href="[chapter_xlink]">
+		<i class="iconfont icon-ic_readtab_next"></i>
+		<span class="txt">下一话</span>
+    </a>
+</div>
+<div class="rd-guess">
+    <div class="rd-guess__handle">
+    	<img class="rd-guess__pic hide" src="[mccms_tpl]images/pic_read_cnxh.png">
+		<span>猜你喜欢</span>
+		<i class="iconfont">&#xe6a4;</i>
+    </div>
+    <div class="rd-guess__comic-wr">
+    {mccms:comic table="comic" field="*" where="tid=1" limit="20" order="rhits desc"}
+    	<div class="rd-guess__comic">
+      		<a class="cover" href="[comic:link]"><img src="[comic:pic]" alt="[comic:name]"></a>
+    	</div>
+    {/mccms:comic}
+    </div>
+</div>
+<div class="hide gift-box">
+	<div class="dialog--gift"><div class="dialog__close"><i class="iconfont icon-ic_buy_toast_close"></i></div> <div class="dialog__head">送礼物给作者大大</div><div class="dialog__info"> <p class="comic-title">《[chapter:zdy zd=comic,name,mid]》</p> <p class="ticket-info clearfix"> <span>总打赏：<b class="hl">[chapter:zdy zd=comic,cion,mid]</b></span><span>总排名：<b class="hl">[chapter:cion_rank]</b></span> </p> </div>
+	<div class="gift-handles clearfix">
+	{mccms:gift table="gift" where="" limit="8" order="id asc"}
+		<div class="gift-item{if:[gift:i]==1} active{end if}" data-id="[gift:id]" data-cion="[gift:cion]"> <img class="gift-pic" src="[gift:pic]"> <div class="gift-info"> <p class="gift-title">[gift:name]</p> <p class="gift-price">[gift:cion][mccms_cionname]</p> </div> </div>  
+	{/mccms:gift} 
+	</div>
+	<div data-mid="[chapter:mid]" data-id="0" data-cion="0" class="gift__confirm" href="javascript:void(0);"><span>立即打赏</span> </div>  <p class="my-gold">我的金币 <b class="hl ucion">0</b> </p> </div>
+</div>
+<div class="hide buy-box">
+    <div class="read-chapter-buy">
+        <div class="buy-head">
+            <p class="buy-title">当前章节为付费章节</p>
+            <p class="comic-title">[chapter:name]</p>
+            <div class="fund-info">
+                <span>我的账户:</span>
+                <span class="yb">[mccms_cionname] <b class="j-user-gold hl">0</b></span>
+            </div>
+        </div>
+        <div class="buy-handle">
+            <p class="handle__nav"><span class="handle__item active">[mccms_cionname]购买章节</span></p>
+            <div class="handle__con clearfix" style="display: block;">
+                <div class="price-box hl">
+                    <i class="iconfont icon-ic_toast_yb"></i>
+                    <span class="price">[chapter:cion]</span> [mccms_cionname]
+                </div>
+                <div class="handle__confirm buy-btn" data-pay="1">[mccms_cionname]不足，去充值</div>
+                <div class="handle__check">
+                    <label>
+                        <input class="auto-check" type="checkbox">
+                        自动购买下一章节
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="hide vip-box">
+    <div style="width: 350px;background: #242426;color: #ddd;text-align: center;padding: 20px;">
+        <h2>当前章节为Vip会员专属章节</h2>
+        <p style="border-bottom: 1px solid #333;padding: 10px 0;font-size: 14px;">[chapter:name]</p>
+        <div style="margin: 20px 0 0;background: #f60;color: #fff;padding: 10px 0;font-size: 16px;cursor: pointer;" onclick="Pay_Show('vip');">购买升级VIP</div>
+    </div>
+</div>
+<script>
+$(function(){
+    setTimeout(function() {
+        readPic([chapter:mid],[chapter:id],[chapter:vip],[chapter:cion]);
+    },500);
+});
+</script>
+</body>
+</html>

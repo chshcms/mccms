@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>[mccms_title]</title>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<meta name="keywords" content="[mccms_keywords]">
+<meta name="description" content="[mccms_description]">
+[mccms_packs_user]
+<link rel="stylesheet" href="[mccms_tpl]css/cropper.min.css">
+</head>
+<body class="page-user">
+[mccms_head_user]
+<!-- 内容 -->
+<div class="main-container">
+  [mccms_left_user]
+  <!-- main-content -->
+  <div class="main-content--aside">
+    <!-- title -->
+    <div class="main-content_title">
+      <h3>修改密码</h3>
+    </div>
+    <div class="main-content__password clearfix">
+      <form class="layui-form">
+        {if:'[user:pass]' != '123456'}
+        <div class="layui-form-item">
+          <label class="layui-form-label">旧密码：</label>
+          <div class="layui-input-block">
+            <input lay-verify="password" type="password" name="pass" class="layui-input" />
+          </div>
+        </div>
+        {end if}
+        <!-- 设置新密码： -->
+        <div class="layui-form-item">
+          <label class="layui-form-label">设置新密码：</label>
+          <div class="layui-input-block">
+            <input lay-verify="password" type="password" name="pass1" class="layui-input" />
+          </div>
+        </div>
+        <!-- 确认密码 -->
+        <div class="layui-form-item">
+          <label class="layui-form-label">确认密码：</label>
+          <div class="layui-input-block">
+            <input lay-verify="password|newspass" type="password" name="pass2" class="layui-input" />
+          </div>
+        </div>
+        <!-- 确认 -->
+        <div class="layui-form-item">
+          <div class="layui-input-block">
+            <button lay-submit class="btn--submit layui-btn layui-btn-danger">确认</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+[mccms_bottom_user]
+<script>
+$(function(){
+  $('#left-pass').addClass('aside-user--selected');
+  infopass();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>[mccms_title]</title>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<meta name="keywords" content="[mccms_keywords]">
+<meta name="description" content="[mccms_description]">
+[mccms_packs_user]
+</head>
+<body class="page-user">
+[mccms_head_user]
+<!-- 内容 -->
+<div class="main-container">
+  [mccms_left_user]
+  <script>$('#left-home').addClass('aside-user__dt--selected');</script>
+  <!-- main-content -->
+  <div class="main-content--aside">
+    <div class="user-info">
+      <!-- avatar -->
+      <div class="user-info__avatar">
+        <img class="j-user-avatar" src="[user:pic]" alt="[user:nichen]" />
+      </div>
+      <!-- 用户信息 -->
+      <div class="user-info__info">
+        <span class="j-user-name user-name"></span>
+          [user:nichen]
+          {if:[user:vip]==1}<i class="icon-vip-type2"></i>{end if}
+          <br/>
+          <sapn class="vip-info">VIP到期时间：<span class="j-user-vip-time">{if:[user:vip]==0}体验已到期{else}[user:viptime style=Y-m-d]{end if}</span></sapn>
+          <a class="j-buy-btn vip-recharge" data-type="2">{if:[user:vip]==0}购买{else}续费{end if}VIP</a>
+      </div>
+      <!-- 用户资金信息 -->
+      <div class="user-info__funds">
+        <div class="user-info__funds--item">
+          <span class="user-info__funds--num j-user-gold">[user:cion]</span><br/>
+          <span class="user-info__funds--text">[mccms_cionname]</span>
+          <i class="user-info__funds--icon icon-user-yb"></i>
+        </div>
+        <div class="user-info__funds--item">
+          <span class="user-info__funds--num j-user-ticket">[user:ticket]</span><br/>
+          <span class="user-info__funds--text">月票</span>
+          <i class="user-info__funds--icon icon-user-yp"></i>
+          <a class="j-recharge-ticket-btn hide">购买</a>
+        </div>
+      </div>
+    </div>
+    <!-- tab -->
+    <div class="main-content__user-tab">
+      <div class="layui-tab layui-tab-brief layui-tab-mkz" lay-filter="user">
+        <ul class="layui-tab-title">
+          <li class="layui-this" data-type="1">[mccms_cionname]</li>
+          <li data-type="1">月票</li>
+          <li data-type="2">VIP</li>
+        </ul>
+        <div class="layui-tab-content tab-con">
+          <!-- [mccms_cionname] -->
+          <div class="layui-tab-item layui-show">
+            <div class="tab-con__balance">
+              余额：<span class="j-user-gold">[user:cion]</span>[mccms_cionname]
+            </div>
+            <a href="[mccms_url_user_buy]" class="tab-con__record">查看消费记录></a>
+            <div class="tab-con__h3">[mccms_cionname]怎么花$_$</div>
+            <div class="tab-con__gold-flow">
+              <div class="tab-con__gold-flow--item">
+                <div class="tab-con__gold-flow--item-title">
+                  <span>1</span>购买VIP
+                </div>
+                <div class="tab-con__gold-flow--item-des">
+                  享VIP专属特权
+                </div>
+                <div class="tab-con__gold-flow--item-pic1"></div>
+              </div>
+              <div class="tab-con__gold-flow--item">
+                <div class="tab-con__gold-flow--item-title">
+                  <span>2</span>打赏礼物
+                </div>
+                <div class="tab-con__gold-flow--item-des">
+                  为作者大大加油打气
+                </div>
+                <div class="tab-con__gold-flow--item-pic2"></div>
+              </div>
+              <div class="tab-con__gold-flow--item">
+                <div class="tab-con__gold-flow--item-title">
+                  <span>3</span>购买章节
+                </div>
+                <div class="tab-con__gold-flow--item-des">
+                  精彩不容错过
+                </div>
+                <div class="tab-con__gold-flow--item-pic3"></div>
+              </div>
+              <div class="tab-con__gold-flow--item">
+                <div class="tab-con__gold-flow--item-title">
+                  <span>4</span>购买月票
+                </div>
+                <div class="tab-con__gold-flow--item-des">
+                  为爱漫拉票打气
+                </div>
+                <div class="tab-con__gold-flow--item-pic4"></div>
+              </div>
+            </div>
+            <div class="tab-con__h3">[mccms_cionname]是什么？</div>
+            <div class="tab-con__gold-qs">
+              <p>
+                1. [mccms_cionname]是[mccms_name]推出的虚拟货币，用户可以通过充值获得；
+              </p>
+              <p>
+                2. [mccms_cionname]可用于购买付费章节、打赏礼物等。
+              </p>
+            </div>
+            <div class="j-buy-btn tab-con__btn j-pay-gold">充值</div>
+          </div>
+          <!-- [mccms_cionname]-end -->
+          <!-- 月票 -->
+          <div class="layui-tab-item">
+            <div class="tab-con__balance">
+              余额：<span class="j-user-ticket">[user:ticket]</span>月票
+            </div>
+            <a href="[mccms_url_user_buy_ticket]" class="tab-con__record">查看使用记录></a>
+            <div class="tab-con__h3">月票是什么？</div>
+            <div class="tab-con__gold-qs">
+              <p>
+                1. 月票是[mccms_name]推出的一种虚拟道具，可用于支持自己喜欢的作品；
+              </p>
+              <p>
+                2. 通过购买方式获得的月票永久有效。
+              </p>
+            </div>
+            <div class="j-buy-btn tab-con__btn buy_ticket" data-type='1'>购买</div>
+          </div>
+          <!-- 月票-end -->
+          <!-- vip -->
+          <div class="layui-tab-item">
+            <div class="tab-con__title">
+                {if:[user:vip]==1}您已开通VIP{else}您未开通VIP{end if}
+              </div>
+              <div class="tab-con__des">
+                现在{if:[user:vip]==1}续费{else}购买{end if}优惠多多
+              </div>
+            <div class="tab-con__h3">VIP特权</div>
+            <div class="tab-con__vip-flow">
+              <div class="tab-con__vip-flow--item noline">
+                <div class="tab-con__vip-flow--item-wrap">
+                  <div class="tab-con__vip-flow--item-pic1"></div>
+                  <div class="tab-con__vip-flow--item-info">
+                    <div class="tab-con__vip-flow--item-title">
+                      漫画特权
+                    </div>
+                    <div class="tab-con__vip-flow--item-des">
+                      VIP漫画免费读
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-con__vip-flow--item">
+                <div class="tab-con__vip-flow--item-wrap">
+                  <div class="tab-con__vip-flow--item-pic2"></div>
+                  <div class="tab-con__vip-flow--item-info">
+                    <div class="tab-con__vip-flow--item-title">
+                      购漫折扣
+                    </div>
+                    <div class="tab-con__vip-flow--item-des">
+                      章节8折购优惠
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-con__vip-flow--item">
+                <div class="tab-con__vip-flow--item-wrap">
+                  <div class="tab-con__vip-flow--item-pic3"></div>
+                  <div class="tab-con__vip-flow--item-info">
+                    <div class="tab-con__vip-flow--item-title">
+                      每月月票
+                    </div>
+                    <div class="tab-con__vip-flow--item-des">
+                      每月赠送月票
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-con__vip-flow--item">
+                <div class="tab-con__vip-flow--item-wrap">
+                  <div class="tab-con__vip-flow--item-pic4"></div>
+                  <div class="tab-con__vip-flow--item-info">
+                    <div class="tab-con__vip-flow--item-title">
+                      尊贵身份
+                    </div>
+                    <div class="tab-con__vip-flow--item-des">
+                      VIP标识亮起来
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-con__vip-flow--item noline">
+                <div class="tab-con__vip-flow--item-wrap">
+                  <div class="tab-con__vip-flow--item-pic5"></div>
+                  <div class="tab-con__vip-flow--item-info">
+                    <div class="tab-con__vip-flow--item-title">
+                      炫彩弹幕
+                    </div>
+                    <div class="tab-con__vip-flow--item-des">
+                      酷炫弹幕任你选
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-con__vip-flow--item">
+                <div class="tab-con__vip-flow--item-wrap">
+                  <div class="tab-con__vip-flow--item-pic6"></div>
+                  <div class="tab-con__vip-flow--item-info">
+                    <div class="tab-con__vip-flow--item-title">
+                      收藏特权
+                    </div>
+                    <div class="tab-con__vip-flow--item-des">
+                      收藏上限200部
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-con__vip-flow--item last-item">
+                <div class="tab-con__vip-flow--item-wrap">
+                  <div class="tab-con__vip-flow--item-title">
+                    - 更多特权 -
+                  </div>
+                  <div class="tab-con__vip-flow--item-des">
+                    敬请期待
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="j-buy-btn tab-con__btn vip-recharge">{if:[user:vip]==1}续费{else}购买{end if}</div>
+            </div>
+          <!-- vip-end -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+[mccms_bottom_user]
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>[mccms_title]</title>
+  <meta name="keywords" content="[mccms_keywords]">
+  <meta name="description" content="[mccms_description]">
+  [mccms_packs_book]
+  <link rel="stylesheet" href="[mccms_tpl]css/style.css">
+</head>
+<body>
+  <header class="header">
+    <a href="[mccms_custom_book-search]" class="go-back"><i class="ift-back"></i></a>
+    <div class="search-box">
+      <form id="search_form" action="[mccms_url_book-search]">
+        <input class='search-input' id='searchInput' type='search' name='key' placeholder='请输入要搜索的关键字' value='[mccms_key]' autocomplete='off'>
+      </form>
+    </div>
+    <span class="search-btn">搜索</span>
+  </header>
+  <main class="main under-header">
+    <div class="search-result">
+      {mccms:book table="book" page="10" order="addtime desc"}
+      <div class="comic-list-item clearfix"><a class="cover" href="[book:infolink]"><img src="[book:pic]" alt="[book:name]"></a><div class="comic-item-info"><p class="comic-name"><a href="[book:infolink]">[book:name]</a></p><p class="comic-author">[book:author]</p><p class="comic-update-at">([book:serialize])共[book:text_num wan=1]字</p><p class="comic-author" style="height: 38px;overflow: hidden;">[book:content]</p></div><a class="fast-read-btn" href="[book:infolink]"><i class="ift-searchlist_read1"></i><span>速看</span></a></div>
+      {/mccms:book}
+    </div>
+    <div class="search-active"></div>
+  </main>
+  <div class="getmore">点击加载更多</div>
+[mccms_bottom_book]
+<script>
+$(function(){
+  book.search();
+})
+</script>
+</body>
+</html>

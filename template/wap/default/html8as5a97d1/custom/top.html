@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>人气榜 - [mccms_name]</title>
+  <meta name="keywords" content="[mccms_keywords]">
+  <meta name="description" content="[mccms_description]">
+  [mccms_packs]
+</head>
+<body class="p-top">
+  <header class="header">
+    <a class="go-back" href="[mccms_path]"><i class="ift-back"></i></a>
+    <span>人气榜</span>
+    <a href="[mccms_custom_search]"><i class="ift-nav_search"></i></a>
+  </header>
+  <main class="main under-header" data-name="popular" data-type="1">
+    <div class="rank-nav">
+      <ul class="clearfix">
+        <li class="rank-nav-item active">
+          <a href="[mccms_custom_ticket]">人气榜</a>
+        </li>
+        <li class="rank-nav-item">
+          <a href="[mccms_custom_ticket]">月票榜</a>
+        </li>
+        <li class="rank-nav-item">
+          <a href="[mccms_custom_fav]">收藏榜</a>
+        </li>
+        <li class="rank-nav-item">
+          <a href="[mccms_custom_day]">今日榜</a>
+        </li>
+        <li class="rank-nav-item">
+          <a href="[mccms_custom_week]">本周榜</a>
+        </li>
+        <li class="rank-nav-item">
+          <a href="[mccms_custom_month]">本月榜</a>
+        </li>
+      </ul>
+    </div>
+    <div class="rank-list">
+      {mccms:comic table="comic" limit="100" order="hits desc"}
+      <div class="rank-item clearfix">
+        <a href="[comic:link]">
+          <img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" style="background-image: url([mccms_tpl]img/bg_loading_img_3.4.png)" alt="[comic:name]" data-src="[comic:pic]">
+        </a>
+        <div class="comic-item-info">
+          <a href="[comic:link]">
+            <p class="comic-name">[comic:name]</p>
+            <p class="comic-author">[comic:author]</p>
+            <p class="comic-tip">{if:'[comic:text]'==''}[comic:content len=20]{else}[comic:text]{end if}</p></a>
+          <p class="comic-click-count">总点击：[comic:hits wan=1]</p></div>
+          <div class="{if:[comic:i]>3}rank-tag{else}rank-top-tag rank-[comic:i]{end if}">{if:[comic:i]>3}[comic:i]{end if}</div>
+        </div>
+      {/mccms:comic}
+    </div>
+  </main>
+</body>
+</html>

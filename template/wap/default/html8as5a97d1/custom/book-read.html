@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>[mccms_title]</title>
+  <meta name="keywords" content="[mccms_keywords]">
+  <meta name="description" content="[mccms_description]">
+  [mccms_packs_book]
+  <link rel="stylesheet" href="[mccms_tpl]book/css/custom.css">
+</head>
+<body class="story-recommend__page">
+  <header class="header-bar">
+    <a href="[mccms_url_book]" class="go-back"></a>
+    <span class="title">小编力荐</span>
+  </header>
+  <div id="j-recommend-mescroll" class="mescroll story-recommend__page-list">
+    <ul id="j-recommend-datalist">
+      {mccms:book table="book" where="tid=1" limit="10" order="addtime desc"}
+      <li class="story-recommend__page-item">
+        <a href="[book:infolink]" class="item-link">
+          <div class="item-cover">
+            <img class="lazy cover loaded" src="[mccms_tpl]img/bg_loading_img_3.4.png" data-src="[book:pic]" alt="[book:name]"> 
+          </div>
+          <div class="item-info">
+            <div class="title">[book:name]</div>
+            <div class="desc">[book:content]</div>
+            <div class="l-row">
+              <div class="author">[book:author]</div>
+              <div class="group">
+                <div class="theme-item color3">
+                  [book:tags]
+                </div>
+                <div class="count">
+                  [book:text_num wan=1]字
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </li>
+      {/mccms:book}
+    </ul>
+    <div class="mescroll-upwarp" style="display: block;"><p class="upwarp-tip">正在加载中...</p></div>
+  </div>
+[mccms_bottom_book]
+<script>
+$(function(){
+  book.custom('reco');
+})
+</script>
+</body>
+</html>

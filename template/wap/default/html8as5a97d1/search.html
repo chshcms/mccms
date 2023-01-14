@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>[mccms_title]</title>
+  <meta name="keywords" content="[mccms_keywords]">
+  <meta name="description" content="[mccms_description]">
+  [mccms_packs]
+</head>
+<body>
+  <header class="header">
+    <a class="go-back"><i class="ift-back"></i></a>
+    <div class="search-box">
+      <form action="[mccms_url_search]">
+        <input class='search-input' id='searchInput' type='search' name='key' placeholder='请输入要搜索的关键字' value='[mccms_key]' autocomplete='off'>
+      </form>
+    </div>
+    <span class="search-btn">搜索</span>
+  </header>
+  <main class="main under-header">
+    <div class="search-result">
+      {mccms:comic table="comic" page="10" order="id desc"}
+      <div class="comic-list-item clearfix"><a class="cover" href="[comic:link]"><img src="[comic:pic]" alt="[comic:name]"></a><div class="comic-item-info"><p class="comic-name"><a href="[comic:link]">[comic:name]</a></p><p class="comic-author">[comic:author]</p><p class="comic-tags">{mccms:type table="comic_type" limit="3"}<span>[type:zdy zd=type,name,tid]</span>&nbsp;{/mccms:type}</p><p class="comic-update-at">[comic:zdy zd=comic_chapter,name,id,mid]</p></div><a class="fast-read-btn" href="[comic:link]"><i class="ift-searchlist_read1"></i><span>速看</span></a></div>
+      {/mccms:comic}
+    </div>
+    <div class="search-active"></div>
+  </main>
+  <div class="getmore">点击加载更多</div>
+<script>
+$(function(){
+  if($('.comic-list-item').length == 0){
+    $('.getmore').hide();
+  }
+  comic.search();
+})
+</script>
+</body>
+</html>

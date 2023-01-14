@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>小说打赏榜_好看的小说排行榜_经典小说推荐 - [mccms_name]</title>
+  <meta name="keywords" content="[mccms_keywords]">
+  <meta name="description" content="[mccms_description]">
+  [mccms_packs_book]
+  <link rel="stylesheet" href="[mccms_tpl]book/css/hot.css">
+</head>
+<body class="story-top">
+  <header class="header-bar">
+    <a href="[mccms_url_book]" class="go-back"></a>
+    <span class="title">打赏榜</span>
+  </header>
+  <!-- 分类-菜单 -->
+  <div class="j-story-top-nav story-top__nav">
+    <div class="item"><a href="[mccms_custom_book-hot]" class="link">人气榜</a></div>
+    <div class="item"><a href="[mccms_custom_book-fav]" class="link">收藏榜</a></div>
+    <div class="item"><a href="[mccms_custom_book-ticket]" class="link">月票榜</a></div>
+    <div class="item active"><a href="[mccms_custom_book-gift]" class="link">打赏榜</a></div>
+  </div>
+  <!-- 分类-排行 -->
+  <div class="story-top__rank" style="padding-top:15px;">
+    <div class="j-story-rank-list story-top__rank-list">
+    {mccms:book table="book" limit="15" order="cion desc"}
+      <a href="[book:infolink]" class="story-top__rank-item">
+        <div class="cover-wrapper">
+          <img class="lazy cover loaded" src="[mccms_tpl]img/bg_loading_img_3.4.png" data-src="[book:pic]" alt="[book:name]">
+          <div class="count-info">礼物 [book:cion wan=1]</div>
+        </div>
+        <div class="info-wrapper">
+          <div class="title">[book:name]</div>
+          <div class="author">[book:author]</div>
+          <div class="desc">[book:content]</div>
+          <div class="tags">
+            <div class="tag-item">[book:tags]</div>
+            <div class="tag-item">[book:text_num wan=1]字</div>
+          </div>
+        </div>
+        <div class="rank-num">{if:[book:i]<10}0{end if}[book:i]</div>
+      </a>
+    {/mccms:book}
+  </div>
+  <div class="mescroll-upwarp" style="display: block;"><p class="upwarp-tip">正在加载中...</p></div>
+[mccms_bottom_book]
+<script>
+$(function(){
+  book.hot('cion');
+})
+</script>
+</body>
+</html>

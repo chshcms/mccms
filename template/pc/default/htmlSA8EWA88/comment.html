@@ -1,0 +1,65 @@
+<div class="j-comment-none de-comment__none{if:[mccms_pagenum] > 0} hide{end if}">
+    <img src="[mccms_tpl]images/pic_null_comment.png">
+    <p class="de-comment__none--large">主人，快来抢沙发</p>
+    <p>来一发骚评论吧~</p>
+</div>
+<div clasas="j-comment-list{if:[mccms_pagenum] == 0} hide{end if}">
+    {mccms:comment table="comment" field="*" page="10" order="id desc"}
+    <div class="j-comment-item de-comment__item" data-reply="[comment:reply_num]" data-commentid="[comment:id]">
+        <div class="de-comment__item-left">
+            <div class="j-comment-user-avatar de-comment__item--avatar"><img src="[comment:authorpic]" alt=""></div>
+        </div>
+        <div class="j-comment-content-box de-comment__item-right">
+            <div class="j-comment-nickname de-comment__item--nickname">[comment:zdy zd=user,nichen,uid]</div>
+            <div class="de-comment__item--date"><span>[comment:addtime style=Y-m-d H:i:s]</span></div>
+            <div class="j-comment-item-content de-comment__item--content">
+                <div class="j-comment-content de-comment__item--content-box">[comment:text face=1]</div>
+                {mccms:reply table="comment_reply" where="cid=[comment:id]" limit="100" order="id desc"}
+                <div class="j-comment-reply-item de-comment__item--reply" data-replyid="[reply:id]">
+                    <div class="de-comment__item--reply-top">
+                        <div class="de-comment__item--reply-uinfo">
+                            <img class="j-user-avatar" src="[reply:authorpic]" alt="">
+                            <span class="j-comment-nickname de-comment__item--reply-nickname">[reply:zdy zd=user,nichen,uid]</span>
+                            <span>[reply:addtime style=Y-m-d H:i:s]</span>
+                        </div>
+                        <div class="j-reply-content de-comment__item--reply-content">[reply:text face=1]</div>
+                        <div class="de-comment__item--reply-user-action">
+                            <div data-fid="1" data-id="[reply:id]" class="j-reply-like-btn de-comment__item--like-btn{if:[reply:is_zan] == 1} active{end if}">
+                                <i class="layui-icon layui-icon-praise"></i>
+                                <span>[reply:zan]</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {/mccms:reply}
+            </div>
+            <div class="de-comment__item--user-action">
+                <div data-fid="0" data-id="[comment:id]" class="j-like-btn de-comment__item--like-btn{if:[comment:is_zan] == 1} active{end if}">
+                    <i class="layui-icon layui-icon-praise"></i>
+                    <span>[comment:zan]</span>
+                </div>
+                <div class="j-reply-btn de-comment__item--reply-btn" data-id="[comment:id]">
+                    <i class="layui-icon layui-icon-reply-fill"></i>
+                    <span>[comment:reply_num]</span>
+                </div>
+            </div>
+            <div class="reply-kuang-[comment:id] j-comment-box de-comment__item--replybox hide">
+                <div class="de-comment__textarea-wrap"><div class="comment-text-[comment:id] j-comment-textarea de-comment__item--textarea has-placeholder" contenteditable="true"></div></div><div class="de-comment__item--btn-group"><div class="j-comment-emoji de-comment__item--emoji"><i class="icon-comment-emoji"></i><span>表情</span><div class="j-comment-face-box de-comment__face-box hide"><div class="triangle-up"></div><div class="de-comment__face-con"><ul class="j-facelist de-comment__face-list" data-cid="[comment:id]">{mccms:face}<li class="j-face-item face-item face-reply" data-id="[face:label]"><img class="j-face-img" src="[face:pic]" alt=""><p class="j-face-name">[face:name]</p></li>{/mccms:face}</ul></div></div></div><div class="j-comment-reply-btn de-comment__item--submit" data-fid="[comment:uid]" data-cid="[comment:id]" data-mid="[comment:mid]" data-bid="[comment:bid]">回复</div></div>
+            </div>
+        </div>
+    </div>
+    {/mccms:comment}
+</div>
+<style type="text/css">
+.layui-laypage .on{color:#f30;}
+</style>
+<div class="pagination--center{if:[mccms_pagejs] < 2} hide{end if}" id="comment-pagination">
+    <div class="layui-box layui-laypage layui-laypage-mkz-comment">
+        <a href="[mccms_pageup]" class="layui-laypage-prev">上一页</a>
+        <a class="layui-laypage-first" href="[mccms_pagefirst]">首页</a>
+        [mccms_pagenum_10]
+        <a href="[mccms_pagelast]" class="layui-laypage-last" title="尾页">末页</a>
+        <a href="[mccms_pagedown]" class="layui-laypage-next">下一页</a>
+    </div>
+</div>
+<script type="text/javascript">$('.j-comment-num').html([mccms_pagenum]);</script>

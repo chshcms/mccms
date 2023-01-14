@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>[mccms_title]</title>
+  <meta name="keywords" content="[mccms_keywords]">
+  <meta name="description" content="[mccms_description]">
+  [mccms_packs]
+</head>
+<body class="p-detail">
+  <header class="header p-dt-header">
+    <a class="go-back"><i class="ift-back"></i></a>
+    <span class="comic-name">[comic:name]</span>
+    <span class="p-dt-share J_share"><i class="ift-read_tab_share"></i></span>
+    <a href="[mccms_path]" class="p-dt-home"><i class="ift-read_home"></i></a>
+  </header>
+  <main class="main detail-container">
+    <div class="comic-info-box">
+      <div class="box-back" style="background-image: url('[comic:pic]')">
+        <p class="wrap"></p>
+      </div>
+      <div class="comic-info">
+        <h1 class="comic-name">[comic:name]</h1>
+        <div class="au-name">
+          作者：[comic:author]
+        </div>
+        <p class="comic-tags">
+          <span class="comic-hot">[comic:hits wan=1]</span>
+          [comic:type]
+        </p>
+      </div>
+    </div>
+    <nav class="detail-nav">
+      <ul class="clearfix">
+        <li>详情</li>
+        <li class="catagory active slide-up">目录 <i class="ift-detail_sort_down"></i></li>
+        <li>评论</li>
+      </ul>
+      <span class="underline"></span>
+    </nav>
+    <div class="detail-content">
+      <!-- 漫画介绍 -->
+      <div class="detail-intro-box hide">
+        <div class="detail-intro">
+          <span class="comic-intro">[comic:content]</span>
+          <div class="author-info">
+            <i class="i-dt-gg"></i>
+            {if:'[comic:notice]' == ''}
+            作者大大还没有填写本作品的公告！！！
+            {else}
+            [comic:notice]
+            {end if}
+          </div>
+        </div>
+        <!-- 相关推荐 -->
+        <div class="comic-recommend">
+          <p class="title">相关推荐，优漫必看</p>
+          <ul class="clearfix">
+            {mccms:comic table="comic" where="cid=[comic_cid]" limit="3" order="zhits desc"}
+            <li class="rec-item">
+              <div class="cover">
+                <a href="[comic:link]"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="[comic:pic]" alt="[comic:name]"></a>
+              </div>
+              <p class="comic-name">[comic:name]</p>
+            </li>
+            {/mccms:comic}
+          </ul>
+        </div>
+        <!-- 底部 -->
+        <div class="m-dt-bottom">
+          <ul class="clearfix">
+            <li class="itm J_collect">
+              <i class="i-dt-coll"></i>
+              收藏
+            </li>
+            <li class="itm J_ticket">
+              <i class="i-dt-ticket"></i>
+              月票
+            </li>
+            <li class="itm J_gift">
+              <i class="i-dt-gold"></i>
+              打赏
+            </li>
+          </ul>
+          <a href="[comic:piclink]" class="start-read">开始阅读</a>
+        </div>
+      </div>
+      <!-- 章节列表 -->
+      <div class="catalog-box">
+        <div class="list-wrap">
+          <p class="comic-update-info">[comic:serialize]：[comic:zdy zd=comic_chapter,name,id,mid]</p>
+          <div class="catalog-list">
+            <ul class="clearfix">
+              {mccms:chapter table="comic_chapter" where="mid=[comic_id]" limit="all" order="id asc"}
+              <li class="chapter-item id-[chapter:id]{if:[chapter:i] > 12} hide{end if}">
+                <a href="[chapter:piclink]">[chapter:name len=6]</a>
+                {if:'[chapter:cion]'>'0'}<i class="i-dt-lock"></i>{end if}
+                {if:'[chapter:vip]'>'0'}<i class="i-dt-vip"></i>{end if}
+                {if:'[chapter:addtime style=Y-m-d]'=='[mccms_date]'}<i class="new-chapter"></i>{end if}
+              </li>
+              {/mccms:chapter}
+            </ul>
+            {if:[comic:nums] > 12}
+            <div class="show-more" data-id="1"><span class="txt">大人，更多话在这里</span> <i class="ift-readlist_more"></i></div>
+            {end if}
+          </div>
+        </div>
+        <!-- 相关推荐 -->
+        <div class="gap-12"></div>
+        <div class="comic-recommend">
+          <p class="title">相关推荐</p>
+          <ul class="clearfix">
+            {mccms:comic table="comic" where="cid=[comic_cid]" limit="3" order="zhits desc"}
+            <li class="rec-item">
+              <div class="cover">
+                <a href="[comic:link]"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="[comic:pic]" alt="[comic:name]"></a>
+              </div>
+              <p class="comic-name">[comic:name]</p>
+            </li>
+            {/mccms:comic}
+          </ul>
+        </div>
+        <!-- 底部 -->
+        <div class="m-dt-bottom">
+          <ul class="clearfix">
+            <li class="itm comic-collect J_collect">
+              <i class="i-dt-coll"></i>
+              <span>收藏</span>
+            </li>
+            <li class="itm J_ticket">
+              <i class="i-dt-gold"></i>
+              <span>月票</span>
+            </li>
+            <li class="itm gift-btn J_gift">
+              <i class="i-dt-ticket"></i>
+              <span>打赏</span>
+            </li>
+          </ul>
+          <a href="[comic:piclink]" class="start-read">开始阅读</a>
+        </div>
+      </div>
+      <!-- 评论 -->
+      <div class="comment-box hide">
+        <div class="no-comment">
+          <div class="no-comment-bg"></div>
+          <p class="txt">主人还等什么，快畅聊一番吧～</p>
+        </div>
+        <div class="comment-wrap"></div>
+        <div class="getmore" data-end="0">点击加载更多</div>
+        <div class="comment-input-box">
+          <p class="comment-btn">呦吼，评论来一发</p>
+        </div>
+      </div>
+    </div>
+  </main>
+  <!--  评论弹出输出  -->
+  <div class="comment-layout hide">
+    <div class="header">
+      <i class="ift-nav_close"></i>
+      <span>发表评论</span>
+    </div>
+    <div class="area-wrap">
+      <textarea name="comment" id="commentArea"></textarea>
+      <span class="J_face_btn">
+        <i class="i-dt-face"></i>
+      </span>
+    </div>
+    <div class="comment-sumit" data-cid="0">发布</div>
+    <div class="face-wrapper hide">
+      <div class="face-list">
+      {mccms:face}
+        <div class="item" data-id="[face:label]"><img src="[face:pic]" class="pic"><p>[face:name]</p></div>
+      {/mccms:face}
+      </div>
+    </div>
+  </div>
+  <!-- 礼物打赏 -->
+  <div style="display: none" class="gift-box">
+    <div class="m-gift-box">
+      <h2 class="title">
+        <span>送礼物支持大大</span>
+        <a class="order-g order-g--link" href="[mccms_url_user_pay_index_cion]">充值[mccms_cionname]</a>
+      </h2>
+      <div class="gift-lst">
+        <ul class="clearfix">
+          {mccms:gift table="gift" where="" limit="8" order="id asc"}
+          <li class="gift-itm" data-id="[gift:id]" data-cion="[gift:cion]">
+            <span class="itm-pic"><img src="[gift:pic]"></span>
+            <p class="itm-title">[gift:name]</p>
+            <p class="itm-pay">[gift:cion][mccms_cionname]</p>
+          </li>
+          {/mccms:gift}
+        </ul>
+      </div>
+      <div class="gift-confirm">
+        <span class="confirm-l"><i class="ift-readercenteryb"></i> 我的[mccms_cionname]：<span class="txt">0</span></span>
+        <span class="btn">赠送</span>
+      </div>
+    </div>
+  </div>
+  <!-- 打赏月票 隐藏 -->
+  <div style="display: none" class="ticket-box">
+    <div class="reward-box">
+      <div class="reward-list">
+        <ul class="clearfix">
+          <li class="reward-item select" data-num="1"><i class="ift-monthticket"></i><span>投1票</span></li>
+          <li class="reward-item" data-num="2"><i class="ift-monthticket"></i><span>投2票</span></li>
+          <li class="reward-item" data-num="5"><i class="ift-monthticket"></i><span>投5票</span></li>
+        </ul>
+      </div>
+      <p class="has">我的月票：<span class="num ticket-num">0</span>张<a class="buy-ticket" href="[mccms_url_user_pay_index_ticket]">购买</a></p>
+    </div>
+  </div>
+  <!-- 百度分享 隐藏 -->
+  <div style="display: none" class="bdshare">
+    <p class="title">分享给朋友</p>
+    <ul class="clearfix bdsharebuttonbox">
+      <li class="ctrl-item"><a class="btn qq share-btn" data-cmd="qq"></a><p>QQ</p></li>
+      <li class="ctrl-item"><a class="btn qqkj share-btn" data-cmd="qzone"></a><p>qq空间</p></li>
+      <li class="ctrl-item"><a class="btn xl share-btn" data-cmd="tsina"></a><p>微博</p></li>
+    </ul>
+  </div>
+<script>
+var shareArr = [
+    '本宝宝不看别的就看《[comic:name]》，来[mccms_name]一起围观哦！',
+    '什么？《[comic:name]》竟是这样的展开？！',
+    '《[comic:name]》正在[mccms_name]上超神，快来围观啊！',
+    '给《[comic:name]》打CALL就来[mccms_name]，嗨到飞起啦！'
+  ],shareIndex = Math.floor(Math.random() * 4),shareTxt = shareArr[shareIndex],sharePic = '[comic:pic]';
+$(function(){
+  comic.show([comic:id]);
+})
+</script>
+</body>
+</html>

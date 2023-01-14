@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>[mccms_title]</title>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<meta name="keywords" content="[mccms_keywords]">
+<meta name="description" content="[mccms_description]">
+[mccms_packs_user]
+</head>
+<body class="page-user">
+[mccms_head_user]
+<!-- 内容 -->
+<div class="main-container">
+  [mccms_left_user]
+  <!-- main-content -->
+  <div class="main-content--aside">
+    <!-- title -->
+    <div class="main-content_title">
+      <h3>小说阅读记录</h3>
+      <div class="main-content_subtitle">
+        共<strong class="j-collection-count">[mccms_pagenum]</strong>部作品
+      </div>
+      <!-- toolbox -->
+      <div class="main-content__title--toolbox">
+        <div class="j-collection-toolbox clear-btn">
+          <i class="iconfont icon-clearlist"></i> 整理阅读
+        </div>
+        <div class="j-collection-feature toolbox-btn layui-form hide">
+          <div class="layui-input-block">
+            <input type="checkbox" name="select-all" lay-skin="primary" lay-filter="select-all" title="全选">
+          </div>
+          <div class="btn-group">
+            <span class="j-collection-delete delete-btn delete-btn--disable">删除阅读</span>
+            <span class="j-collection-cancel cancel-btn">取消</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- comic-list -->
+    <div class="j-collection-list main-content__comic-list">
+      <ul class="user-comic-list">
+        {mccms:read table="book_read" page="10" order="id desc"}
+          <li class="user-comic-item" data-id='[read:id]'>
+            <div class="j-item-select user-comic-item__select" data-id="[read:id]">
+              <i class="pic-select"></i>
+            </div>
+            <a class="user-comic-item__cover" href="[read:infolink]" target="_blank">
+              {if:'[read:zdy zd=book,addtime,bid]' == '[mccms_date]'}
+                <i class="pic-comic-update"></i>
+              {end if}
+              <img src="[read:zdy zd=book,pic,bid]">
+            </a>
+            <div class="user-comic-item__detail">
+              <p class="user-comic-item--name">
+                <a class="text-overflow" href="[read:infolink]" target="_blank">[read:zdy zd=book,name,bid]</a>
+              </p>
+              <p class="user-comic-item--text user-comic-item--latest">
+                <a class="text-overflow--gray" href="[read:readlink]" target="_blank">更至：[read:zdy zd=book_chapter,name,bid,bid]</a>
+              </p>
+            </div>
+          </li>
+        {/mccms:read}
+        {if:[mccms_pagenum] == 0}
+          <div class="no-history"></div>
+        {end if}
+      </ul>
+    </div>
+    <!-- pagination -->
+    <div class="pagination--center{if:[mccms_pagejs] < 2} hide{end if}" id="collection-pagination">
+      <div class="layui-box layui-laypage layui-laypage-mkz">
+        <a href="[mccms_pageup]" class="layui-laypage-prev">&lt;</a>
+        [mccms_pagenum_10]
+        <a href="[mccms_pagedown]" class="layui-laypage-next">&gt;</a>
+      </div>
+    </div>
+  </div>
+</div>
+[mccms_bottom_user]
+<script>
+$(function(){
+  $('#left-read-book').addClass('aside-user--selected');
+  read_fav('read','book');
+});
+</script>
+</body>
+</html>

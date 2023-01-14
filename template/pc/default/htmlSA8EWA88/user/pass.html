@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>[mccms_title]</title>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<meta name="keywords" content="[mccms_keywords]">
+<meta name="description" content="[mccms_description]">
+[mccms_packs]
+<link rel="stylesheet" href="[mccms_tpl]css/login.css">
+</head>
+<body class="page-login fixed-footer">
+[mccms_head]
+<div class="main-content">
+    <div class="container--response">
+        <div class="login-box">
+            <div class="login-pic">
+                <img src="[mccms_tpl]images/pic_loginpage_img.png" />
+            </div>
+            <!-- 登录框 -->
+            <div class="dialog-login">
+                <div class="dialog-login_content clearfix">
+                    <div class="tab-content">
+                        <!-- 注册 -->
+                        <div class="j-tab-item tab-item active">
+                            <div class="dialog-login_form">
+                                <div class="form-title">
+                                    <h3>找回密码</h3>
+                                    <a href="[mccms_url_user_login]" class="j-dialog-login-mode">返回登录&gt;&gt;</a>
+                                </div>
+                                <div class="form-item">
+                                    <div class="input-block" style="position: relative;">
+                                        <input id="regtel" type="text" name="tel" placeholder="输入您的手机号码" maxlength="11" autocomplete="off">
+                                        <img title="点击刷新验证码" style="position: absolute; right: 1px; top: 1px; width: 99px; height: 92%; cursor: pointer; display: inline-block;" class="code_pic hide" src="[mccms_url_api_code]">
+                                    </div>
+                                </div>
+                                <div class="form-item pic-code">
+                                    <div class="input-block--inline">
+                                        <input maxlength="4" id="regpcode" type="text" name="pcode" placeholder="输入图形验证码" autocomplete="off">
+                                        <div class="j-sms-btn sms-btn pcode-send">短信验证</div>
+                                    </div>
+                                </div>
+                                <div class="form-item tel-code hide">
+                                    <div class="input-block--inline">
+                                        <input id="regtcode" type="text" name="tcode" placeholder="输入手机验证码" autocomplete="off">
+                                        <div class="j-sms-btn sms-btn tcode-send" data-status="false">再次获取</div>
+                                    </div>
+                                </div>
+                                <div class="form-item">
+                                    <div class="input-block">
+                                        <input id="pass" type="password" name="pass" placeholder="新密码（6-16位字符）" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="form-item">
+                                    <div class="j-forgot-submit forgot-submit-btn submit-btn disabled-select">重置密码</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 第三方登录 -->
+                    <div class="j-dialog-other-login other-login">
+                        <h3 class="j-dialog-other-title title">
+                            <div class="title-line"></div>
+                            <div class="title-text">其他登录方式</div>
+                        </h3>
+                        <div class="other-link">
+                            <a href="[mccms_url_user_open_index_qq]" rel="nofollow" class="other-login-qq">
+                                <i class="iconfont icon-ic_buytoast_qq"></i>
+                            </a>
+                            <a href="[mccms_url_user_open_index_weixin]" rel="nofollow" class="other-login-wx">
+                                <i class="iconfont icon-ic_login_wx"></i>
+                            </a>
+                            <a href="[mccms_url_user_open_index_weibo]" rel="nofollow" class="other-login-sina">
+                                <i class="iconfont icon-ic_login_xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer-wrapper">
+    <!-- footer-bottom -->
+    <div class="container--response">
+        <div class="footer-bottom">
+            <ul class="footer-link clearfix">
+                <li><a href="[mccms_custom_about]" target="help" rel="nofollow">关于我们</a></li>
+                <li><a href="[mccms_custom_contact]" target="help" rel="nofollow">联系我们</a></li>
+                <li><a href="[mccms_custom_map]" target="help" rel="nofollow">网站地图</a></li>
+                <li><a href="[mccms_custom_notice]" target="help" rel="nofollow">法律声明</a></li>
+                <li><a href="[mccms_custom_verify]" target="help" rel="nofollow">内容审核</a></li>
+                <li>[mccms_stat]</li>
+            </ul>
+            <p>
+                <span>[mccms_icp]</span>
+                [mccms_name]（[mccms_url]）是一家漫画免费分享以及在线浏览平台
+            </p>
+            <p>
+                <span>Copyright ©2010-2020 <a href="[mccms_path]" rel="nofollow">[mccms_name]</a></span>版权所有
+            </p>
+        </div>
+    </div>
+</div>
+<script>
+$(function(){
+    var time = 60;
+    var errhtml='<div class="j-verify-err"><i class="iconfont icon-ic-safe-off"></i><span>[msg]</span></div>';
+    //发送短信验证码
+    $('.j-sms-btn').click(function(){
+        var tel = $('#regtel').val();
+        if(!(/^1[3456789]\d{9}$/.test(tel))){
+            var err = errhtml.replace('[msg]','主人，请输入正确的手机号~');
+            $('#regtel').parent().parent().append(err);
+            $('#regtel').focus();
+            return false;
+        }
+    });
+    //点击输入框删掉错误提示
+    $('.dialog-login_form input').click(function(){
+        $('.j-verify-err').remove();
+    });
+    //发送验证码
+    $('.pcode-send').click(function(){
+        var tel = $('#regtel').val();
+        var pcode = $('#regpcode').val();
+        if(!(/^1[3456789]\d{9}$/.test(tel))){
+            var err = errhtml.replace('[msg]','主人，请输入正确的手机号码~');
+            $('#regtel').parent().parent().append(err);
+            $('#regtel').focus();
+            return false;
+        }
+        if(pcode == ''){
+            var err = errhtml.replace('[msg]','请输入上面的图形验证码~');
+            $('#regpcode').parent().parent().append(err);
+            $('#regpcode').focus();
+            return false;
+        }
+        //发送
+        $.post(Mcpath.web+'index.php/api/code/tel_send', {tel:tel,code:pcode}, function(res) {
+            if(res.code == 1){
+                $('.pic-code,.code_pic').hide();
+                $('.tel-code').show();
+                tindex = setInterval(function(){
+                    time--;
+                    if(time == 0){
+                        time = 60;
+                        window.clearInterval(tindex);
+                        $('.tcode-send').removeClass('disabled').attr('data-status','false').html('重新发送');
+                    }else{
+                        $('.tcode-send').addClass('disabled').attr('data-status','true').html(time+'S后重发');
+                    }
+                },1000);
+            }else{
+                mccms.msg(res.msg);
+            }
+        },'json');
+    });
+    //再次发送验证码
+    $('.tcode-send').click(function(){
+        var init = $(this).attr('data-status');
+        if(init == 'false'){
+            $('#regpcode').val('');
+            $('.pic-code').show();
+            $('.tel-code').hide();
+            $('.code_pic').attr('src',Mcpath.web+'index.php/api/code').show();
+        }
+    });
+    //修改提交
+    $('.j-forgot-submit').click(function(){
+        var tel = $('#regtel').val();
+        var code = $('#regtcode').val();
+        var pass = $('#pass').val();
+        if(!(/^1[3456789]\d{9}$/.test(tel))){
+            var err = errhtml.replace('[msg]','主人，请输入正确手机号码~');
+            $('#regtel').parent().parent().append(err);
+            $('#regtel').focus();
+            return false;
+        }
+        if(code == ''){
+            if($(".code_pic").css("display") == 'none'){
+                var err = errhtml.replace('[msg]','主人，请输入手机验证码~');
+                $('#regtcode').parent().parent().append(err);
+                $('#regtcode').focus();
+            }else{
+                var err = errhtml.replace('[msg]','主人，请获取短信验证码~');
+                $('#regpcode').parent().parent().append(err);
+                $('#regpcode').focus();
+            }
+            return false;
+        }
+        if(!(/^[\S]{6,16}$/.test(pass))){
+            var err = errhtml.replace('[msg]','密码必须6到16位，且不能出现空格~');
+            $('#pass').parent().parent().append(err);
+            $('#pass').focus();
+            return false;
+        }
+        var index = mccms.layer.load();
+        $.post(Mcpath.web+'index.php/api/user/pass', {tel:tel,pass:pass,code:code}, function(res) {
+            mccms.layer.close(index);
+            if(res.code == 1){
+                mccms.msg(res.msg,1);
+                setTimeout(function() {
+                    window.location.href = '[mccms_url_user_login]';
+                }, 1000);
+            }else{
+                mccms.msg(res.msg);
+            }
+        },'json');
+    });
+    //监听回车提交登陆
+    $(document).keyup(function(e){
+        if(e.keyCode ==13){
+            $('.j-forgot-submit').click();
+        }
+    });
+    //刷新验证码
+    $('.code_pic').click(function(){
+        $(this).attr('src',Mcpath.web+'index.php/api/code?t='+Math.random());
+    });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>[mccms_title]</title>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<meta name="keywords" content="[mccms_keywords]">
+<meta name="description" content="[mccms_description]">
+[mccms_packs_author]
+</head>
+<body class="p-comic-info">
+[mccms_head_author]
+<!-- 内容 -->
+<div class="main-container">
+  [mccms_left_author]
+  <!-- main-content -->
+  <div class="user-right">
+    <div class="user-right-top">
+      <h3>提现记录</h3>
+      <div style="float: right;margin-top: 12px;margin-right: 22px;">
+        <span style="margin-right: 6px;color: #666;">选择时间</span>
+        <select class="comment-select-time" name="comment_select_time">
+          <option value="0">全部</option>
+          <option value="1"{if:'[day]' == '1'} selected{end if}>今日</option>
+          <option value="3"{if:'[day]' == '3'} selected{end if}>近三天</option>
+          <option value="7"{if:'[day]' == '7'} selected{end if}>近七天</option>
+          <option value="90"{if:'[day]' == '90'} selected{end if}>最近3月</option>
+          <option value="180"{if:'[day]' == '180'} selected{end if}>最近半年</option>
+          <option value="365"{if:'[day]' == '365'} selected{end if}>最近一年</option>
+        </select>
+      </div>
+    </div>
+    <div class="comment-box">
+      <div class="screen">
+        <div class="comment-num"></div>
+        <div class="screen-r"></div>
+      </div>
+      <div class="comment-list" style="margin-top:0;">
+        <table class="layui-table" lay-even="" lay-skin="row">
+          <colgroup>
+            <col width="50">
+            <col>
+            <col width="120">
+            <col width="120">
+            <col width="160">
+          </colgroup>
+          <thead>
+            <tr>
+              <th style="text-align: center;">序</th>
+              <th>提现单号</th>
+              <th style="text-align: center;">金额</th>
+              <th style="text-align: center;">状态</th>
+              <th style="text-align: center;">时间</th>
+            </tr> 
+          </thead>
+          <tbody>
+          {mccms:drawing table="drawing" page="15" order="addtime desc"}
+            <tr>
+              <td align="center">[drawing:i]</td>
+              <td>[drawing:dd]</td>
+              <td align="center">[drawing:rmb] 元</td>
+              <td align="center">
+                {if:[drawing:pid] == 0}<font color=#1E9FFF>待处理</font>{end if}
+                {if:[drawing:pid] == 1}<font color=#080>已打款</font>{end if}
+                {if:[drawing:pid] == 2}<span style="cursor:pointer;color:#ff620e" class="check-reason" data-reason="[drawing:msg]" title="点击查看原因">处理失败</span>{end if}
+              </td>
+              <td align="center"{if:'[mccms_date]'=='[drawing:addtime style=Y-m-d]'} style="color:red;"{end if}>[drawing:addtime style=Y-m-d H:i:s]</td>
+            </tr>
+          {/mccms:drawing}
+          {if:[mccms_pagenum] == 0}
+            <tr><td align="center" colspan="5">没有记录!!</td></tr>
+          {end if}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- pagination -->
+    <div class="pagination--center{if:[mccms_pagejs] < 2} hide{end if}" id="collection-pagination">
+      <div class="layui-box layui-laypage layui-laypage-mkz">
+        <a href="[mccms_pageup]" class="layui-laypage-prev">&lt;</a>
+        [mccms_pagenum_10]
+        <a href="[mccms_pagedown]" class="layui-laypage-next">&gt;</a>
+      </div>
+    </div>
+  </div>
+</div>
+[mccms_bottom_author]
+<script type="text/javascript">
+$(function(){
+  $('#left-drawing').addClass('aside-user--selected');
+  $(".comment-select-time").change(function(){
+    var day = $(this).val();
+    window.location.href = '[mccms_url_author_drawing_index]/'+day;
+  });
+  $('.check-reason').click(function(){
+    mccms.layer.open({
+      title: '失败原因',
+      content: $(this).data('reason')
+    });
+  });
+});
+</script>
+</body>
+</html>

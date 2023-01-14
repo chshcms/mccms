@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>[mccms_title]</title>
+  <meta name="keywords" content="[mccms_keywords]">
+  <meta name="description" content="[mccms_description]">
+  [mccms_packs_book]
+  <link rel="stylesheet" href="[mccms_tpl]css/style.css">
+</head>
+<body class="p-search">
+  <header class="header">
+    <a class="go-back" href="[mccms_url_book]"><i class="ift-back"></i></a>
+    <div class="search-box">
+      <form id="search_form" action="[mccms_url_book-search]">
+        <input class='search-input' id='searchInput' type='search' name='key' placeholder='请输入要搜索的关键字' value='' autocomplete='off'>
+      </form>
+    </div>
+    <span class="search-btn">搜索</span>
+  </header>
+  <main class="main under-header">
+    <div class="hot-search">
+      <div class="title-tip">热门搜索</div>
+      <div class="hot-search-history clearfix">
+      {mccms:book table="book" limit="10" order="rhits desc"}<a class="hot-search-item" href="[book:infolink]">[book:name]</a>{/mccms:book}
+      </div>
+    </div>
+    <div class="search-history">
+      <div class="title-tip">
+        <i class="ift-search_history"></i>
+        <span>历史</span>
+        <span class="clear-all"><i class="ift-history_clear"></i></span>
+      </div>
+      <div class="search-history-list"></div>
+    </div>
+    <div class="search-active"></div>
+  </main>
+[mccms_bottom_book]
+<script>
+$(function(){
+  book.search();
+})
+</script>
+</body>
+</html>

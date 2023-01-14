@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>[mccms_title]</title>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<meta name="keywords" content="[mccms_keywords]">
+<meta name="description" content="[mccms_description]">
+[mccms_packs]
+</head>
+<body class="p-index">
+<div style='display:none;'><img src='[mccms_tpl]images/app_logo.png' /></div>
+[mccms_head]
+<div class="cate-top-wr">
+    <div class="cate-selector">
+      	<div class="cate-col clearfix">
+        	<p class="fl cate-title">分类：</p>
+        	<ul class="cate-list clearfix">
+          		<li class="cate-item">
+                	<a  href="[mccms_url_category]">全部</a>
+          		</li>
+        		{mccms:class table="class" field="*" where="fid=0" limit="all" order="xid asc"}
+          		<li class="cate-item{if:'[class:id]'=='[class_id]'} active{end if}"><a  href="[class:classlink]">[class:name]</a></li>
+          		{/mccms:class}
+          	</ul>
+      	</div>
+      	{mccms:type table="type" field="*" where="fid=0" limit="all" order="xid asc"}
+      	<div class="cate-col clearfix">
+        	<p class="fl cate-title">[type:name]：</p>
+        	<ul class="cate-list clearfix">
+          		<li class="cate-item active"><a href="[mccms_url_category]">全部</a></li>
+        		{mccms:type2 table="type" field="*" where="fid=[type:id]" limit="all" order="xid asc"}
+          		<li class="cate-item"><a href="[mccms_url_category_[type:zd]_[type2:id]]">[type2:name]</a></li>
+          		{/mccms:type2}
+          	</ul>
+      	</div>
+      	{/mccms:type}
+      	<div class="cate-col clearfix">
+        	<p class="fl cate-title">资费：</p>
+        	<ul class="cate-list clearfix">
+          		<li class="cate-item active"><a href="[mccms_url_category]">全部</a></li>
+          		<li class="cate-item "><a href="[mccms_url_category_pay_1]">免费</a></li>
+          		<li class="cate-item "><a href="[mccms_url_category_pay_2]">付费</a></li>
+              <li class="cate-item "><a href="[mccms_url_category_pay_3]">VIP</a></li>
+        	</ul>
+      	</div>
+      	<div class="cate-col clearfix">
+        	<p class="fl cate-title">进度：</p>
+        	<ul class="cate-list clearfix">
+          		<li class="cate-item active"><a href="[mccms_url_category]">全部</a></li>
+          		<li class="cate-item "><a href="[mccms_url_category_finish_1]">连载</a></li>
+          		<li class="cate-item "><a href="[mccms_url_category_finish_2]">完结</a></li>
+        	</ul>
+      	</div>
+    </div>
+</div>
+<div class="cate-container">
+   	<div class="cate-container__title clearfix">
+		<a class="btn btn--hot active" href="javascript:;">[class_name]</a>
+		<p class="fr">共 <span class="hl">[mccms_pagenum]</span> 条筛选结果</p>
+    </div>
+    <div class="cate-comic-list clearfix">
+    	{mccms:comic table="comic" field="*" page="30" order="id desc"}
+        <div class="common-comic-item">
+            <a class="cover" href="[comic:link]" target="_blank">
+              <img class="lazy" data-original="[comic:pic]" src="[mccms_tpl]images/bg_loadimg_3x4.png" alt="[comic:name]">
+              <p class="comic-feature">{if:'[comic:text]' == ''}[comic:content len=10]{else}[comic:text]{end if}</p>
+              <div class="cover__shadow"></div>
+            </a>
+            <p class="comic__title"><a href="[comic:link]" target="_blank">[comic:name]</a></p>
+            <p class="comic-update">更至：<a class="hl" href="[comic:piclink]" target="_blank">[comic:zdy zd=comic_chapter,name,id,mid]</a></p>
+            <p class="comic-count">人气：[comic:hits wan=1]</p>
+        </div>
+    	{/mccms:comic}
+    </div>
+    <div id="Pagination"{if:[mccms_pagejs] < 2} style="display:none;"{end if}>
+    	<div>
+    		<a class="prev" href="[mccms_pageup]">上一页</a>
+    		<a class="first" href="[mccms_pagefirst]">首页</a>
+    		[mccms_pagenum_10]
+    		<a class="end" href="[mccms_pagelast]">末页</a>
+    		<a class="next" href="[mccms_pagedown]">下一页</a>
+    	</div>
+  	</div>
+</div>
+[mccms_bottom]
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>[mccms_title]</title>
+  <meta name="keywords" content="[mccms_keywords]">
+  <meta name="description" content="[mccms_description]">
+  [mccms_packs]
+</head>
+<body class="p-order-gold">
+  <header class="header">
+    <a class="back-btn" href="javascript:history.back();"><i class="ift-back"></i></a>
+    <span>[mccms_cionname]充值</span>
+  </header>
+  <main class="main under-header">
+    <div class="pay-user-info">
+      <span class="user-name">[user:nichen]</span>
+      <span class="user-gold">[mccms_cionname]余额：<b>[user:cion]</b></span>
+    </div>
+    <div class="gold-box">
+      <ul class="clearfix cionlist">
+        <li class="pay-item gold" data-rmb="100">
+          <i class="i-order-gold yb-100"></i>
+          <p class="num">[mccms_zhuan_100_3_[mccms_rmbtocion]][mccms_cionname]</p>
+          <p class="price">¥100</p>
+          <i class="i-order-choose"></i>
+        </li>
+        <li class="pay-item gold" data-rmb="50">
+          <i class="i-order-gold yb-50"></i>
+          <p class="num">[mccms_zhuan_50_3_[mccms_rmbtocion]][mccms_cionname]</p>
+          <p class="price">¥50</p>
+          <i class="i-order-choose"></i>
+        </li>
+        <li class="pay-item gold" data-rmb="20">
+          <i class="i-order-gold yb-20"></i>
+          <p class="num">[mccms_zhuan_20_3_[mccms_rmbtocion]][mccms_cionname]</p>
+          <p class="price">¥20</p>
+          <i class="i-order-choose"></i>
+        </li>
+        <li class="pay-item gold" data-rmb="10">
+          <i class="i-order-gold yb-10"></i>
+          <p class="num">[mccms_zhuan_10_3_[mccms_rmbtocion]][mccms_cionname]</p>
+          <p class="price">¥10</p>
+          <i class="i-order-choose"></i>
+        </li>
+        <li class="pay-item gold" data-rmb="5">
+          <i class="i-order-gold yb-5"></i>
+          <p class="num">[mccms_zhuan_5_3_[mccms_rmbtocion]][mccms_cionname]</p>
+          <p class="price">¥5</p>
+          <i class="i-order-choose"></i>
+        </li>
+        <li class="pay-item gold select" data-rmb="1">
+          <i class="i-order-gold yb-1"></i>
+          <p class="num">[mccms_zhuan_1_3_[mccms_rmbtocion]][mccms_cionname]</p>
+          <p class="price">¥1</p>
+          <i class="i-order-choose"></i>
+        </li>
+      </ul>
+    </div>
+    <div class="pay-func">
+      <div class="title">
+        <span>支付方式</span>
+      </div>
+      <ul class="item-box">
+        {if:[mccms_isalipay] == 0}
+        <li class="func-item J_buy_gold" data-pay="alipay">
+          <i class="i-order-pay ali"></i>
+          <p class="txt">支付宝支付</p>
+        </li>
+        {end if}
+        {if:[mccms_iswxpay] == 0}
+        <li class="func-item J_buy_gold" data-pay="wxpay">
+          <i class="i-order-pay wx"></i>
+          <p class="txt">微信支付</p>
+        </li>
+        {end if}
+        {if:[mccms_isqqpay] == 0}
+        <li class="func-item J_buy_gold" data-pay="qqpay">
+          <i class="i-order-pay qq"></i>
+          <p class="txt">QQ钱包支付</p>
+        </li>
+        {end if}
+      </ul>
+    </div>
+  </main>
+<script>
+$(function(){
+  user.paycion();
+});
+</script>
+</body>
+</html>

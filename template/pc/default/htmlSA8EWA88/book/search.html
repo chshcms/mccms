@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>[mccms_title]</title>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="keywords" content="[mccms_keywords]">
+    <meta name="description" content="[mccms_description]">
+    [mccms_packs_book]
+    <link rel="stylesheet" href="[mccms_tpl]book/css/search.css?v=1.2">
+</head>
+<body class="story-search story-header--fixed">
+    <div style='display:none;'><img src='[mccms_tpl]images/app_logo.png' /></div>
+    [mccms_head_book]
+    <div class="story-search__info">
+        <div class="wrapper container--response">
+            <div class="info">以下是“<strong>[mccms_key]</strong>”的相关搜索结果（[mccms_pagenum]）</div>
+        </div>
+    </div>
+    <div class="story-search__container container--response">
+        <div class="story-search__container-main">
+            <div class="list">
+            {mccms:book table="book" field="*" page="10" order="id desc"}
+                <div class="j-item item">
+                    <a href="[book:infolink]" class="item-cover">
+                        <img class="lazy loaded" src="[mccms_tpl]book/images/load_3x4.png" data-src="[book:pic]" alt="[book:name]">
+                    </a>
+                    <div class="item-info">
+                        <div class="item-info__header">
+                            <a href="[book:infolink]" class="j-item-title title">[book:name]</a>
+                            <div class="theme-tag">[book:tags]</div>
+                            <div class="hot">
+                                <i class="mccms-icon icon-ic_rqz_red"></i>[book:hits wan=1]人气
+                            </div>
+                        </div>
+                        <div class="item-info__multi">
+                            [book:author]<i class="line"></i>[book:text_num wan=1]字
+                        </div>
+                        <div class="item-info__desc">
+                            <span class="label">简介：</span> [book:content]<a href="[book:infolink]" class="more">查看详情&gt;</a>
+                        </div>
+                        <div class="item-info__latest">
+                            <span class="label">最新更新：</span>
+                            <a href="[book:readlink]" class="link">[book:zdy zd=book_chapter,name,id,bid,xid]</a>
+                        </div>
+                        <div class="item-info__feature-btns">
+                            <div class="j-item-read btn--read">
+                                <a href="[book:readlink]">开始阅读</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {/mccms:book}
+                <!-- 分页 -->
+                <div class="story-search__pagination"{if:[mccms_pagejs] < 2} style="display:none;"{end if}>
+                    <div>
+                        <a class="prev" href="[mccms_pageup]">上一页</a>
+                        <a class="first" href="[mccms_pagefirst]">首页</a>
+                        [mccms_pagenum_10]
+                        <a class="end" href="[mccms_pagelast]">末页</a>
+                        <a class="next" href="[mccms_pagedown]">下一页</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="story-search__container-aside">
+            <div class="header__title">
+                <i class="mccms-icon icon-ic_search_bd"></i>本周C位
+            </div>
+            <div class="list">
+                {mccms:book table="book" field="*" limit="10" order="zhits desc"}
+                <div class="item">
+                    <div class="item__num top[book:i]">[book:i]</div>
+                    <div class="item__info">
+                        <div class="title">
+                            <a href="[book:link]">[book:name]</a>
+                        </div>
+                        <div class="multi">[book:tags]</div>
+                    </div>
+                    <i class="item__icon icon--up mccms-icon icon-ic_search_up"></i>
+                </div>
+                {/mccms:book}
+            </div>
+        </div>
+    </div>
+    [mccms_bottom_book]
+</body>
+</html>

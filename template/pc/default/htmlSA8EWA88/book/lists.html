@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>[mccms_title]</title>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="keywords" content="[mccms_keywords]">
+    <meta name="description" content="[mccms_description]">
+    [mccms_packs_book]
+    <link rel="stylesheet" href="[mccms_tpl]book/css/lists.css">
+</head>
+<body class="story-category story-header--fixed">
+    <div style='display:none;'><img src='[mccms_tpl]images/app_logo.png' /></div>
+    [mccms_head_book]
+    <script>$('.story-header__nav--list--[class_id]').addClass('active');</script>
+    <div class="story-free__free container--response">
+        <div class="header"><h3 class="title">[class_name]</h3></div>
+        <div class="list">
+            {if:'[mccms_pagenum]' == '0'}<div class="empty"></div>{end if}
+            <ul class="j-free-list list-wrapper clearfix">
+            {mccms:book table="book" field="*" page="35" order="id desc"}
+                <li class="item">
+                    <a class="cover" href="[book:infolink]">
+                        <img class="lazy loaded" src="[mccms_tpl]book/images/load_3x4.png" data-src="[book:pic]" alt="[book:name]">
+                        <div class="chapter-info">[book:zdy zd=book_chapter,name,id,bid,xid]</div>
+                    </a>
+                    <div class="info">
+                        <div class="comic-title">
+                            <a href="[book:infolink]">[book:name]</a>
+                        </div>
+                        <div class="hot">[class_name] · [book:hits wan=1]人气</div>
+                    </div>
+                </li>
+            {/mccms:book}
+            </ul>
+        </div>
+    </div>
+    <div class="story-category__pagination"{if:[mccms_pagejs] < 2} style="display:none;"{end if}>
+        <div>
+            <a class="prev" href="[mccms_pageup]">上一页</a>
+            <a class="first" href="[mccms_pagefirst]">首页</a>
+            [mccms_pagenum_10]
+            <a class="end" href="[mccms_pagelast]">末页</a>
+            <a class="next" href="[mccms_pagedown]">下一页</a>
+        </div>
+    </div>
+    [mccms_bottom_book]
+</body>
+</html>

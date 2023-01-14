@@ -1,0 +1,167 @@
+<div class="story-header">
+    <div class="story-header-wrap container--response">
+        <div class="story-header__logo"></div>
+        <div class="story-header__nav clearfix">
+            <a href="[mccms_weburl]" class="item-comic">
+                <i class="mccms-icon">&#xe788;</i>看漫画
+            </a>
+            <a href="[mccms_url_book]" class="item story-header__nav--home">首页</a>
+            {mccms:class table="book_class" field="*" limit="6" order="xid asc"}
+            <a href="[class:bclasslink]" class="item story-header__nav--list--[class:id]">[class:name]</a>
+            {/mccms:class}
+            <a href="[mccms_custom_book-top]" class="item story-header__nav--top">排行</a>
+            <a href="[mccms_url_book_category_pay_1]" class="item story-header__nav--free">免费</a>
+        </div>
+        <div class="story-header__search clearfix">
+            <input type="text" class="input J_search_input" placeholder="请输入小说标题或者作者名">
+            <div class="button J_search_btn" data-link="[mccms_url_book-search]">
+                <i class="mccms-icon">&#xe6ba;</i> 搜索
+            </div>
+            <div class="story-header__input-dialog hide">
+                <div class="story-header__blur-search"></div>
+                <div class="story-header__search-hots">
+                    <div class="title">今日热搜</div>
+                    <div class="search-hot">
+                        <script class="hot-search-tpl" type="text/html">
+                            {{#layui.each(d, function(index, item) { }}
+                            <div class="hot-item {{ index == 0 ? 'active' : '' }}">
+                              <a href="{{ item.url }}">
+                                <div class="hot-title">
+                                  <span class="num {{ index < 3 ? 'num-' + (index + 1) : '' }}">{{ index + 1 }}</span>
+                                  <span>{{ item.name }}</span>
+                                </div>
+                                <div class="hot-detail">
+                                  <span class="num {{ index < 3 ? 'num-' + (index + 1) : '' }}">{{ index + 1 }}</span>
+                                  <img class="comic-cover" src="{{ item.pic}}" alt="{{ item.name }}">
+                                  <div class="comic-name">{{ item.name }}</div>
+                                  <div class="comic-tag">{{ item.tags }}</div>
+                                  <div class="comic-hot">{{ item.hits }}人气</div>
+                                </div>
+                              </a>
+                            </div>
+                            {{# }) }}
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="story-header__user clearfix">
+            <div class="header-user-controls">
+                <a href="[mccms_url_user_message]" class="item j-user-msg" style="position: relative;"><i class="mccms-icon">&#xe6be;</i>消息</a>
+                <div data-href="[mccms_url_user_read_book]" class="item J_user_history">
+                    <i class="mccms-icon">&#xe6c5;</i>历史
+                    <div class="user-dialogs">
+                        <div class="header-his-dialog hide">
+                            <div class="dialog-top-border"></div>
+                            <div class="login-notice hide">主人，登录可以同步各端数据 <a href="javascript:regLog();" class="login">去登录></a></div>
+                            <div class="dialog__item-box">
+                                <div class="item-container">
+                                    <script class="header-his-tpl" type="text/html">
+                                        {{# layui.each(d, function(index, item) { }}
+                                        <div class="header-dialog__item">
+                                            <a href="{{ item.url }}"><img class="comic-cover" src="{{ item.pic}}" alt="{{ item.name }}"></a>
+                                            <div class="comic-name"><a href="{{ item.url }}">{{ item.name }}</a></div>
+                                            <div class="comic-readat">读至：{{ item.chapter_name }}</div>
+                                            <div class="comic-update">更至：{{ item.chapter_xname }}</div>
+                                            <a href="{{ item.chapter_url }}" class="comic-read"><i class="mccms-icon"></i>续看</a>
+                                        </div>
+                                        {{# }) }}
+                                    </script>
+                                </div>
+                                <div class="his-empty">
+                                    <p>你暂时还没有看过的小说</p>
+                                    <a href="[mccms_url_book_category]" class="link">「 去追一部小说 」</a>
+                                </div>
+                            </div>
+                            <a href="[mccms_url_user_read_book]" class="check-all hide">查看全部历史</a>
+                        </div>
+                    </div>
+                </div>
+                <div data-href="[mccms_url_user_fav_book]" class="item J_user_collect">
+                    <i class="mccms-icon">&#xe6c0;</i>收藏
+                    <div class="user-dialogs">
+                        <div class="header-coll-dialog hide">
+                            <div class="dialog-top-border"></div>
+                            <div class="dialog__item-box">
+                                <div class="item-container">
+                                    <script class="header-coll-tpl" type="text/html">
+                                    {{# layui.each(d, function(index, item) { }}
+                                        <div class="header-dialog__item">
+                                            <a href="{{ item.url }}"><img class="comic-cover" src="{{ item.pic}}" alt="{{ item.name }}"></a>
+                                            <div class="comic-name"><a href="{{ item.url }}">{{ item.name }}</a></div>
+                                            <div class="comic-readat">
+                                                <a href="{{ item.chapter_url }}">读至：{{ item.chapter_name }}</a>
+                                            </div>
+                                            <div class="comic-update">
+                                                <a href="{{ item.chapter_xurl }}">更至：{{ item.chapter_xname }}</a>
+                                            </div>
+                                            <a href="{{ item.chapter_url }}" class="comic-read"><i class="mccms-icon"></i>续看</a>
+                                        </div>
+                                    {{# }) }}
+                                    </script>
+                                </div>
+                                <div class="nologin">
+                                    <p>同步收藏的小说，实时追更</p>
+                                    <a href="javascript:regLog();" class="login-btn">立即登录</a>
+                                </div>
+                                <div class="collect-empty">
+                                    <p>你暂时还没有收藏过小说</p>
+                                    <a href="[mccms_url_book_category]" class="link">「 去追一部小说 」</a>
+                                </div>
+                            </div>
+                            <a href="[mccms_url_user_fav_book]" class="check-all hide">查看全部收藏</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item download J_user_download">
+                    <a href="[mccms_url_share_app]">
+                        <i class="mccms-icon">&#xe6c8;</i>下载APP
+                        <div class="user-dialogs">
+                            <div class="header-down-dialog hide">
+                                <div class="dialog-top-border"></div>
+                                <p class="title">[mccms_name]APP</p>
+                                <p class="tip">随时随地畅读小说</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div data-href="[mccms_url_user]" class="item avatar J_user_avatar">
+                    <img class="pic j-user-avatar" src="[mccms_tpl]images/pic_login_defaulthead.png">
+                    <div class="user-dialogs">
+                        <div class="header-user-dialog hide">
+                            <div class="dialog-top-border"></div>
+                            <a href='javascript:regLog();' class="login-btn">登录/注册</a>
+                            <div class="user-info">
+                                <a href="[mccms_url_user]">
+                                    <img class="dialog-avatar j-user-avatar" src="[mccms_tpl]images/pic_login_defaulthead.png">
+                                </a>
+                                <div class="user-name">
+                                    <a href="[mccms_url_user]" class="j-user-name">游客</a>
+                                    <i class="mccms-icon j-user-vip">&#xe6a9;</i>
+                                    <span class="logout j-logout hide">退出</span>
+                                </div>
+                                <div class="vip-expired">
+                                    <span class="j-user-vip-time">会员到期</span>
+                                    <a class="hl j-buy-vip" href="javascript:;">购买></a>
+                                    <a class="hl j-agin-buy-vip hide" href="javascript:;">续费></a>
+                                </div>
+                            </div>
+                            <div class="fund-info clearfix">
+                                <div class="fund-item cion-btn">
+                                    <i class="icon yb"></i>
+                                    <p class="title">[mccms_cionname]</p>
+                                    <p class="num j-user-gold">0</p>
+                                </div>
+                                <div class="fund-item ticket-btn">
+                                    <i class="icon yp"></i>
+                                    <p class="title">月票</p>
+                                    <p class="num j-user-ticket">0</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

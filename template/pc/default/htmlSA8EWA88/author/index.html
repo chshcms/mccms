@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>[mccms_title]</title>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<meta name="keywords" content="[mccms_keywords]">
+<meta name="description" content="[mccms_description]">
+[mccms_packs_author]
+</head>
+<body class="p-author-index">
+[mccms_head_author]
+<!-- 内容 -->
+<div class="main-container">
+  [mccms_left_author]
+  <script>$('#left-home').addClass('aside-user__dt--selected');</script>
+  <!-- main-content -->
+  <div class="g-au-wrap">
+    <div class="g-au-info">
+      <div class="m-avatar" style="background:none!important;">
+        <a href="[author:userlink]"><img src="[author:pic]" alt="用户头像"></a>
+      </div>
+      <div class="g-ai-box">
+        <p class="name"><a href="[author:userlink]">[author:name]</a></p>
+        <p class="penname">笔名：[author:nichen]</p>
+        <p class="penname">收入：<b>[author:rmb]</b>元
+          {if:[author:rmb] > 0}
+          <a title="收入明细" class="income" href="[mccms_url_author_income]">明细</a><a title="收入提现" href="[mccms_url_author_drawing_add]">提现</a>
+          {end if}
+        </p>
+      </div>
+      <a href="[mccms_url_author_comic_add]" class="m-create">新增漫画</a>
+    </div>
+    <div class="g-ac-box">
+        <p class="m-title">我的漫画：[author:count zd=comic,id,uid]部<a style="float: right;" href="[mccms_url_author_comic]">更多>></a></p>
+        <ul class="m-list clearfix">
+        {mccms:comic table="comic" page="10" order="addtime desc"}
+          <li class="m-ac-item">
+              <a class="cover" href="{if:[comic:yid]==1}[mccms_url_author_chapter_index_[comic:id]]{else}[comic:link]{end if}"><img src="[comic:pic]" alt="[comic:name]"></a>
+              <div class="m-bottom">
+                <p class="name" title="[comic:name]">[comic:name]</p>
+                <div class="m-btns">
+                  <a class="layui-btn layui-btn-xs layui-btn-normal left" href="[mccms_url_author_chapter_index_[comic:id]]">管理话</a>
+                  <a class="layui-btn layui-btn-xs layui-btn-danger right" href="[mccms_url_author_chapter_add_[comic:id]]">新增话</a>
+                </div>
+              </div>
+              <span class="tip">
+              {if:[comic:yid]==0}已发布{end if}
+              {if:[comic:yid]==1}待审核{end if}
+              {if:[comic:yid]==2}审核未通过{end if}
+            </span>
+          </li>
+        {/mccms:comic}
+        </ul>
+        <p style="width: 100%;height: 20px;border-bottom: 1px solid #ddd;"></p>
+        <p class="m-title" style="padding-top:15px;">我的小说：[author:count zd=book,id,uid]部<a style="float: right;" href="[mccms_url_author_book]">更多>></a></p>
+        <ul class="m-list clearfix">
+        {mccms:book table="book" where="uid=[author_id]" limit="10" order="addtime desc"}
+          <li class="m-ac-item">
+              <a class="cover" href="{if:[book:yid]==1}[mccms_url_author_bookchapter_index_[book:id]]{else}[book:infolink]{end if}"><img src="[book:pic]" alt="[book:name]"></a>
+              <div class="m-bottom">
+                <p class="name" title="[book:name]">[book:name]</p>
+                <div class="m-btns">
+                  <a class="layui-btn layui-btn-xs layui-btn-normal left" href="[mccms_url_author_bookchapter_index_[book:id]]">管理章</a>
+                  <a class="layui-btn layui-btn-xs layui-btn-danger right" href="[mccms_url_author_bookchapter_add_[book:id]]">新增章</a>
+                </div>
+              </div>
+              <span class="tip">
+              {if:[book:yid]==0}已发布{end if}
+              {if:[book:yid]==1}待审核{end if}
+              {if:[book:yid]==2}审核未通过{end if}
+            </span>
+          </li>
+        {/mccms:book}
+        </ul>
+        <div class="m-empty{if:[mccms_pagenum] > 0} hide{end if}">
+          <p>你还没有创建漫画</p>
+          <a href="[mccms_url_author_add]" class="tip">突然灵光一闪，这就去新建作品></a>
+          <a href="[mccms_url_author_add]"><img src="[mccms_tpl]images/empty.png" alt=""></a>
+        </div> 
+      </div>
+    </div>
+  </div>
+</div>
+[mccms_bottom_author]
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>[mccms_title]</title>
+  <meta name="keywords" content="[mccms_keywords]">
+  <meta name="description" content="[mccms_description]">
+  [mccms_packs]
+</head>
+<body class="p-order-vip">
+  <header class="header">
+    <a class="back-btn" href="javascript:history.back();"><i class="ift-back"></i></a>
+    <span>[mccms_name]VIP</span>
+  </header>
+  <main class="main under-header">
+    <div class="account-info">
+      <div class="avatar">
+        <img src="[user:pic]">
+      </div>
+      <p class="user-name">[user:nichen]{if:[user:vip] > 0} <i class="icon"></i>{end if}</p>
+        <p class="is-vip">有效期：{if:[user:vip] > 0}[user:viptime style=Y-m-d]{else}体验已到期{end if}</p>
+    </div>
+    <div class="gap-12"></div>
+    <div class="vip-box clearfix">
+      <h3 class="head">[mccms_name]VIP</h3>
+      <ul class="first-charge">
+        <li class="pay-item vip select" data-day="30" data-cion="[mccms_zhuan_[mccms_vip_rmb_1]_3_[mccms_rmbtocion]]">
+          <p class="title">月度VIP</p>
+          <p class="price">￥[mccms_vip_rmb_1]</p>
+          <p class="detail"><del>￥[mccms_zhuan_[mccms_vip_rmb_1]_3_2]</del></p>
+          <p class="gift"><i class="icon-zeng" style="background-image: url([mccms_tpl]img/icons/ic_vip_zsvip@2x.png);"></i><span>有效期30天</span></p>
+        </li>
+        <li class="pay-item vip" data-day="90" data-cion="[mccms_zhuan_[mccms_vip_rmb_2]_3_[mccms_rmbtocion]]">
+          <p class="title">季度VIP</p>
+          <p class="price">￥[mccms_vip_rmb_2]</p>
+          <p class="detail"><del>￥[mccms_zhuan_[mccms_vip_rmb_2]_3_2]</del></p>
+          <p class="gift"><i class="icon-zeng" style="background-image: url([mccms_tpl]img/icons/ic_vip_zsvip@2x.png);"></i><span>有效期90天</span></p>
+        </li>
+        <li class="pay-item vip" data-day="180" data-cion="[mccms_zhuan_[mccms_vip_rmb_3]_3_[mccms_rmbtocion]]">
+          <p class="title">半年VIP</p>
+          <p class="price">￥[mccms_vip_rmb_3]</p>
+          <p class="detail"><del>￥[mccms_zhuan_[mccms_vip_rmb_3]_3_2]</del></p>
+          <p class="gift"><i class="icon-zeng" style="background-image: url([mccms_tpl]img/icons/ic_vip_zsvip@2x.png);"></i><span>有效期180天</span></p>
+        </li>
+        <li class="pay-item vip" data-day="365" data-cion="[mccms_zhuan_[mccms_vip_rmb_4]_3_[mccms_rmbtocion]]">
+          <p class="title">年度VIP</p>
+          <p class="price">￥[mccms_vip_rmb_4]</p>
+          <p class="detail"><del>￥[mccms_zhuan_[mccms_vip_rmb_4]_3_2]</del></p>
+          <p class="gift"><i class="icon-zeng" style="background-image: url([mccms_tpl]img/icons/ic_vip_zsvip@2x.png);"></i><span>有效期365天</span></p>
+          <span class="flow-tip" style="background-image: url([mccms_tpl]img/bg_vip_yhtxt.png);">单月价格最低</span>
+        </li>
+      </ul>
+    </div>
+    <div class="gap-12"></div>
+    <div class="pay-func">
+      <div class="title">
+        <span>选择支付方式</span>
+        <span class="has">[mccms_cionname]余额：<b>[user:cion]</b></span>
+      </div>
+      <ul class="item-box">
+        <li class="func-item J_buy_vip" data-pay="cion">
+          <i class="i-order-pay gold"></i>
+          <p class="txt">[mccms_cionname]支付</p>
+        </li>
+        {if:[mccms_isalipay] == 0}
+        <li class="func-item J_buy_vip" data-pay="alipay">
+          <i class="i-order-pay ali"></i>
+          <p class="txt">支付宝支付</p>
+        </li>
+        {end if}
+        {if:[mccms_iswxpay] == 0}
+        <li class="func-item J_buy_vip" data-pay="wxpay">
+          <i class="i-order-pay wx"></i>
+          <p class="txt">微信支付</p>
+        </li>
+        {end if}
+        {if:[mccms_isqqpay] == 0}
+        <li class="func-item J_buy_vip" data-pay="qqpay">
+          <i class="i-order-pay qq"></i>
+          <p class="txt">QQ钱包支付</p>
+        </li>
+        {end if}
+      </ul>
+    </div>
+  </main>
+<script>
+$(function(){
+  user.payvip('[mccms_cionname]');
+});
+</script>
+</body>
+</html>

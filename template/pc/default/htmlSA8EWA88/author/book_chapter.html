@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>[mccms_title]</title>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<meta name="keywords" content="[mccms_keywords]">
+<meta name="description" content="[mccms_description]">
+[mccms_packs_author]
+</head>
+<body class="p-comic-info">
+[mccms_head_author]
+<!-- 内容 -->
+<div class="main-container">
+  [mccms_left_author]
+  <script>$('#left-book').addClass('aside-user--selected');</script>
+  <!-- main-content -->
+  <div class="user-right">
+    <div class="user-right-top">
+      <h3>[book:name]</h3>
+      <a href="[mccms_url_author_book]" class="to-mycomic">返回我的作品 ></a>
+    </div>
+    <div class="comic-box">
+      <div class="chapter-nav clearfix">
+        <a href="[mccms_url_author_bookchapter_index_[book_id]]" class="on">章节管理</a>
+        <a href="[mccms_url_author_book_info_[book_id]]">作品概要</a>
+      </div>
+      <!--章节管理标签内容-->
+      <div class="chapter-add">
+        <a href="[mccms_url_author_bookchapter_add_[book_id]]" class="add-btn">新建章节</a>
+      </div>
+      <div class="comic-list">
+        <table class="layui-table" lay-even="" lay-skin="row">
+          <colgroup>
+            <col width="60">
+            <col>
+            <col width="80">
+            <col width="150">
+            <col width="75">
+            <col width="120">
+          </colgroup>
+          <thead>
+            <tr>
+              <th>序号</th>
+              <th>章节名</th>
+              <th>状态</th>
+              <th>更新时间</th>
+              <th>字数</th>
+              <th>操作</th>
+            </tr> 
+          </thead>
+          <tbody>
+          {mccms:chapter table="book_chapter" page="20"}
+            <tr id="del-[chapter:id]">
+              <td align="center">[chapter:i]</td>
+              <td>[chapter:name]</td>
+              <td align="center">
+                {if:[chapter:yid] == 0}<font color=#080>已通过</font>{end if}
+                {if:[chapter:yid] == 1}<font color=#f60>待审核</font>{end if}
+                {if:[chapter:yid] == 2}<span style="cursor:pointer;color:#ff620e" class="check-reason" data-reason="[chapter:msg]" title="点击查看原因">未通过</span>{end if}
+              </td>
+              <td align="center">[chapter:addtime style=Y-m-d H:i]</td>
+              <td align="center">[chapter:text_num]</td>
+              <td align="center">
+                {if:[chapter:yid] == 0}
+                <a href="[chapter:readlink]" target="_blank" class="layui-btn layui-btn-xs layui-btn-normal">浏览</a>
+                {end if}
+                <a href="[mccms_url_author_bookchapter_edit_[chapter:id]_[chapter:bid]]" class="layui-btn layui-btn-xs">修改</a>
+                {if:[chapter:yid] == 2}
+                <button data-id="[chapter:id]" data-bid="[chapter:bid]" type="button" class="layui-btn layui-btn-xs layui-btn-danger del-btn">删除</button>
+                {end if}
+              </td>
+            </tr>
+          {/mccms:chapter}
+          {if:[mccms_pagenum] == 0}
+            <tr><td align="center" colspan="6">没有记录!!</td></tr>
+          {end if}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- pagination -->
+    <div class="pagination--center{if:[mccms_pagejs] < 2} hide{end if}" id="collection-pagination">
+      <div class="layui-box layui-laypage layui-laypage-mkz">
+        <a href="[mccms_pageup]" class="layui-laypage-prev">&lt;</a>
+        [mccms_pagenum_10]
+        <a href="[mccms_pagedown]" class="layui-laypage-next">&gt;</a>
+      </div>
+    </div>
+  </div>
+</div>
+[mccms_bottom_author]
+<script type="text/javascript">
+$(function(){
+  $('.check-reason').click(function(){
+    mccms.layer.open({
+      title: '审核不通过理由',
+      content: $(this).data('reason')
+    });
+  });
+  $('.del-btn').click(function(){
+    var id = $(this).data('id');
+    var bid = $(this).data('bid');
+    mccms.layer.open({
+      content: '主人，确定要删除么？(┬＿┬)',
+      yes: function(index, layero){
+        $.post(Mcpath.web+'index.php/author/chapter/del', {id:id,bid:bid}).done(function (res) {
+          if (res.code == 1) {
+              $('#del-'+id).remove();
+          }
+          mccms.layer.msg(res.msg);
+        });
+        mccms.layer.close(index);
+      }
+    });
+  });
+})
+</script>
+</body>
+</html>

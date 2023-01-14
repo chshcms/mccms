@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>[mccms_title]</title>
+  <meta name="keywords" content="[mccms_keywords]">
+  <meta name="description" content="[mccms_description]">
+  [mccms_packs]
+</head>
+<body class="p-user-collection">
+  <header class="header">
+    <div class="shelf-nav collect-nav">
+      <ul class="clearfix">
+        <li class="nav-item"><a href="[mccms_url_user_read]">历史</a></li>
+        <li class="nav-item active">收藏</li>
+      </ul>
+      <span class="underline"></span>
+    </div>
+    <div class="clean-up" data-id="1">
+      <i class="ift-list_arrange"></i>
+      <span class="collect-settle">整理</span>
+    </div>
+  </header>
+  <main class="main bookshelf-container under-header">
+    {if:[mccms_pagenum] == 0}
+    <!-- 没有收藏 -->
+    <div class="no-collect">
+      <div class="no-collect-bg"></div>
+      <p class="txt">主人还没收藏任何漫画咯~</p>
+      <p class="txt2">收藏后会收到<span class="notice-txt">更新提示</span>喔</p>
+    </div>
+    <!-- 相关推荐 -->
+    <div class="recommend hide">
+      <h2 class="title">相关推荐</h2>
+      <div class="recommend-list">
+        <ul class="clearfix">
+          {mccms:comic table="comic" limit="3" order="rhits desc"}
+          <li class="comic-item">
+            <a href="[comic:link]"><img class="cover" src="[comic:pic]" alt="[comic:name]"></a>
+            <div class="comic-info-box">
+              <p class="comic-name">[comic:name]</p>
+            </div>
+          </li>
+          {/mccms:comic}
+        </ul>
+      </div>
+    </div>
+    {end if}
+    <!-- 收藏列表 -->
+    <div class="collect-list">
+      <ul class="clearfix">
+      {mccms:fav table="fav" page="20" order="id desc"}
+        <li class="comic-item" data-id="[fav:id]">
+          <a class="cover" href="[fav:link]"><img src="[fav:zdy zd=comic,pic,mid]" alt="cover"></a>
+          <div class="comic-info-box">
+            <p class="comic-name">[fav:zdy zd=comic,name,mid]</p>
+            <p class="comic-tip">收藏人气：[fav:zdy zd=comic,shits,mid]</p>
+          </div>
+          <div class="select-wrap hide">
+              <span class="choose-btn"></span>
+          </div>
+        </li>
+      {/mccms:fav}
+      </ul>
+    </div>
+    {if:[mccms_pagejs] > 1}
+    <div class="getmore" onclick="location.href='[mccms_pagedown]';">点击加载下一页</div>
+    {end if}
+  </main>
+  <!-- confirm layout -->
+  <div class="clean-confirm hide">
+    <span class="select-all"><i class="ift-book_choose_off_n"></i> 全选</span>
+    <span class="delete"><i class="ift-book_delete"></i> 删除</span>
+  </div>
+[mccms_bottom]
+<script>
+$(function(){
+  $('#nav-read').addClass('z-active');
+  user.fav();
+});
+</script>
+</body>
+</html>

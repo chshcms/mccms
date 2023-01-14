@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>[mccms_title]</title>
+  <meta name="keywords" content="[mccms_keywords]">
+  <meta name="description" content="[mccms_description]">
+  <script>
+    var shareArr = [
+      '本宝宝不看别的就看《[book:name]》，来[mccms_name]一起围观哦！',
+      '什么？《[book:name]》竟是这样的展开？！',
+      '《[book:name]》正在[mccms_name]上超神，快来围观啊！',
+      '给《[book:name]》打CALL就来[mccms_name]，嗨到飞起啦！'
+    ],shareIndex = Math.floor(Math.random() * 4),
+    shareTxt = shareArr[shareIndex],
+    sharePic = '[book:pic]',
+    bid = [book_id],
+    cid = [read_id],
+    vip = [read_vip],
+    cion = [read_cion],
+    slink = '[read_slink]',
+    xlink = '[read_xlink]';
+  </script>
+  [mccms_packs_book]
+  <link rel="stylesheet" href="[mccms_tpl]book/css/read.css">
+</head>
+<body class="story-read">
+  <div style='display:none;'><img src='[mccms_tpl]img/app_logo.png'/></div>
+  <div class="story-read-page">
+    <div class="chapter-title-mini">[read:name]</div>
+    <div class="chapter-content-wrap">
+        <!--h1 class="chapter-title">[read:name]</h1-->
+        <!-- 预览 -->
+        <div class="chapter-preview">
+          [read:text]
+        </div>
+        <div class="read-chapter-switch">
+            <span class="read-prev-chapter">上一章</span>
+            <span class="read-next-chapter">下一章</span>
+        </div>
+    </div>
+    <!-- tools -->
+    <div class="read-tools hide">
+        <div class="read-head-tools clearfix">
+            <a class="read-head-button read-head-goback" href="javascript: history.back();"></a>
+            <a class="read-head-button read-head-detail" href="[book_link]"></a>
+            <a class="read-head-button read-head-home" href="[mccms_url_book]"></a>
+            <div class="read-head-button read-head-share"></div>
+        </div>
+        <div class="read-foot-tools">
+            <div class="read-foot-button read-foot-button-category">
+                <div class="button-image button-image-category"></div>
+                <div class="button-text">目录</div>
+            </div>
+            <div class="read-foot-button read-foot-button-process">
+                <div class="button-image button-image-process"></div>
+                <div class="button-text">打赏</div>
+            </div>
+            <div class="read-foot-button read-foot-button-night">
+                <div class="night">
+                    <div class="button-image button-image-night"></div>
+                    <div class="button-text">夜间</div>
+                </div>
+                <div class="day">
+                    <div class="button-image button-image-day"></div>
+                    <div class="button-text">日间</div>
+                </div>
+            </div>
+            <div class="read-foot-button read-foot-button-setting">
+                <div class="button-image button-image-setting"></div>
+                <div class="button-text">设置</div>
+            </div>
+        </div>
+    </div>
+    <div class="read-setting-popup clearfix hide">
+        <div class="setting-row">
+            <label class="label">主题背景</label>
+            <div class="read-theme-setting">
+                <div class="read-theme-item theme-1" data-theme="1"></div>
+                <div class="read-theme-item theme-2" data-theme="2"></div>
+                <div class="read-theme-item theme-3" data-theme="3"></div>
+                <div class="read-theme-item theme-4" data-theme="4"></div>
+                <div class="read-theme-item theme-5 selected" data-theme="5"></div>
+            </div>
+        </div>
+        <div class="setting-row">
+            <label class="label">字体大小</label>
+            <div class="read-font-setting">
+                <div class="font-miner"></div>
+                <div class="read-font-range">
+                    <input class="range" max="30" min="12" value="18" type="range">
+                </div>
+                <div class="font-biger"></div>
+            </div>
+        </div>
+    </div>
+    <!-- chapters -->
+    <div class="read-chapters-wrapper hide">
+        <div class="read-chapters-shadow"></div>
+        <div class="read-chapters-content">
+            <div class="read-chapters-head">
+                <span>共<span class="number">[book_nums]</span>章</span>
+                <div class="chapters-sort">
+                    <div class="sort">
+                        <i class="icon-chapter-sort"></i>
+                        <span>正序</span>
+                    </div>
+                    <div class="sort-reversed">
+                        <i class="icon-chapter-reversed"></i>
+                        <span>倒序</span>
+                    </div>
+                </div>
+            </div>
+            <div class="read-chapters">
+            {mccms:chapter table="book_chapter" where="bid=[book_id]" limit="all" order="xid asc"}
+              <div class="read-chapter-item book-chapter-[chapter:id]{if:[chapter:id] == [read_id]} acitve{end if}" data-href="[chapter:readlink]">
+                <i class="icon-chapter-lock hide"></i>
+                <i class="icon-chapter-unlock hide"></i>
+                <span class="chapter-item-title">[chapter:name]</span>
+              </div>
+            {/mccms:chapter}
+            </div>
+        </div>
+    </div>
+    <!-- pay -->
+    <div class="read-pay-wrapper hide">
+      <div class="read-pay-title">
+          需支付：<span class="hl price-number">[read:cion]</span> [mccms_cionname]
+      </div>
+      <div class="read-pay-tip">开通VIP小说免费看</div>
+      <div class="read-pay-button-pay">[mccms_cionname]购买</div>
+      <div class="read-pay-info clearfix">
+          <span class="read-pay-price">您的[mccms_cionname] <b class="ucion">0</b></span>
+          <div class="read-pay-auto">
+              <label><input type="checkbox" class="read-pay-auto-checkbox">自动购买下一章</label>
+          </div>
+      </div>
+    </div>
+</div>
+<div class="bdshare hide">
+  <p class="title">分享给朋友</p><ul class="clearfix"><li class="ctrl-item"><a class="btn qq" data-cmd="qq"></a><p>QQ</p></li><li class="ctrl-item"><a class="btn qqkj" data-cmd="qzone"></a><p>qq空间</p></li><li class="ctrl-item"><a class="btn xl" data-cmd="sina"></a><p>微博</p></li></ul>
+</div>
+<div class="cion-ticket-box hide">
+  <div class="j-dialog-play dialog-play">
+    <div class="play-header">
+      <div class="j-dialog-play-nav nav-item ticket-top active" data-type="ticket">投了个票</div>
+      <div class="j-dialog-play-nav nav-item gift-top" data-type="gift">打赏礼物</div>
+    </div>
+    <div class="ticket-box hide">
+      <div class="j-dialog-play-content play-content">
+        <div class="ticket-info">
+          <div class="cover">
+            <img class="cover-img" src="[book_pic]" alt="[book_name]">
+          </div>
+          <div class="info">
+            <div class="title">[book_name]</div>
+            <div class="funds">获月票 <strong><span class="j-story-ticket-num">[book_ticket]</span>张</strong></div>
+          </div>
+        </div>
+        <ul class="j-dialog-ticket-list ticket-list">
+          <li class="j-dialog-ticket-item active item" data-nums="1">
+            <div class="item-wrapper">
+              <i class="i-ticket"></i>
+              <div class="title">x 1</div>
+              <i class="i-choose"></i>
+            </div>
+          </li>
+          <li class="j-dialog-ticket-item item" data-nums="2">
+            <div class="item-wrapper">
+              <i class="i-ticket"></i>
+              <div class="title">x 2</div>
+              <i class="i-choose"></i>
+            </div>
+          </li>
+          <li class="j-dialog-ticket-item item" data-nums="3">
+            <div class="item-wrapper">
+              <i class="i-ticket"></i>
+              <div class="title">x 3</div>
+              <i class="i-choose"></i>
+            </div>
+          </li>
+          <li class="j-dialog-ticket-item item" data-nums="4">
+            <div class="item-wrapper">
+              <i class="i-ticket"></i>
+              <div class="title">x 4</div>
+              <i class="i-choose"></i>
+            </div>
+          </li>
+          <li class="j-dialog-ticket-item item" data-nums="5">
+            <div class="item-wrapper">
+              <i class="i-ticket"></i>
+              <div class="title">x 5</div>
+              <i class="i-choose"></i>
+            </div>
+          </li>
+          <li class="j-dialog-ticket-item item" data-nums="6">
+            <div class="item-wrapper">
+              <i class="i-ticket"></i>
+              <div class="title">x 6</div>
+              <i class="i-choose"></i>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="j-dialog-play-footer play-footer">
+        <div class="funds-info">
+          <div>月票 <span class="j-user-ticket">0</span></div>
+          <div class="hl"><a href="[mccms_url_user_pay_index_ticket]">购买</a></div>
+        </div>
+        <div class="j-dialog-ticket-recharge action-button" data-nums="1">立即赠送</div>
+      </div>
+    </div>
+    <div class="gift-box hide">
+      <div class="j-dialog-play-content play-content">
+        <ul class="gift-list">
+          {mccms:gift table="gift" where="" limit="8" order="id asc"}
+            <li class="item j-dialog-gift-item{if:[gift:i]==1} active{end if}" data-id="[gift:id]" data-cion="[gift:cion]">
+              <div class="pic-wrapper">
+                <img class="pic" src="[gift:pic]">
+              </div>
+              <div class="title">[gift:name]</div>
+              <div class="price">[gift:cion][mccms_cionname]</div>
+            </li>
+          {/mccms:gift}
+        </ul>
+      </div>
+      <div class="j-dialog-play-footer play-footer">
+        <div class="funds-info">
+          <div>[mccms_cionname] <span class="j-user-gold">0</span></div>
+          <div class="hl"><a href="[mccms_url_user_pay_index_cion]">购买</a></div>
+        </div>
+        <div class="j-dialog-gift-reward action-button" data-id="0">立即打赏</div>
+      </div>
+    </div>
+  </div>
+</div>
+[mccms_bottom_book]
+<script>
+$(function(){
+  book.read();
+})
+</script>
+</body>
+</html>

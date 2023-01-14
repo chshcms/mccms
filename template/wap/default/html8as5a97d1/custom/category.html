@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>漫画检索 - [mccms_name]</title>
+  <meta name="keywords" content="[mccms_keywords]">
+  <meta name="description" content="[mccms_description]">
+  [mccms_packs]
+</head>
+<body>
+  <header class="header">
+    <div class="catalog-nav">
+      <ul class="clearfix">
+        <li data-type="theme" class="nav-item active">题材</li>
+        <li data-type="progress" class="nav-item">进度</li>
+        <li data-type="audiences" class="nav-item">受众</li>
+        <li data-type="prop" class="nav-item">属性</li>
+      </ul>
+      <span class="underline"></span>
+    </div>
+    <a href="[mccms_url_search]"><i class="ift-nav_search"></i></a>
+  </header>
+  <main id="catagoryCon" class="main under-header">
+    <div class="swiper-wrapper">
+      <div class="catalog-theme swiper-slide">
+        <ul class="clearfix">
+          {mccms:type table="type" where="fid=1" limit="24" order="xid asc"}
+          <li class="catalog-item">
+            <a href="[mccms_url_category_[type:zd]_[type:id]]">
+              <img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                   data-dislazyload='true'
+                   data-src="[mccms_tpl]img/catalogs/pic_class_img[type:i].png" alt="[type:name]">
+            </a>
+          </li>
+          {/mccms:type}
+        </ul>
+      </div>
+      <div class="catalog-progress swiper-slide">
+        <ul class="clearfix">
+          <li class="catalog-item">
+            <a href="[mccms_url_category_finish_1]">
+              <img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                   data-dislazyload='true'
+                   data-src="[mccms_tpl]img/catalogs/pic_class_img_lz.png" alt="连载">
+            </a>
+          </li>
+          <li class="catalog-item">
+            <a href="[mccms_url_category_finish_2]">
+              <img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                   data-dislazyload='true'
+                   data-src="[mccms_tpl]img/catalogs/pic_class_img_wj.png" alt="完结">
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="catalog-audiences swiper-slide">
+        <ul class="clearfix">
+          {mccms:class table="class" where="fid=0" limit="4" order="xid asc"}
+          <li class="catalog-item">
+            <a href="[mccms_url_category_list_[class:id]]">
+              <img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                   data-dislazyload='true'
+                   data-src="[mccms_tpl]img/catalogs/pic_class_img_c[class:i].png" alt="[class:name]">
+            </a>
+          </li>
+          {/mccms:class}
+        </ul>
+      </div>
+      <div class="catalog-prop swiper-slide">
+        <ul class="clearfix">
+          <li class="catalog-item">
+            <a href="[mccms_url_category_pay_1]">
+              <img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                   data-dislazyload='true'
+                   data-src="[mccms_tpl]img/catalogs/pic_class_img_cfee.png" alt="免费">
+            </a>
+          </li>
+          <li class="catalog-item">
+            <a href="[mccms_url_category_pay_2]">
+              <img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                   data-dislazyload='true'
+                   data-src="[mccms_tpl]img/catalogs/pic_class_img_cion.png" alt="付费">
+            </a>
+          </li>
+          <li class="catalog-item">
+            <a href="[mccms_url_category_pay_3]">
+              <img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                   data-dislazyload='true'
+                   data-src="[mccms_tpl]img/catalogs/pic_class_img_vip.png" alt="VIP">
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </main>
+[mccms_bottom]
+<script>
+$(function(){
+  $('#nav-list').addClass('z-active');
+});
+</script>
+</body>
+</html>

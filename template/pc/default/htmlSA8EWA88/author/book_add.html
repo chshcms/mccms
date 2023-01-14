@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>[mccms_title]</title>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<meta name="keywords" content="[mccms_keywords]">
+<meta name="description" content="[mccms_description]">
+[mccms_packs_author]
+</head>
+<body class="p-comic-info">
+[mccms_head_author]
+<!-- 内容 -->
+<div class="main-container">
+  [mccms_left_author]
+  <script>$('#left-book-add').addClass('aside-user--selected');</script>
+  <!-- main-content -->
+  <div class="user-right">
+    <div class="user-right-top">
+      <h3>新建作品</h3>
+    </div>
+    <!--步骤-->
+    <div class="step-nav clearfix">
+      <div class="step-itm active">
+        <span class="num">1</span>
+        <span>创建基本信息</span>
+      </div>
+      <div class="step-itm">
+        <span class="num">2</span>
+        <span>新建章节</span>
+      </div>
+    </div>
+    <!--步骤end-->
+    <div class="step-box">
+      <div class="input-box layui-form">
+        <div class="layui-form-item">
+          <label class="layui-form-label"><i>*</i>小说名称：</label>
+          <div class="layui-input-block">
+            <input type="text" name="name" required lay-verify="required" placeholder="小说名称无需填写《》号，15字以内" autocomplete="off" class="layui-input">
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label"><i>*</i>小说封面：</label>
+          <div class="layui-input-block">
+            <div class="cover-y" data-url="">
+              <img src="" alt="">
+              <span class="btn J_cover_y">上传封面</span>
+            </div>
+            <p class="tip">图片尺寸建议为600x800</p>
+            <p class="tip">支持jpg, png</p>
+            <p class="tip">大小5M以内</p>
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label"><i>*</i>横版封面：</label>
+          <div class="layui-input-block">
+            <div class="cover-x" data-url="">
+              <img src="" alt="">
+              <span class="btn J_cover_x">上传封面</span>
+            </div>
+            <p class="tip">图片尺寸建议为640x360</p>
+            <p class="tip">支持jpg, png</p>
+            <p class="tip">大小5M以内</p>
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label"><i>*</i>主题标签：</label>
+          <div class="layui-input-block">
+            <input type="text" name="tags" required lay-verify="required" placeholder="小说主题标签，多个用/分隔" autocomplete="off" class="layui-input">
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label"><i>*</i>一句话简介：</label>
+          <div class="layui-input-block">
+            <input type="text" name="text" required lay-verify="required" placeholder="用于首页及列表页小说作品介绍，10字以内" autocomplete="off" class="layui-input">
+          </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+          <label class="layui-form-label"><i>*</i>作品简介：</label>
+          <div class="layui-input-block">
+            <textarea name="content" required lay-verify="required" placeholder="讲讲这个作品，让更多人了解" class="layui-textarea"></textarea>
+          </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+          <label class="layui-form-label">作品公告：</label>
+          <div class="layui-input-block">
+            <textarea name="notice" placeholder="" class="layui-textarea"></textarea>
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">分类：</label>
+          <div class="layui-input-block">
+            <select name="cid">
+              {mccms:class table="book_class" where="fid=0" order="xid asc"}
+              <option value="[class:id]">[class:name]</option>
+                {mccms:class2 table="book_class" where="fid=[class:id]" order="xid asc"}
+                <option value="[class2:id]"> |----[class2:name]</option>
+                {/mccms:class2}
+              {/mccms:class}
+            </select>
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label"><i>*</i>作品进度：</label>
+          <div class="layui-input-block">
+            <input type="radio" name="serialize" value="连载" title="连载" checked>
+            <input type="radio" name="serialize" value="完结" title="完结">
+          </div>
+        </div>
+        <div class="layui-form-item font-12 protocol">
+          <label class="layui-form-label"></label>
+          <input checked type="checkbox" name="protocol" title="我已阅读并接受" lay-skin="primary"><a href="[mccms_custom_xieyi]" target="_blank">[mccms_name]作品上传协议</a>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label"></label>
+          <div class="layui-input-block">
+            <button lay-submit lay-filter="bstepadd" class="submit layui-btn">确认</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="cover-dialog-y hide">
+  <div class="y-wrap clearfix">
+    <p class="title">竖向封面图</p>
+    <p class="tip">仅支持JPG，PNG格式，文件小于5M，图片尺寸建议为：600*800（3:4）</p>
+    <div class="cover-wrap-y">
+      <img src="" class="cover" id="Cover-y">
+      <label class="btn" for="yInput">
+        <input type="file" name="image" id="yInput" onchange="loadImageY()" style="cursor:pointer;">
+        <i class="ic-upimg"></i><span>选择您要上传的图片</span>
+      </label>
+    </div>
+    <div class="gap"></div>
+    <div class="preview-box">
+      <p class="txt">效果预览</p>
+      <p class="tip">你上传的图片会自动生成以下尺寸，请注意小尺寸的图片是否清晰</p>
+      <div class="preview1 preview-y"></div>
+      <div class="preview2 preview-y"></div>
+    </div>
+    <div class="handle-box">
+      <span class="confirm J_confirm_y">确定</span>
+      <span class="cancel">取消</span>
+    </div>
+  </div>
+</div>
+<div class="cover-dialog-x hide">
+  <div class="x-wrap clearfix">
+    <p class="title">横向封面图</p>
+    <p class="tip">仅支持JPG，PNG格式，文件小于5M，图片尺寸建议为：640*360（16:9）</p>
+    <div class="cover-wrap-x">
+      <img src="" id="Cover-x">
+      <label class="btn" for="xInput">
+        <input type="file" name="image" id="xInput" onchange="loadImageX()" style="cursor:pointer;">
+        <i class="ic-upimg"></i><span>选择您要上传的图片</span>
+      </label>
+    </div>
+    <div class="gap"></div>
+    <div class="preview-box">
+      <p class="txt">效果预览</p>
+      <p class="tip">请注意小尺寸的图片是否清晰</p>
+      <div class="preview preview-x"></div>
+    </div>
+    <div class="handle-box">
+      <span class="confirm J_confirm_x">确定</span>
+      <span class="cancel">取消</span>
+    </div>
+  </div>
+</div>
+[mccms_bottom_author]
+<link rel="stylesheet" href="[mccms_tpl]css/cropper.min.css">
+<script src="[mccms_tpl]js/cropper.min.js"></script>
+<script type="text/javascript">
+var readerY = new FileReader();
+var readerX = new FileReader();
+var loadImageY = function() {
+  var obj = document.getElementById('yInput')
+  var oFile = obj.files[0]
+  readerY.readAsDataURL(oFile)
+}
+var loadImageX = function() {
+  var obj = document.getElementById('xInput')
+  var oFile = obj.files[0]
+  readerX.readAsDataURL(oFile)
+}
+$(function(){
+  comic_edit(0);
+})
+</script>
+</body>
+</html>

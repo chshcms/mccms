@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>[mccms_title]</title>
+  <meta name="keywords" content="[mccms_keywords]">
+  <meta name="description" content="[mccms_description]">
+  [mccms_packs]
+</head>
+<body>
+<header class="header">
+    <a class="back-btn" href="javascript:history.back();"><i class="ift-back"></i></a>
+    <span>我的账户</span>
+  </header>
+  <main class="main under-header">
+    <div class="p-acc-box">
+      <div class="user-head">
+        <img class="avatar" src="[user:pic]">
+        <span class="name">[user:nichen]</span>
+      </div>
+      <div class="itm">
+        <i class="i-acc-yb"></i>
+        <p class="title">[mccms_cionname]余额</p>
+        <p class="num">[user:cion]</p>
+        <p class="des">用于打赏，购买付费章节，购买会员VIP</p>
+        <a class="btn btn--link" href="[mccms_url_user_pay_index_cion]">充值</a>
+      </div>
+      <div class="itm">
+        <i class="i-acc-yp"></i>
+        <p class="title">月票</p>
+        <p class="num">[user:ticket]</p>
+        <p class="des">投票您中意的漫画</p>
+        <a class="btn btn--link" href="[mccms_url_user_pay_index_ticket]">购买月票</a>
+      </div>
+      <div class="itm">
+        <i class="i-acc-vip"></i>
+        <a class="btn btn--link" href="[mccms_url_user_pay_index_vip]">续费VIP</a>
+        <p class="title vip">到期时间：{if:[user:vip] == 0}体验已到期{else}[user:viptime style=Y-m-d]{end if}</p> 
+        <p class="des">VIP尊享特权，惊喜多多~</p>
+      </div>
+      <div class="itm">
+        <a class="btn btn--link btn-card" href="javascript:;">卡密充值</a>
+        <p class="title vip" style="padding-left:10px;">卡密:<input placeholder="请输入卡密" type="text" id="card" style="margin-left: 10px;width: 50%;"></p> 
+        <p class="des">卡密购买地址：<a href="[mccms_cardurl]">[mccms_cardurl]</a></p>
+      </div>
+    </div>
+    <div class="p-acc-tags">
+      <h3 class="title">VIP尊享特权</h3>
+      <ul class="tag-lst clearfix">
+        <li class="tag-itm">
+          <i class="i-acc-itm item1"></i>
+          <p>海量VIP漫画</p>
+          <p>免费阅读</p>
+        </li>
+        <li class="tag-itm">
+          <i class="i-acc-itm item2"></i>
+          <p>付费章节</p>
+          <p>8折优惠</p>
+        </li>
+        <li class="tag-itm">
+          <i class="i-acc-itm item3"></i>
+          <p>每月赠送</p>
+          <p>客栈月票</p>
+        </li>
+        <li class="tag-itm">
+          <i class="i-acc-itm item4"></i>
+          <p>更多精彩特权</p>
+          <p>等你发现...</p>
+        </li>
+      </ul>
+    </div>
+  </main>
+<script>
+$('.btn-card').click(function(){
+  var card = $('#card').val();
+  if(card == ''){
+    mccms.msg('请输入卡密',1);
+  }else{
+    $.getJSON('//'+Mcpath.url+Mcpath.web+'index.php/api/pay/save?callback=?', {type:'card',card:card}, function(res) {
+      mccms.msg(res.msg,1);
+      if(res.code == 1){
+        setTimeout(function() {
+          window.location.reload();
+        },1000);
+      }
+    });
+  }
+});
+</script>
+</body>
+</html>

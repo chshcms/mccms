@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>[mccms_title]</title>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="keywords" content="[mccms_keywords]">
+    <meta name="description" content="[mccms_description]">
+    <script>var bid = [book_id],cid = [read_id],vip = [read_vip],cion = [read_cion],name = '[read_name]',slink = '[read_slink]',xlink = '[read_xlink]';</script>
+    [mccms_packs_book]
+    <link rel="stylesheet" href="[mccms_tpl]book/css/read.css">
+</head>
+<body>
+    <div style='display:none;'><img src='[mccms_tpl]images/app_logo.png'/></div>
+    [mccms_head_book]
+    <script>$('.story-header').addClass('subpage');</script>
+    <div class="story-read">
+        <div class="story-read-wrapper">
+            <div class="read-crumb">
+                <a href="[mccms_url_book]">首页</a> &gt; <a href="[book_link]">[book_name]</a> &gt; <a href="[read:readlink]">[read:name]</a>
+            </div>
+            <div class="read-container">
+                <div class="read-mark-img"></div>
+                <h1 class="comic-title">[read:name]</h1>
+                <div class="comic-info">
+                    <span class="author">作者：[book_author]</span>
+                    <span class="line"></span>
+                    <span class="count">字数：[read:text_num]</span>
+                    <span class="line"></span>
+                    <span class="update-time">更新：[read:addtime style=Y-m-d H:i:s]</span>
+                </div>
+                <div class="divider"></div>
+                <div class="content hide" style="display: block;">[read:text]</div>
+                <div class="read-reward-btn j-reward-button">
+                    <i class="mccms-icon"></i>
+                    <span>打赏</span>
+                </div>
+                <div class="read-controls clearfix">
+                    <a class="catalog-btn" href="[book_link]">回详情</a>
+                    <div class="prev-btn">上一章</div>
+                    <div class="next-btn">下一章</div>
+                </div>
+                <div class="share-feedback">
+                    <div class="share btn">
+                        分享
+                        <div class="share-con bdsharebuttonbox bdshare-button-style0-16" id="bdshare" data-tag="share_1" data-bd-bind="1618041787847">
+                            <a class="share-qq share-item" data-cmd="sqq" title="分享到QQ好友"></a>
+                            <a class="share-wechat share-item" data-cmd="weixin" title="分享到微信"></a>
+                            <a class="share-sina share-item" data-cmd="tsina" title="分享到新浪微博"></a>
+                            <a class="share-qq-zone share-item" data-cmd="qzone" title="分享到QQ空间"></a>
+                        </div>
+                    </div>
+                    <div class="feedback btn"><a href="tencent://message/?uin=[mccms_qq]&Site=[mccms_url]&Menu=yes" target="_blank" rel="nofollow">反馈</a></div>
+                </div>
+                <div class="read-user-controls control--top">
+                    <div class="btn dialog-control" data-type="catalog">
+                        <i class="mccms-icon"></i>
+                        <span>目录</span>
+                        <div class="control-dialog catalog-dialog hide">
+                            <i class="dialog-close mccms-icon"></i>
+                            <div class="title">目录（ <span class="number">[book_nums]</span> ）</div>
+                            <div class="chapter-list clearfix">
+                            <script class="rd-catalog-tpl" type="text/html">
+                                {{# layui.each(d, function(index, item) { }}
+                                    <a href="{{ item.link }}" class="chapter chapter-{{item.id}}{{# if(item.on == 1) { }} on{{# } }}">
+                                        {{# if(Math.ceil(item.pay) > 0) { }}
+                                        <i class="mccms-icon vip icon"></i>
+                                        {{# } }}
+                                        {{ item.name }}
+                                    </a>
+                                {{# }) }}
+                            </script>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn dialog-control" data-type="download">
+                        <i class="mccms-icon"></i>
+                        <span>APP</span>
+                        <div class="control-dialog download-dialog hide">
+                            <i class="dialog-close mccms-icon"></i>
+                            <div class="title">手机阅读</div>
+                            <div class="dialog-content">
+                                <div class="left-image"></div>
+                                <div class="qrcode">
+                                    <img src="[mccms_tpl]book/images/pic_nav_appewm.png" style="width:120px;height:120px;">
+                                </div>
+                                <div class="right-tip">扫码在手机端阅读</div>
+                            </div>
+                            <div class="download-button">下载APP随时随地看</div>
+                        </div>
+                    </div>
+                    <div class="btn night-control">
+                        <div class="night">
+                            <i class="mccms-icon"></i>
+                            <span>夜间</span>
+                        </div>
+                        <div class="day hide">
+                            <i class="mccms-icon"></i>
+                            <span>日间</span>
+                        </div>
+                    </div>
+                    <div class="btn dialog-control" data-type="setting">
+                        <i class="mccms-icon"></i>
+                        <span>设置</span>
+                        <div class="control-dialog setting-dialog hide">
+                            <div class="title">设置</div>
+                            <div class="background-setting setting-block clearfix">
+                                <div class="label">阅读背景</div>
+                                <div class="settings">
+                                    <div class="item bg1" data-id="0">
+                                        <span class="select"></span>
+                                    </div>
+                                    <div class="item bg2" data-id="1">
+                                        <span class="select"></span>
+                                    </div>
+                                    <div class="item bg3" data-id="2">
+                                        <span class="select"></span>
+                                    </div>
+                                    <div class="item bg4" data-id="3">
+                                        <span class="select"></span>
+                                    </div>
+                                    <div class="item bg5" data-id="4">
+                                        <span class="select"></span>
+                                    </div>
+                                    <div class="item bg6" data-id="5">
+                                        <span class="select"></span>
+                                    </div>
+                                    <div class="item bg7" data-id="6">
+                                        <span class="select"></span>
+                                    </div>
+                                    <div class="item bg8 bg-night mccms-icon" data-id="7"><span class="select"></span></div>
+                                </div>
+                            </div>
+                            <div class="font-setting setting-block clearfix">
+                                <div class="label">正文字体</div>
+                                <div class="settings">
+                                    <div class="item font1" data-id="1">雅黑</div>
+                                    <div class="item font2" data-id="2">宋体</div>
+                                    <div class="item font3" data-id="3">楷书</div>
+                                </div>
+                            </div>
+                            <div class="size-setting setting-block clearfix">
+                                <div class="label">字体大小</div>
+                                <div class="settings clearfix">
+                                    <div class="item reduce mccms-icon"></div>
+                                    <div class="item default">16</div>
+                                    <div class="item add mccms-icon"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="read-user-controls">
+                    <div class="btn j-ticket-button">
+                        <i class="mccms-icon"></i>
+                        <span>月票</span>
+                    </div>
+                    <div class="btn j-reward-button">
+                        <i class="mccms-icon"></i>
+                        <span>打赏</span>
+                    </div>
+                    <div class="btn j-collect-button">
+                        <div class="yes hide">
+                            <i class="mccms-icon icon-collected"></i>
+                            <span>已收藏</span>
+                        </div>
+                        <div class="no">
+                            <i class="mccms-icon"></i>
+                            <span>收藏</span>
+                        </div>
+                    </div>
+                    <div class="btn j-top-button">
+                        <i class="mccms-icon"></i>
+                        <span>顶部</span>
+                    </div>
+                </div>
+                <div class="pay-flow-dialog hide">
+                    <div class="pay-title">该章节是收费章节，需购买后方可阅读</div>
+                    <div class="fund-info">我的账户：<b class="j-user-gold">0</b>[mccms_cionname]</div>
+                    <div class="buttons clearfix">
+                        <div class="button gold-pay">
+                            <div class="button-title">购买本章</div>
+                            <div class="gold-price">
+                                <div class="price-tag">免费</div>
+                                <div class="pay-cion hide">
+                                    <span class="price-number">[read_cion]</span>[mccms_cionname] 
+                                    <label style="margin-left: 20px;"><input class="auto-check" type="checkbox" style="vertical-align: middle;"> 自动购买下一章节</label>
+                                </div>
+                            </div>
+                            <div class="pay-vip-tip">立即开通VIP免费看&gt;</div>
+                            <div class="pay-cion-tip hide">立即购买&gt;</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="hide gift-box">
+        <div class="dialog-gift">
+            <div class="dialog-gift__play">
+                <!-- 通用头部 -->
+                <div class="dialog-common__header">
+                    <div class="title">用礼物支持大大</div>
+                    <div class="close j-dialog-close"><i class="mccms-icon icon-ic_detail_tc_close"></i></div>
+                </div>
+                <div class="main">
+                    <!-- 礼物列表 -->
+                    <ul class="list j-dialog-gift-list">
+                    {mccms:gift table="gift" where="" limit="8" order="id asc"}
+                        <li class="item j-dialog-gift-item{if:[gift:i]==1} active{end if}" data-id="[gift:id]" data-cion="[gift:cion]">
+                            <div class="pic-wrapper">
+                                <img class="pic" src="[gift:pic]">
+                                <i class="ic_detail_ybon hide"></i>
+                            </div>
+                            <div class="title">[gift:name]</div>
+                            <div class="price">[gift:cion][mccms_cionname]</div>
+                        </li>
+                    {/mccms:gift}
+                    </ul>
+                </div>
+                <div class="footer j-dialog-gift-footer">
+                    <div class="action-button j-dialog-gift-reward">立即打赏 (＾Ｕ＾)</div>
+                    <div class="funds-info">我的[mccms_cionname]：<span class="j-user-gold ucion">0</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="hide ticket-box">
+        <div class="dialog-ticket">
+            <div class="dialog-ticket__play">
+                <!-- 通用头部 -->
+                <div class="dialog-common__header">
+                    <div class="title">投月票</div>
+                    <div class="close j-dialog-close"><i class="mccms-icon icon-ic_detail_tc_close"></i></div>
+                </div>
+                <div class="main">
+                    <!-- 礼物列表 -->
+                    <ul class="list j-dialog-ticket-list">
+                        <li class="item j-dialog-ticket-item active" data-num="1">
+                            <div class="item-wrapper">
+                                <i class="ic_xs_yp i-ticket"></i>
+                                <div class="title">月票x1</div>
+                                <i class="ic_yp_chooseon i-choose hide"></i>
+                            </div>
+                        </li>
+                        <li class="item j-dialog-ticket-item" data-num="2">
+                            <div class="item-wrapper">
+                                <i class="ic_xs_yp i-ticket"></i>
+                                <div class="title">月票x2</div>
+                                <i class="ic_yp_chooseon i-choose hide"></i>
+                            </div>
+                        </li>
+                        <li class="item j-dialog-ticket-item" data-num="3">
+                            <div class="item-wrapper">
+                                <i class="ic_xs_yp i-ticket"></i>
+                                <div class="title">月票x3</div>
+                                <i class="ic_yp_chooseon i-choose hide"></i>
+                            </div>
+                        </li>
+                        <li class="item j-dialog-ticket-item" data-num="5">
+                            <div class="item-wrapper">
+                                <i class="ic_xs_yp i-ticket"></i>
+                                <div class="title">月票x5</div>
+                                <i class="ic_yp_chooseon i-choose hide"></i>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer j-dialog-ticket-footer">
+                    <div class="action-button j-dialog-ticket-recharge">立即赠送</div>
+                    <div class="funds-info">我的月票：<span class="j-user-ticket">0</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript">
+$(function(){
+    get_read();
+})
+</script>
+</body>
+</html>

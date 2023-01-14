@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>[mccms_title]</title>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<meta name="keywords" content="[mccms_keywords]">
+<meta name="description" content="[mccms_description]">
+[mccms_packs_author]
+</head>
+<body class="p-comic-info">
+[mccms_head_author]
+<!-- 内容 -->
+<div class="main-container">
+  [mccms_left_author]
+  <script>$('#left-add').addClass('aside-user--selected');</script>
+  <!-- main-content -->
+  <div class="user-right">
+    <div class="user-right-top">
+      <h3>新建章节</h3>
+    </div>
+    <div class="chapter-box">
+      <div class="chapter-name">
+        <label class="layui-form-label"><span style="color: #ff620e;">*</span>章节名称：</label>
+        <div class="layui-input-block">
+          <input id="chapterTitle" type="text" name="name" required lay-verify="required" placeholder="请输入章节名称" autocomplete="off" class="layui-input" value="[chapter:name]">
+        </div>
+      </div>
+      <label class="layui-form-label">图片：</label>
+      <div class="chapter-add-box" id="uploader">
+        <div class="box-top btns">
+          <span id="picker" style="float: left;">选择图片</span>
+          <span class="tip"><i style="color: #ff620e;">*</i>图片宽度建议<i style="color: #ff620e;">大于</i>800像素，单张图片大小请小于10M</span>
+          <span id="order" style="float: right;padding: 5px 10px;background: #f60;color: #fff;margin-right: 10px;border-radius: 3px;cursor: pointer;">图片排序</span>
+          <span id="unorder" style="float: right;padding: 5px 10px;background: #fa0;color: #fff;margin-right: 10px;border-radius: 3px;cursor: pointer;display: none;">取消排序</span>
+        </div>
+        <!--未上传时显示-->
+        <div class="box-middle">
+          <ul id="thelist" class="drag-box clearfix">
+          {mccms:pic table="comic_pic" where="cid=[chapter_id]" order="xid asc"}
+            <li class="file-item" data-id="[pic:id]"><div class="img-ctrl"><i class="layui-icon preview">&#xe64a;</i><i class="layui-icon delete-img">&#xe640;</i></div><div class="cover-box"><img src="[pic:img]"></div><div class="upflag uploaded"><i class="layui-icon">&#x1005;</i><span class="file-name" title="[pic:i].jpg">[pic:i].jpg</span></div></li>
+          {/mccms:pic}
+          </ul>
+        </div>
+        <!--有图片列表时显示end-->
+        <div class="box-bottom">
+          <a href="javascript:void(0);" class="del-all">清空图片</a>
+          <span class="error-num">失败 <span class="error-count">0</span> 张图片</span>
+          <span class="upload-num">已提交 <span class="upload-count">[chapter:pnum]</span> 张图片</span>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="update-time mt-20 mb-20">
+        <label class="layui-form-label">预计更新时间：</label>
+        <input type="text" name="addtime" id="startTime" class="layui-input J_date_selector">
+      </div>
+      <label class="layui-form-label"></label>
+      <a class="sure-btn mr-20">确定提交</a>
+      <a href="javascript:history.back();" class="cancel-btn ">返回</a>
+    </div>
+  </div>
+</div>
+[mccms_bottom_author]
+<link rel="stylesheet" href="[mccms_tpl]css/jquery.Jcrop.min.css">
+<link rel="stylesheet" href="[mccms_tpl]css/webuploader.css">
+<script type="text/javascript" src="[mccms_tpl]js/webuploader.min.js"></script>
+<script type="text/javascript" src="[mccms_tpl]js/jquery.dragsort-0.5.2.min.js"></script>
+<script type="text/javascript">
+var chapter_id = [chapter_id];
+var chapter_mid = [chapter_mid];
+var img_count = 0;
+var failCount = 0;
+//排序
+$('#order').click(function(){
+  $("#thelist").dragsort({
+    dragSelector: "li",
+    dragBetween: true,
+    placeHolderTemplate: "<li class='placeHolder'><div></div></li>"
+  });
+  mccms.layer.msg('您现在可以随意拖动图片进行排序');
+  $('#order').hide();
+  $('#unorder').show();
+});
+$('#unorder').click(function(){
+  $('#thelist').removeAttr('data-listidx');
+  mccms.layer.msg('已关闭排序');
+  $('#order').show();
+  $('#unorder').hide();
+});
+mccms.laydate.render({
+  elem: '.J_date_selector',
+  type: 'datetime',
+  format: 'yyyy-MM-dd HH:mm:ss',
+  value: new Date(),
+  isInitValue: true
+})
+// 判断返回
+if (document.referrer === '') {
+  // 没有来源页面信息的时候，改成首页URL地址
+  $('.cancel-btn').attr('href', '[mccms_url_author_comic]');
+} else {
+  $('.cancel-btn').attr('href', document.referrer);
+}
+// 初始化web upload
+var uploader = WebUploader.create({
+  server: Mcpath.web+'index.php/author/chapter/uppic/[chapter_mid]/[chapter_id]',
+  auto: true,
+  swf: Mcpath.tpl+'js/Uploader.swf',
+  pick: '#picker',
+  resize: false,
+  mimeTypes: 'image/*',
+  fileVal: 'image',
+  compress: false,
+  accept: {
+    title: 'Images',
+    extensions: 'gif,jpg,jpeg,png',
+    mimeTypes: 'image/gif,image/jpg,image/jpeg,image/png'
+  }
+});
+var $list = $('#thelist');
+var fileIndex = $('.file-item').length + 1;
+var uploading;
+uploader.on('fileQueued', function (file) {
+  uploading = layer.load(1);
+  var html = '<li class="file-item">' +
+    '<div class="img-ctrl">' +
+    '<i class="layui-icon preview">&#xe64a;</i>' +
+    '<i class="layui-icon delete-img" data-fileid="' + file.id + '">&#xe640;</i>' +
+    '</div>' +
+    '<div id="' + file.id + '" class="cover-box">' +
+    '<img>' +
+    '</div>' +
+    '<div class="upflag">' +
+    '<i class="layui-icon">&#x1005;</i>' +
+    '<span class="file-name" title="' + file.name + '">' + file.name + '</span>' +
+    '</div>' +
+    '</li>'
+  var $li = $(html)
+  var $img = $li.find('img')
+  $list.append($li)
+  uploader.makeThumb(file, function (error, src) {
+    if (error) {
+      $img.replaceWith('<span>不能预览</span>');
+      return;
+    }
+    $img.attr('src', src);
+  }, 1, 1);
+});
+// 文件上传成功，给item添加成功class, 用样式标记上传成功。
+uploader.on('uploadSuccess', function (file, res) {
+  if (res.code == 1) {
+    // 保存url
+    $('#' + file.id).addClass('upload-state-done').parents('.file-item').attr('data-url', res.url).find('.upflag').addClass('uploaded');
+  } else {
+    mccms.msg(res.msg);
+    return false;
+  }
+});
+// 文件上传失败，显示上传出错。
+uploader.on('uploadError', function (file) {
+  var $li = $('#' + file.id)
+  var $error = $li.siblings('div.upflag')
+  if (file.size > 10485760) {
+    $error.html('<span style="color: red;">大小超出</span>')
+  } else {
+    $error.html('<span style="color: red;">上传失败</span>')
+  }
+  failCount++
+  $('.error-count').html(failCount)
+});
+// 上传完成回调
+uploader.on('uploadFinished', function () {
+  layer.close(uploading);
+});
+// 完成上传完了，成功或者失败，先删除进度条。
+uploader.on('uploadComplete', function (file) {
+  $('#' + file.id).find('.progress').remove();
+  img_count++;
+  $('.upload-count').html(img_count);
+});
+uploader.on("error", function (type) {
+  console.warn(type) // 供调试
+});
+//删除图片
+$('.box-middle').on('click', '.delete-img', function (event) {
+  event.stopPropagation();
+  var fileId = $(this).data('fileid');
+  mccms.layer.open({
+    content: '主人，确定要删除么？(┬＿┬)',
+    yes: function(index, layero){
+      if(fileId) uploader.removeFile(fileId);
+      var $li = $(this).parents('.file-item');
+      $.post(Mcpath.web+'index.php/author/chapter/picdel', {id:$li.data('id')});
+      img_count--;
+      $('.upload-count').html(img_count);
+      $li.remove(); //移除
+    }
+  });
+});
+$('.del-all').click(function () {
+  var li = $('.file-item');
+  for (var i = 0; i < li.length; i++) {
+    $(li[i]).find('.delete-img').click();
+  }
+  $('.error-count').html(0);
+})
+// 预览
+$('.box-middle').on('click', '.preview', function (event) {
+  event.stopPropagation();
+  var imgSrc = $(this).parents('.file-item').data('url');
+  layer.open({
+    type: 1,
+    title: false,
+    closeBtn: 0,
+    area: '516px',
+    skin: 'layui-layer-nobg', //没有背景色
+    shadeClose: true,
+    content: '<img style="width: 100%;" src="' + imgSrc + '">'
+  });
+});
+$('.sure-btn').click(function () {
+  if($(this).hasClass('lock')) return;
+  var loading2 = layer.load(1);
+  var fileItem = $('.file-item');
+  var data = chapterAddData();
+  if(data.id == 0) {
+    mccms.msg('参数错误!');
+    mccms.layer.close(loading2);
+    return false;
+  }
+  if (!$.trim(data.name)) {
+    mccms.msg('大人，章节名不能为空哦~');
+    mccms.layer.close(loading2);
+    return false;
+  }
+  if (data.pid.length == 0) {
+    mccms.msg('大人，你忘了上传图片哦~');
+    mccms.layer.close(loading2);
+    return false;
+  }
+  if (!data.addtime) {
+    mccms.msg('更新时间错误');
+    mccms.layer.close(loading2);
+    return false;
+  }
+  $(this).addClass('lock');
+  $.post(Mcpath.web+'index.php/author/chapter/save', data)
+    .done(function (res) {
+      mccms.layer.close(loading2);
+      if (res.code == 1) {
+        mccms.layer.msg('章节修改成功',{time:1000},function(){
+          location.href = res.url;
+        });
+      } else {
+        $(this).removeClass('lock');
+        mccms.layer.msg(res.message);
+      }
+    });
+});
+function pageAddData() {
+  var fileItem = $('.file-item');
+  var idArr = []
+  $.each(fileItem, function (i, e) {
+    idArr.push($(e).data('id'));
+  })
+  return idArr;
+}
+function chapterAddData() {
+  var title = $('#chapterTitle').val();
+  var t = $('#startTime').val().replace(/-/g, "/");
+  var start_time = Date.parse(t) / 1000;
+  var data = {};
+  data.pid = pageAddData();
+  data.name = $.trim(title);
+  data.addtime = start_time;
+  data.id = chapter_id;
+  data.mid = chapter_mid;
+  return data;
+}
+</script>
+</body>
+</html>

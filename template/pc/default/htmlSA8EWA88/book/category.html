@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>[mccms_title]</title>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="keywords" content="[mccms_keywords]">
+    <meta name="description" content="[mccms_description]">
+    [mccms_packs_book]
+    <link rel="stylesheet" href="[mccms_tpl]book/css/category.css">
+</head>
+<body class="story-category story-header--fixed">
+    <div style='display:none;'><img src='[mccms_tpl]images/app_logo.png' /></div>
+    [mccms_head_book]
+    <div class="story-category__filter container--response">
+        <div class="wrapper">
+            <!-- 分类 -->
+            <div class="j-filter-type row">
+                <div class="title">分类</div>
+                <div class="con">
+                    <ul class="type-list">
+                        <li class="j-filter-item"><a href="[mccms_url_book_category_list_0]">全部</a></li>
+                        {mccms:class table="book_class" field="*" where="fid=0" limit="all" order="xid asc"}
+                        <li class="j-filter-item{if:'[list]' == '[class:id]'} active{end if}"><a href="[mccms_url_book_category_list_[class:id]]">[class:name]</a></li>
+                        {/mccms:class}
+                    </ul>
+                </div>
+            </div>
+            <!-- 题材 -->
+            <div class="j-filter-type row">
+                <div class="title">题材</div>
+                <div class="con">
+                    <ul class="type-list">
+                        <li class="j-filter-item"><a href="[mccms_url_book_category_tags_0]">全部</a></li>
+                        {book:tags len="100"}
+                        <li class="j-filter-item{if:'[tags:i]' == '[tags]'} active{end if}"><a href="[tags:link]">[tags:name]</a></li>
+                        {/book:tags}
+                    </ul>
+                </div>
+            </div>
+            <!-- 进度 -->
+            <div class="j-filter-type row">
+                <div class="title">进度</div>
+                <div class="con">
+                    <ul class="type-list">
+                        <li class="j-filter-item">
+                            <a href="[mccms_url_book_category_finish_0]">全部</a>
+                        </li>
+                        <li class="j-filter-item{if:'[finish]' == '1'} active{end if}">
+                            <a href="[mccms_url_book_category_finish_1]">连载</a>
+                        </li>
+                        <li class="j-filter-item{if:'[finish]' == '2'} active{end if}">
+                            <a href="[mccms_url_book_category_finish_2]">完结</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- 资费 -->
+            <div class="j-filter-type row">
+                <div class="title">资费</div>
+                <div class="con">
+                    <ul class="type-list">
+                        <li class="j-filter-item">
+                            <a href="[mccms_url_book_category_pay_0]">全部</a>
+                        </li>
+                        <li class="j-filter-item{if:'[pay]' == '1'} active{end if}">
+                            <a href="[mccms_url_book_category_pay_1]">免费</a>
+                        </li>
+                        <li class="j-filter-item{if:'[pay]' == '2'} active{end if}">
+                            <a href="[mccms_url_book_category_pay_2]">收费</a>
+                        </li>
+                        <li class="j-filter-item{if:'[pay]' == '3'} active{end if}">
+                            <a href="[mccms_url_book_category_pay_3]">VIP专属</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- 字数 -->
+            <div class="j-filter-type row">
+                <div class="title">字数</div>
+                <div class="con">
+                    <ul class="type-list">
+                        <li class="j-filter-item">
+                            <a href="[mccms_url_book_category_size_0]">全部</a>
+                        </li>
+                        <li class="j-filter-item{if:'[size]' == '1'} active{end if}">
+                            <a href="[mccms_url_book_category_size_1]">30万字以上</a>
+                        </li>
+                        <li class="j-filter-item{if:'[size]' == '2'} active{end if}">
+                            <a href="[mccms_url_book_category_size_2]">30-50万字</a>
+                        </li>
+                        <li class="j-filter-item{if:'[size]' == '3'} active{end if}">
+                            <a href="[mccms_url_book_category_size_3]">50-100万字</a>
+                        </li>
+                        <li class="j-filter-item{if:'[size]' == '4'} active{end if}">
+                            <a href="[mccms_url_book_category_size_4]">100-200万字</a>
+                        </li>
+                        <li class="j-filter-item{if:'[size]' == '5'} active{end if}">
+                            <a href="[mccms_url_book_category_size_5]">200万字以上</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- 筛选 -->
+            <div class="j-filter-type row">
+                <div class="title">筛选</div>
+                <div class="con">
+                    <div class="cate-container__title clearfix">
+                        <ul class="type-list">
+                            <li class="j-filter-item{if:'[order]' == 'hits'} active{end if}">
+                                <a href="[mccms_url_book_category_order_0]">最具人气</a>
+                            </li>
+                            <li class="j-filter-item{if:'[order]' == 'addtime'} active{end if}">
+                                <a href="[mccms_url_book_category_order_addtime]">最新更新</a>
+                            </li>
+                            <li class="j-filter-item{if:'[order]' == 'shits'} active{end if}">
+                                <a href="[mccms_url_book_category_order_shits]">最多收藏</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- 筛选结果 -->
+                    <div class="result">
+                        共<strong>[mccms_pagenum]</strong>个筛选结果
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                if('[pay]' == '1') $('.story-header__nav--free').addClass('active');
+                $('.story-header__nav--list--[list]').addClass('active');
+                $('.type-list').each(function(){
+                    if(!$(this).children('li').hasClass('active')){
+                        $(this).children('li').eq(0).addClass('active');
+                    }
+                });
+            </script>
+        </div>
+    </div>
+    <div class="story-category__result container--response">
+        {if:'[mccms_pagenum]' == '0'}<div class="empty"></div>{end if}
+        <div class="list">
+            <ul class="list-wrapper">
+            {mccms:book table="book" field="*" page="30" order="id desc"}
+                <li class="item">
+                    <div class="cover-wrapper">
+                        <a href="[book:infolink]"><img class="lazy cover loaded" src="[mccms_tpl]book/images/load_3x4.png" data-src="[book:pic]" alt="[book:name]"></a>
+                    </div>
+                    <div class="info">
+                        <div class="title">
+                            <a href="[book:infolink]">[book:name]</a>
+                        </div>
+                        <div class="multi">[book:zdy zd=book_class,name,cid] · [book:author]</div>
+                        <div class="desc">[book:content]</div>
+                        <div class="num">[book:hits wan=1]人气</div>
+                    </div>
+                </li>
+            {/mccms:book}
+            </ul>
+        </div>
+    </div>
+    <div class="story-category__pagination"{if:[mccms_pagejs] < 2} style="display:none;"{end if}>
+        <div>
+            <a class="prev" href="[mccms_pageup]">上一页</a>
+            <a class="first" href="[mccms_pagefirst]">首页</a>
+            [mccms_pagenum_10]
+            <a class="end" href="[mccms_pagelast]">末页</a>
+            <a class="next" href="[mccms_pagedown]">下一页</a>
+        </div>
+    </div>
+    [mccms_bottom_book]
+</body>
+</html>

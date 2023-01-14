@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>[mccms_title]</title>
+  <meta name="keywords" content="[mccms_keywords]">
+  <meta name="description" content="[mccms_description]">
+  [mccms_packs_book]
+  <link rel="stylesheet" href="[mccms_tpl]book/css/category.css">
+</head>
+<body class="story-category">
+<div style='display:none;'><img src='[mccms_tpl]img/app_logo.png'/></div>
+<!-- 头部 -->
+<header class="header-bar">
+  <a class="go-back"></a>
+  <span class="title">小说分类</span>
+  <a href="[mccms_custom_book-search]" class="i-search"></a>
+</header>
+<div class="j-story-category-tabcon">
+  <div class="story-category__theme">
+    {mccms:class table="book_class" field="*" limit="6" order="xid asc"}
+    <a href="[mccms_url_book_category_list_[class:id]]" class="story-category__theme-item">
+        <div class="theme-info">
+          <div class="title">[class:name]</div>
+          <div class="count">共[class:count zd=book,id,cid]本</div>
+        </div>
+        <div class="theme-cover">
+          <img src="[mccms_tpl]book/images/class/[class:id].png" alt="[class:name]" class="cover">
+        </div>
+    </a>
+    {/mccms:class}
+  </div>
+</div>
+[mccms_bottom_book]
+</body>
+</html>

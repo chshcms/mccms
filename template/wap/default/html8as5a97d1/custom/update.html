@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>最新漫画 - 好看漫画大全 - [mccms_name]</title>
+  <meta name="keywords" content="[mccms_keywords]">
+  <meta name="description" content="[mccms_description]">
+  [mccms_packs]
+</head>
+<body class="p-update">
+  <header class="header">
+    <a class="go-back" href="[mccms_path]"><i class="ift-back"></i></a>
+    <span>更新</span>
+    <a href="[mccms_custom_search]"><i class="ift-nav_search"></i></a>
+  </header>
+  <main class="main under-header">
+    <div class="update-nav">
+      <ul class="clearfix">
+        {mccms:week}
+        <li id="w_[week:i]" data-id="[week:i]" class="update-nav-item{if:'[week:num]' == '[mccms_week]'} active{end if}"><span>[week:name]</span></li>
+        {/mccms:week}
+      </ul>
+    </div>
+    <div class="update-list clearfix">
+      {mccms:week}
+      <div id="week_[week:i]" class="tab{if:'[week:i]' > '1'} hide{end if}">
+        {mccms:comic table="comic" field="*" where="addtime>[week:kstime] and addtime<[week:jstime]" limit="50" order="addtime desc"}
+        <div class="update-item">
+          <a class="cover" href="[comic:link]">
+            <img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" style="background-image: url([mccms_tpl]img/bg_loading_img_3.2.png)" data-src="[comic:pic]" alt="[comic:name]">
+            <p class="update-feature">{if:'[comic:text]'==''}[comic:content len=20]{else}[comic:text]{end if}</p>
+            <p class="upadte-count">[comic:hits wan=1]</p>
+          </a>
+          <p class="comic-name"><a href="[comic:link]">[comic:name]</a></p>
+          <p class="comic-update-at">[comic:zdy zd=comic_chapter,name,id,mid]</p>
+          <a class="update-read-first" href="[comic:piclink]">阅读第1话 ></a>
+        </div>
+        {/mccms:comic}
+      </div>
+      {/mccms:week}
+    </div>
+  </main>
+<script>
+$(function(){
+  comic.update();
+})
+</script>
+</body>
+</html>

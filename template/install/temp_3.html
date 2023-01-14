@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Mccms产品 - Powered by Mccms</title>
+<link rel="stylesheet" href="<?=install_path?>packs/install/images/css.css" />
+<script type="text/javascript" src="<?=install_path?>packs/jquery/jquery.min.js"></script>
+</head>
+<body>
+	<div class="wrap">
+		<div class="header">
+			<h1 class="logo">logo</h1>
+			<div class="icon_install">安装向导</div>
+			<div class="version">v1</div>
+		</div>
+		<div class="section">
+			<div class="step">
+				<ul>
+					<li class="on"><em>1</em>检测环境</li>
+					<li class="current"><em>2</em>创建数据</li>
+					<li><em>3</em>完成安装</li>
+				</ul>
+			</div>
+			<form id="J_install_form" action="<?=links('install','save3')?>" method="post">
+			<div class="server">
+				<table width="100%">
+					<tr>
+						<td class="td1" width="100">数据库信息</td>
+						<td class="td1" width="200">&nbsp;</td>
+						<td class="td1">&nbsp;</td>
+					</tr>
+					<tr>
+						<td class="tar">数据库类型：</td>
+						<td>
+		                    <select class="select1" id="dbdriver" name="dbdriver">
+	                           <option value="mysql">Mysql</option>
+	                           <option value="mysqli"<?php if(function_exists("mysqli_connect")) echo ' selected';?>>Mysqli</option>
+	                           <option value="pdo">Pdo</option>
+	                           <option value="mssql">Mssql</option>
+		                    </select>
+		                </td>
+						<td><div id="J_dbdriver"><span class="gray">一般为Mysql，PHP5.6以上请选择Mysqli</span></div></td>
+					</tr>
+					<tr>
+						<td class="tar">数据库服务器：</td>
+						<td><input type="text" name="dbhost" id="dbhost" value="127.0.0.1" class="input"></td>
+						<td><div id="J_dbhost"><span class="gray">数据库服务器地址，一般为127.0.0.1</span></div></td>
+					</tr>
+					<tr>
+						<td class="tar">数据库用户名：</td>
+						<td><input type="text" name="dbuser" id="dbuser" value="root" class="input"></td>
+						<td><div id="J_dbuser"><span class="gray">数据库用户名</span></div></td>
+					</tr>
+					<tr>
+						<td class="tar">数据库密码：</td>
+						<td><input type="text" name="dbpwd" id="dbpwd" value="" class="input" autoComplete="off"></td>
+						<td><div id="J_dbpwd"><span class="gray">数据库密码</span></div></td>
+					</tr>
+					<tr>
+						<td class="tar">数据库名：</td>
+						<td><input type="text" name="dbname" id="dbname" value="mccms" class="input"></td>
+						<td><div id="J_dbname"><span class="gray">数据库名称</span></div></td>
+					</tr>
+					<tr>
+						<td class="tar">数据库表前缀：</td>
+						<td><input type="text" name="dbprefix" id="dbprefix" value="mc_" class="input"></td>
+						<td><div id="J_dbprefix"><span class="gray">建议使用默认，同一数据库安装多个Mccms时需修改</span></div></td>
+					</tr>
+				</table>
+				<div id="J_response_tips" style="display:none;"><div class="loading"><span>请稍后...</span></div></div>
+			</div>
+			<div class="bottom tac">
+				<a href="<?=links('install','save1')?>" class="btn">上一步</a><button onClick="checkdb();return false;" type="botton" class="btn btn_submit J_install_btn">创建数据</button>
+			</div>
+		</form>
+	</div>
+	<div class="footer">
+		&copy; 2008-2020 <a href="http://www.mccms.cn" target="_blank">mccms.cn</a>（桂林崇胜网络科技有限公司旗下品牌）
+	</div>
+	<script>
+	function checkdb() {
+	    $('#J_response_tips').html('<div class="loading"><span>请稍后...</span></div>');
+	    $('#J_response_tips').show();
+	    var url='<?=links('install','dbtest')?>?dbdriver='+encodeURIComponent($('#dbdriver').val())+'&dbhost='+encodeURIComponent($('#dbhost').val())+'&dbuser='+encodeURIComponent($('#dbuser').val())+'&dbpwd='+encodeURIComponent($('#dbpwd').val())+'&dbname='+encodeURIComponent($('#dbname').val())+'&dbprefix='+encodeURIComponent($('#dbprefix').val())+'&sid='+Math.random()*5;
+	    $.get(url, function(d){
+	    	$('#J_response_tips').hide();
+			if(d.code == 0) {
+				if(d.msg == 'ok'){
+					$('#J_install_form').submit();
+				}else{
+					if(confirm(d.msg)){
+						$('#J_install_form').submit();
+					}else{
+						return false;
+					}
+				}
+			}else{
+				alert(d.msg);
+				$('#J_response_tips').hide();
+				return false;
+			}
+	    },'json');
+	}
+	</script>
+</body>
+</html>

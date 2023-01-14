@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>[mccms_title]</title>
+  <meta name="keywords" content="[mccms_keywords]">
+  <meta name="description" content="[mccms_description]">
+  [mccms_packs_book]
+</head>
+<body class="story-home">
+  <div style='display:none;'><img src='[mccms_tpl]img/app_logo.png'/></div>
+  <div class="home-head">
+    <a class="head-title" href="[mccms_url_book]"></a>
+    <a class="head-user-button" href="[mccms_url_user]"></a>
+    <a class="head-search-button" href="[mccms_custom_book-search]"></a>
+    <a class="head-home-button" href="//[mccms_url][mccms_path]"></a>
+  </div>
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      {mccms:book table="book" where="tid=1" limit="5" order="rhits desc"}
+      <a class="swiper-slide" href="[book:infolink]">
+        <img src="[book:picx]" alt="[book:name]">
+      </a>
+      {/mccms:book}
+    </div>
+  </div>
+  <div class="home-main-nav">
+    <a class="nav-item" href="[mccms_url_user_read_book]">
+      <div class="nav-icon bookshelf-icon"></div>
+      <div class="nav-title">书架</div>
+    </a>
+    <a class="nav-item" href="[mccms_custom_book-hot]">
+      <div class="nav-icon rank-icon"></div>
+      <div class="nav-title">排行</div>
+    </a>
+    <a class="nav-item" href="[mccms_custom_book-free]">
+      <div class="nav-icon limit-free-icon"></div>
+      <div class="nav-title">免费</div>
+    </a>
+    <a class="nav-item" href="[mccms_custom_book-list]">
+      <div class="nav-icon category-icon"></div>
+      <div class="nav-title">分类</div>
+    </a>
+  </div>
+  <div class="home-recommend">
+    <div class="home-block-head icon-recom">
+      <span>小编力荐</span>
+      <a href="[mccms_custom_book-read]" class="head-more"></a>
+    </div>
+    <div class="recommend-content-wrap">
+      {mccms:book table="book" where="tid=1" limit="8" order="yhits desc"}
+      <div class="home-comic-item">
+          <div class="comic-cover">
+            <a href="[book:infolink]"><img class="lazy comic-cover" src="[mccms_tpl]img/bg_loading_img_3.4.png" data-src="[book:pic]" alt="[book:name]"></a>
+          </div>
+          <div class="comic-title">[book:name]</div>
+          <div class="comic-tag">[book:author]</div>
+      </div>
+      {/mccms:book}
+    </div>
+  </div>
+  <div class="home-limit-free">
+    <a class="free-head-img" href="[mccms_custom_book-free]"></a>
+    <div class="free-content-wrap">
+      {mccms:book table="book" where="pay=0" limit="15" order="rhits desc"}
+      <div class="home-free-item">
+        <div class="comic-cover">
+          <a href="[book:infolink]">
+            <img class="lazy comic-cover" src="[mccms_tpl]img/bg_loading_img_3.4.png" data-src="[book:pic]" alt="[book:name]">
+            <div class="comic-popular">[book:hits wan=1]人气</div>
+          </a>
+        </div>
+        <div class="comic-title">[book:name]</div>
+      </div>
+      {/mccms:book}
+    </div>
+    <div class="free-foot-img"></div>
+  </div>
+  <div class="home-popular">
+    <div class="home-block-head icon-popular">
+      <span>人气推荐</span>
+      <a href="[mccms_custom_book-hot]" class="head-more"></a>
+    </div>
+    <div class="pop-content-wrap">
+      {mccms:book table="book" where="pay=0" limit="2" order="hits desc"}
+      <a class="pop-top-item" href="[book:infolink]">
+        <div class="comic-cover">
+          <img class="lazy comic-cover" src="[mccms_tpl]img/bg_loading_img_3.4.png" data-src="[book:pic]" alt="[book:name]">
+        </div>
+        <div class="info-wrap">
+          <div class="comic-title">[book:name]</div>
+          <div class="comic-intro">[book:content len=80]</div>
+          <div class="comic-info">
+            <div class="comic-author">[book:author]</div>
+            <div class="comic-count">[book:text_num wan=1]字</div>
+            <div class="comic-type">[book:tags]</div>
+          </div>
+        </div>
+      </a>
+      {/mccms:book}
+      <div class="pop-bottom-wrap">
+        {mccms:book table="book" where="pay=0" limit="2,4" order="hits desc"}
+        <div class="home-comic-item">
+          <div class="comic-cover">
+            <a href="[book:infolink]"><img class="lazy comic-cover" src="[mccms_tpl]img/bg_loading_img_3.4.png" data-src="[book:pic]" alt="[book:name]"></a>
+          </div>
+          <div class="comic-title">[book:name]</div>
+          <div class="comic-tag">[book:tags]</div>
+        </div>
+        {/mccms:book}
+      </div>
+    </div>
+  </div>
+  <!--div class="home-middle-ad">
+    <a href="/"><img src="" alt=""></a>
+  </div-->
+  <div class="home-new">
+    <div class="home-block-head icon-new">
+      <span>月票大佬</span>
+      <a href="[mccms_custom_book-ticket]" class="head-more"></a>
+    </div>
+    <div class="sale-content-wrap">
+      {mccms:book table="book" where="pay=0" limit="6" order="ticket desc"}
+      <div class="home-new-item">
+        <div class="comic-cover">
+          <a href="[book:infolink]"><img class="lazy comic-cover" src="[mccms_tpl]img/bg_loading_img_3.4.png" data-src="[book:pic]" alt="[book:name]"></a>
+        </div>
+        <div class="comic-title">[book:name]</div>
+        <div class="comic-type">[book:tags]</div>
+        <div class="comic-author">[book:author]</div>
+      </div>
+      {/mccms:book}
+    </div>
+  </div>
+  <div class="home-sale">
+    <div class="home-block-head icon-sale">
+      <span>打赏大佬</span>
+      <a href="[mccms_custom_book-gift]" class="head-more"></a>
+    </div>
+    <div class="sale-content-wrap">
+      {mccms:book table="book" where="pay=0" limit="8" order="cion desc"}
+      <div class="home-comic-item">
+        <div class="comic-cover">
+          <a href="[book:infolink]"><img class="lazy comic-cover" src="[mccms_tpl]img/bg_loading_img_3.4.png" data-src="[book:pic]" alt="[book:name]"></a>
+        </div>
+        <div class="comic-title">[book:name]</div>
+        <div class="comic-tag">[book:tags]</div>
+      </div>
+      {/mccms:book}
+    </div>
+  </div>
+[mccms_bottom_book]
+</body>
+</html>

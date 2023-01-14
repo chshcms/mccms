@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>[mccms_title]</title>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<meta name="keywords" content="[mccms_keywords]">
+<meta name="description" content="[mccms_description]">
+[mccms_packs_author]
+</head>
+<body class="p-comic-info">
+[mccms_head_author]
+<!-- 内容 -->
+<div class="main-container">
+  [mccms_left_author]
+  <script>$('#left-add').addClass('aside-user--selected');</script>
+  <!-- main-content -->
+  <div class="user-right">
+    <div class="user-right-top">
+      <h3>申请提现</h3>
+      <span style="float: right;margin-top: 18px;margin-right: 20px;font-size: 14px;">您当前可提现金额：<b style="color:#f60;">[author:rmb]</b>元</span>
+    </div>
+    <div class="step-box" style="margin-top:50px;">
+      <div class="input-box layui-form">
+        <div class="layui-form-item">
+          <label class="layui-form-label"><i>*</i>提现金额：</label>
+          <div class="layui-input-block">
+            <input type="text" name="rmb" required lay-verify="required" placeholder="请填写金额" autocomplete="off" class="layui-input">
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label"></label>
+          <div class="layui-input-block">
+            <button lay-submit lay-filter="pay" class="submit layui-btn">提交</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+[mccms_bottom_author]
+<script type="text/javascript">
+$(function(){
+  $('#left-drawing').addClass('aside-user--selected');
+  mccms.form.on('submit(pay)', function(data){
+    $.post(Mcpath.web+'index.php/author/drawing/save', data.field).done(function(res){
+        if (res.code == 1) {
+            mccms.layer.msg(res.msg, {time:1500},function() {
+                window.location.href = '[mccms_url_author_drawing]';
+            });
+        } else {
+            mccms.layer.msg(res.msg);
+        }
+    });
+    return false;
+  });
+})
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>[mccms_title]</title>
+  <meta name="keywords" content="[mccms_keywords]">
+  <meta name="description" content="[mccms_description]">
+  [mccms_packs]
+</head>
+<body>
+  <header class="header">
+    <a href="[mccms_url_user]" class="go-back"><i class="ift-back"></i></a>
+    <span>修改密码</span>
+    <a href="[mccms_url_user_info]" style="position: absolute;right: .48rem;color: #ff7830;font-size: 14px;">修改资料</a>
+  </header>
+  <main class="main register-main under-header">
+    <form id="registerForm" name="register" method="POST">
+      <div class="phone-input info">
+        <div class="input-wrap">
+        	<label>旧密码：</label>
+        	<input class="user-pass" type="password" name="pass" placeholder="请输入原密码"/>
+        </div>
+      </div>
+      <div class="phone-input info">
+        <div class="input-wrap">
+        	<label>新密码：</label>
+        	<input type="password" class="user-pass1" name="pass1" placeholder="请输入新密码"/>
+        </div>
+      </div>
+      <div class="phone-input info">
+        <div class="input-wrap">
+        	<label>确定密码：</label>
+        	<input type="password" class="user-pass2" name="pass2" placeholder="请确定新密码"/>
+        </div>
+      </div>
+      <button class="info-btn">提交</button>
+    </form>
+  </main>
+<script>
+$(function(){
+	user.infopass();
+})
+</script>
+</body>
+</html>

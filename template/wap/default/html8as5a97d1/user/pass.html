@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>[mccms_title]</title>
+  <meta name="keywords" content="[mccms_keywords]">
+  <meta name="description" content="[mccms_description]">
+  [mccms_packs]
+</head>
+<body>
+  <header class="header">
+    <a class="go-back"><i class="ift-back"></i></a>
+    <span>找回密码</span>
+  </header>
+  <main class="main login-main under-header">
+    <form id="findPasswordForm" name="pass2" method="POST">
+      <div class="phone-input">
+        <div class="input-wrap">
+          <input id="regtel" type="text" name="tel" placeholder="请输入手机号" autocomplete="off" style="width: 7.86667rem;">
+          <img title="点击刷新验证码" style="position: absolute; right: 1px; top: 1px; width: 89px; height: 92%; cursor: pointer; display: inline-block;border-left: 1px solid #ccc;" class="code_pic" src="[mccms_url_api_code]">
+        </div>
+      </div>
+      <div class="code-input pic-code">
+        <div class="input-wrap">
+          <input maxlength="4" id="regpcode" type="text" name="pcode" placeholder="输入图形验证码" autocomplete="off">
+        </div>
+        <span class="code-btn pcode-send">获取验证码</span>
+      </div>
+      <div class="code-input tel-code hide">
+        <div class="input-wrap">
+          <input id="regtcode" type="text" name="tcode" placeholder="输入手机验证码" autocomplete="off">
+        </div>
+        <span class="code-btn tcode-send" data-status="false">重新获取</span>
+      </div>
+      <div class="password-input">
+        <div class="input-wrap">
+          <input id="regpass" type="password" name="pass" placeholder="新密码（6-16位字符）" autocomplete="off">
+        </div>
+      </div>
+      <button class="finish-btn">完成</button>
+    </form>
+  </main>
+<script>
+$(function(){
+	user.regpass('pass');
+})
+</script>
+</body>
+</html>

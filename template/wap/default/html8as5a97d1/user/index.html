@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>[mccms_title]</title>
+  <meta name="keywords" content="[mccms_keywords]">
+  <meta name="description" content="[mccms_description]">
+  [mccms_packs]
+</head>
+<body class="p-user-index">
+  <header class="my-header">
+    <div class="avatar">
+      <a href="[mccms_url_user]">
+        <img src="[user:pic]">
+      </a>
+    </div>
+    <p class="user-name">
+      [user:nichen]
+      {if:[user:vip] > 0}<i class="icon icon-type-2"></i>{end if}
+    </p>
+    <p class="is-vip">会员到期时间：{if:[user:vip] > 0}[user:viptime style=Y-m-d]{else}体验已到期{end if}</p>
+  </header>
+  <div class="other-item m-0">
+    <a href="[mccms_url_user_pay]">
+      <i class="i-my-account"></i>
+      <span>我的账户</span>
+      <span class="tip">充值有优惠，惊喜多多</span>
+      <i class="ift-left_come"></i>
+    </a>
+  </div>
+  <main class="main my-main">
+    <div class="user-fund-info">
+      <div class="money">
+        <i class="icon-money"></i>
+        <span class="num">[user:cion]个</span>
+      </div>
+      <div class="line"></div>
+      <div class="ticket">
+        <i class="icon-ticket"></i>
+        <span class="num">[user:ticket]张</span>
+      </div>
+    </div>
+    <div class="my-other-list">
+      <ul>
+        <li class="other-item">
+          <a href="[mccms_url_user_buy_comic]">
+            <i class="i-my-buy"></i>
+            <span>我的购买</span>
+            <i class="ift-left_come"></i>
+          </a>
+          <div class="my-payed clearfix">
+          {mccms:buy table="comic_buy" field="mid,count(id) as count" where="uid=[user_id]" limit="2" group="mid" order="mid desc"}
+          	{mccms:comic table="comic" where="id=[buy:mid]" limit="1"}
+            <div class="payed-itm">
+              <a href="[comic:link]">
+                <img class="cover" src="[comic:pic]" alt="">
+                <p class="name">[comic:name]</p>
+                <p class="read-at">[comic:author]</p>
+                <p class="update-at">更新至[comic:zdy zd=comic_chapter,name,id,mid]</p>
+                <span class="payed-num">已购[buy:count]章</span>
+              </a>
+            </div>
+            {/mccms:comic}
+          {/mccms:buy}
+          </div>
+        </li>
+        <li class="other-item">
+          <a href="[mccms_url_user_info]">
+            <i class="i-my-feed"></i>
+            <span>修改资料</span>
+            <i class="ift-left_come"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <button id="logout" class="logout">退出登录</button>
+ 	</main>
+[mccms_bottom]
+<script>
+$(function(){
+	$('#nav-user').addClass('z-active');
+	//user.regpass('pass');
+})
+</script>
+</body>
+</html>

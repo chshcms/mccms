@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>[mccms_title]</title>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="keywords" content="[mccms_keywords]">
+    <meta name="description" content="[mccms_description]">
+    [mccms_packs_book]
+    <link rel="stylesheet" href="[mccms_tpl]book/css/info.css">
+</head>
+<body class="story-detail story-header--fixed">
+    <div style='display:none;'><img src='[mccms_tpl]images/app_logo.png'/></div>
+    [mccms_head_book]
+    <div class="story-detail__info container--response">
+        <div class="cover">
+            <img class="lazy loaded" src="[mccms_tpl]book/images/load_3x4.png" data-src="[book:pic]" alt="[book:name]">
+        </div>
+        <div class="title">
+            <h1 class="text">[book:name]</h1>
+        </div>
+        <div class="base">
+            <dl class="author">
+                <dt>著</dt>
+                <dd><a href="[mccms_url_book-search]?key=[book:author]">[book:author]</a></dd>
+            </dl>
+            <ul class="tags">
+                <li>[book:serialize]</li>
+                <li>[book:tags]</li>
+            </ul>
+        </div>
+        <dl class="data">
+            <dt>[book:text_num wan=1]</dt>
+            <dd>字</dd>
+            <dt><i class="line"></i>[book:hits wan=1]</dt>
+            <dd>人气</dd>
+            <dt><i class="line"></i>[book:shits wan=1]</dt>
+            <dd>收藏</dd>
+        </dl>
+        <div class="j-info-desc desc" style="max-height: 40px;">
+            <span>[book:content]</span>
+            <div class="j-info-desc-toggle toggle ic_detail_txtzk" style="display: none;"></div>
+        </div>
+        <div class="feature-btns">
+            <a href="[book:readlink]" class="j-info-read btn--read">
+                <i class="ic_detail_rd"></i>
+                <span>开始阅读</span>
+            </a>
+            <div class="j-info-collect btn--collect">收藏</div>
+        </div>
+        <div class="qrcode__main">
+            <div class="top">
+                <div class="wrapper">
+                    <div class="pic"></div>
+                    <div class="status">
+                        <div id="j-info-qrcode" class="qrcode">
+                            <img width="120" height="120" src="[mccms_tpl]book/images/pic_float_ewmimg.png">
+                        </div>
+                    </div>
+                    <div class="text-wrapper">
+                        <div class="text">扫码在手机端阅读</div>
+                    </div>
+                </div>
+                <a class="btn" href="/index.php/share/app" target="_blank">APP随时随地畅读</a>
+            </div>
+            <div class="bottom">
+                <ul>
+                    <li class="j-info-funds" data-type="reward">
+                        打赏<span class="j-story-gift">[book:cion]</span>
+                        <i class="icon-ds ic_detail_ds"></i>
+                    </li>
+                    <li class="j-info-funds" data-type="ticket">
+                        <i class="line"></i>月票<span class="j-story-ticket">[book:ticket]</span>
+                        <i class="icon-yp ic_detail_yp"></i>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="story-detail__container container--response clearfix">
+        <div class="story-detail__container-main">
+            <!-- catalog -->
+            <div class="story-detail__container-catalog">
+                <div class="catalog__header">
+                    <div class="title">目录</div>
+                    <div class="notice">[book:addtime style=Y-m-d] 更新 [book:zdy zd=book_chapter,name,id,bid,xid]</div>
+                    <div class="j-catalog-sort sort">
+                        <i class="mccms-icon icon-ic_detail_mldx"></i>
+                        <span>倒序</span>
+                    </div>
+                </div>
+                <div class="catalog__main">
+                    <div class="list">
+                        <ul class="j-catalog-list list-wrapper clearfix">
+                        {mccms:chapter table="book_chapter" where="bid=[book_id]" limit="all" order="xid asc"}
+                            <li class="item">
+                                <a class="j-catalog-link item-link book-chapter-[chapter:id]" href="[chapter:readlink]">
+                                    <i class="icon-vip mccms-icon icon-ic_detail_ml_vip hide"></i>
+                                    <i class="j-catalog-buyed icon-unlock mccms-icon icon-ic_detail_ml_yff hide"></i>
+                                    <i class="j-catalog-look icon-look mccms-icon icon-ic_readlist_look1 hide"></i>
+                                    [chapter:name]
+                                </a>
+                            </li>
+                        {/mccms:chapter}
+                        </ul>
+                        <div class="more">
+                            <a class="j-catalog-more more__text on unselect hide" data-more="on"><span>点击展开更多章节</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- gift -->
+            <!-- recommend -->
+            <div class="story-detail__container-recommend">
+                <div class="title">为你推荐</div>
+                <div class="list">
+                    <ul class="list-wrapper clearfix">
+                        {mccms:book table="book" where="cid=[book_cid]" limit="7" order="rhits desc"}
+                        <li class="item">
+                            <a class="cover" href="[book:infolink]">
+                                <img class="lazy loaded" src="[mccms_tpl]book/images/load_3x4.png" data-src="[book:pic]" alt="[book:name]">
+                            </a>
+                            <div class="info">
+                                <div class="comic-title">
+                                    <a href="[book:infolink]">[book:name]</a>
+                                </div>
+                                <div class="hot">[book:hits wan=1]人气</div>
+                            </div>
+                        </li>
+                        {/mccms:book}
+                    </ul>
+                </div>
+            </div>
+            <div class="j-module-comment de-comment">
+                <p class="de-comment__title">评论 <span class="count">共 <b class="j-comment-num hl">[book:count zd=comment,id,mid]</b> 条评论</span></p>
+                <div class="comment-box de-comment__item">
+                    <div class="de-comment__item-left">
+                        <div class="de-comment__item--avatar j-user-login">
+                            <img class="j-user-avatar" src="[mccms_basepath]mccms/user.png" alt="">
+                        </div>
+                    </div>
+                    <div class="de-comment__item-right">
+                        <div class="j-user-nick-name de-comment__item--nickname nickname" style="margin-bottom:8px;">主人，登录后才能发表评论呦~</div>
+                        <div class="j-comment-box de-comment__item--comment">
+                            <div class="de-comment__textarea-wrap">
+                                <div class="comment-kuang j-comment-textarea de-comment__item--textarea has-placeholder" contenteditable="true" placeholder="看点槽点，不吐不快！别憋着，马上大声说出来吧～">看点槽点，不吐不快！别憋着，马上大声说出来吧～</div>
+                            </div>
+                            <div class="de-comment__item--btn-group">
+                                <div class="j-comment-emoji de-comment__item--emoji"><i class="icon-comment-emoji"></i><span>表情</span>
+                                <div class="j-comment-face-box de-comment__face-box hide">
+                                    <div class="triangle-up"></div>
+                                    <div class="de-comment__face-con">
+                                        <ul class="j-facelist de-comment__face-list">
+                                            {mccms:face}
+                                            <li class="j-face-item face-item" data-id="[face:label]">
+                                                <img class="j-face-img" src="[face:pic]" alt="">
+                                                <p class="j-face-name">[face:name]</p>
+                                            </li>
+                                            {/mccms:face}
+                                        </ul>
+                                    </div>
+                                </div>
+                                </div>
+                                <div data-id="[book:id]" class="j-comment-submit de-comment__item--submit">
+                                    发布评论
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mccms_comment_list"><span style="text-align: center;display: block;">评论加载中...</span></div>
+            </div>
+        </div>
+        <div class="story-detail__container-aside">
+            <div class="hot">
+                <div class="hot-header">
+                    <div class="title">人气榜</div>
+                    <div class="more">
+                        <a href="[mccms_custom_book-top]">更多&gt;</a>
+                    </div>
+                </div>
+                <div class="list">
+                    <ul class="list-wrapper">
+                    {mccms:book table="book" where="cid=[book_cid]" limit="10" order="hits desc"}
+                        <li class="j-hot-item item{if:[book:i] == 1} active{end if}">
+                            <div class="simple clearfix">
+                                <i class="icon-rank rank[book:i]"></i>
+                                <div class="title">[book:name]</div>
+                                <div class="num"><i class="mccms-icon icon-ic_rqz_red"></i>[book:hits wan=1]</div>
+                            </div>
+                            <div class="rich">
+                                <a href="[book:infolink]" class="cover">
+                                    <img class="lazy loaded" src="[mccms_tpl]book/images/load_3x4.png" data-src="[book:pic]" alt="[book:name]">
+                                </a>
+                                <div class="info">
+                                    <div class="info-wrapper">
+                                        <div class="title">
+                                            <a href="[book:infolink]">[book:name]</a>
+                                            <i class="icon rank[book:i]"></i>
+                                        </div>
+                                        <div class="multi">[book:tags] · [book:author]</div>
+                                        <div class="num"><i class="mccms-icon icon-ic_rqz_red"></i>[book:hits wan=1]</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    {/mccms:book}
+                    </ul>
+                </div>
+            </div>
+            <div class="latest">
+                <div class="title">最近更新</div>
+                <div class="list">
+                    <ul class="list-wrapper">
+                        {mccms:book table="book" limit="10" order="addtime desc"}
+                        <li class="item">
+                            <div class="rich">
+                                <a href="[book:infolink]" class="cover">
+                                    <img class="lazy loaded" src="[mccms_tpl]book/images/load_3x4.png" data-src="[book:pic]" alt="[book:name]">
+                                </a>
+                                <div class="info">
+                                    <div class="info-wrapper">
+                                        <div class="title">
+                                            <a href="[book:infolink]">[book:name]</a>
+                                        </div>
+                                        <div class="multi">更至：<a href="[book:readlink]" class="link">[book:zdy zd=book_chapter,name,id,bid,xid]</a>
+                                        </div>
+                                        <div class="num">
+                                            <i class="mccms-icon icon-ic_rqz_red"></i>[book:hits wan=1]
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        {/mccms:book}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    [mccms_bottom_book]
+    <div class="hide gift-box">
+        <div class="dialog-gift">
+            <div class="dialog-gift__play">
+                <!-- 通用头部 -->
+                <div class="dialog-common__header">
+                    <div class="title">用礼物支持大大</div>
+                    <div class="close j-dialog-close"><i class="mccms-icon icon-ic_detail_tc_close"></i></div>
+                </div>
+                <div class="main">
+                    <!-- 礼物列表 -->
+                    <ul class="list j-dialog-gift-list">
+                    {mccms:gift table="gift" where="" limit="8" order="id asc"}
+                        <li class="item j-dialog-gift-item{if:[gift:i]==1} active{end if}" data-id="[gift:id]" data-cion="[gift:cion]">
+                            <div class="pic-wrapper">
+                                <img class="pic" src="[gift:pic]">
+                                <i class="ic_detail_ybon hide"></i>
+                            </div>
+                            <div class="title">[gift:name]</div>
+                            <div class="price">[gift:cion][mccms_cionname]</div>
+                        </li>
+                    {/mccms:gift}
+                    </ul>
+                </div>
+                <div class="footer j-dialog-gift-footer">
+                    <div class="action-button j-dialog-gift-reward">立即打赏 (＾Ｕ＾)</div>
+                    <div class="funds-info">我的[mccms_cionname]：<span class="j-user-gold ucion">0</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="hide ticket-box">
+        <div class="dialog-ticket">
+            <div class="dialog-ticket__play">
+                <!-- 通用头部 -->
+                <div class="dialog-common__header">
+                    <div class="title">投月票</div>
+                    <div class="close j-dialog-close"><i class="mccms-icon icon-ic_detail_tc_close"></i></div>
+                </div>
+                <div class="main">
+                    <!-- 礼物列表 -->
+                    <ul class="list j-dialog-ticket-list">
+                        <li class="item j-dialog-ticket-item active" data-num="1">
+                            <div class="item-wrapper">
+                                <i class="ic_xs_yp i-ticket"></i>
+                                <div class="title">月票x1</div>
+                                <i class="ic_yp_chooseon i-choose hide"></i>
+                            </div>
+                        </li>
+                        <li class="item j-dialog-ticket-item" data-num="2">
+                            <div class="item-wrapper">
+                                <i class="ic_xs_yp i-ticket"></i>
+                                <div class="title">月票x2</div>
+                                <i class="ic_yp_chooseon i-choose hide"></i>
+                            </div>
+                        </li>
+                        <li class="item j-dialog-ticket-item" data-num="3">
+                            <div class="item-wrapper">
+                                <i class="ic_xs_yp i-ticket"></i>
+                                <div class="title">月票x3</div>
+                                <i class="ic_yp_chooseon i-choose hide"></i>
+                            </div>
+                        </li>
+                        <li class="item j-dialog-ticket-item" data-num="5">
+                            <div class="item-wrapper">
+                                <i class="ic_xs_yp i-ticket"></i>
+                                <div class="title">月票x5</div>
+                                <i class="ic_yp_chooseon i-choose hide"></i>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer j-dialog-ticket-footer">
+                    <div class="action-button j-dialog-ticket-recharge">立即赠送</div>
+                    <div class="funds-info">我的月票：<span class="j-user-ticket">0</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript">
+$(function(){
+    get_info([book:id]);
+})
+</script>
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>[mccms_title]</title>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<meta name="keywords" content="[mccms_keywords]">
+<meta name="description" content="[mccms_description]">
+[mccms_packs_author]
+</head>
+<body class="p-comic-info">
+[mccms_head_author]
+<!-- 内容 -->
+<div class="main-container">
+  [mccms_left_author]
+  <!-- main-content -->
+  <div class="user-right">
+    <div class="user-right-top">
+      <h3>作者认证</h3>
+      <span class="identify-wait{if:[author:cid] != 1} hide{end if}">审核中~请耐心等待</span>
+      <span class="identify-yes{if:[author:cid] < 3} hide{end if}">审核通过</span>
+      <span class="identify-no{if:[author:cid] != 2} hide{end if}">[author:rz_msg]</span>
+    </div>
+    <div class="identity-box">
+      <div class="caption">
+        通过填写更加详细的资料以及出示可以证明您具备原创能力的作品，经过专业漫画编辑的审核后，您可成为[mccms_name]认证作者。认证作者是作者提现和参与[mccms_name]各项活动的基本条件之一，认证作者信息的准确性，可以帮助我们就各种事宜与您取得联系。<br/>有任何问题可以与我们联系 <span>QQ [mccms_qq]</span>。
+      </div>
+      {if:[author:cid] == 1 || [author:cid] > 2}
+      <div class="input-box">
+        <div class="layui-form-item">
+          <label class="layui-form-label"><i>*</i>运营主体：</label>
+          <div class="layui-input-block">
+            <a class="subject-on">{if2:[author:rz_type] == 1}个人{else2}企业{end if2}<i></i></a>
+          </div>
+        </div>
+        <div class="layui-form-item realname">
+          <label class="layui-form-label"><i>*</i>真实姓名：</label>
+          <div class="layui-input-block">
+            [author:realname]
+          </div>
+        </div>
+        <div class="layui-form-item idcard">
+          <label class="layui-form-label"><i>*</i>身份证号：</label>
+          <div class="layui-input-block">
+            [author:idcard]
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label"><i>*</i>联系QQ：</label>
+          <div class="layui-input-block">
+            [author:qq]
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label"><i>*</i>银行名称：</label>
+          <div class="layui-input-block">
+            [author:bank]
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label"><i>*</i>支行名称：</label>
+          <div class="layui-input-block">
+            [author:bankcity]
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label"><i>*</i>银行卡帐号：</label>
+          <div class="layui-input-block">
+            [author:card]
+          </div>
+        </div>
+      </div>
+      {else}
+      <div class="input-box">
+        <div class="layui-form-item">
+          <label class="layui-form-label"><i>*</i>运营主体：</label>
+          <div class="layui-input-block">
+            <a class="person-btn{if2:[author:rz_type] == 1} subject-on{end if2}" data-atype="1">个人<i></i></a>
+            <a class="company-btn{if2:[author:rz_type] == 2} subject-on{end if2}" data-atype="2">企业<i></i></a>
+          </div>
+        </div>
+        <div class="layui-form-item realname">
+          <label class="layui-form-label"><i>*</i>真实姓名：</label>
+          <div class="layui-input-block">
+            <input id="realname" type="text" name="title" required lay-verify="required" placeholder="请输入真实姓名" autocomplete="off" class="layui-input" value="[author:realname]">
+          </div>
+        </div>
+        <div class="layui-form-item idcard">
+          <label class="layui-form-label"><i>*</i>身份证号：</label>
+          <div class="layui-input-block">
+            <input id="idcard" type="text" name="title" required lay-verify="required" placeholder="请输入身份证号" autocomplete="off" class="layui-input" value="[author:idcard]">
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label"><i>*</i>联系QQ：</label>
+          <div class="layui-input-block">
+            <input id="qq" type="text" name="title" required lay-verify="required" placeholder="请输入联系QQ" autocomplete="off" class="layui-input" value="[author:qq]">
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label"><i>*</i>银行名称：</label>
+          <div class="layui-input-block">
+            <select id="bank" name="bank" lay-verify="required" class="bank">
+              {if2:'[author:bank]'==''}
+              <option value="">--请选择银行--</option>
+              {else2}
+              <option value="[author:bank]">[author:bank]</option>
+              {end if2}
+              <option value="中国银行">中国银行</option>
+              <option value="建设银行">建设银行</option>
+              <option value="农业银行">农业银行</option>
+              <option value="工商银行">工商银行</option>
+              <option value="民生银行">民生银行</option>
+              <option value="招商银行">招商银行</option>
+              <option value="华夏银行">华夏银行</option>
+              <option value="交通银行">交通银行</option>
+              <option value="中国邮政储蓄银行">中国邮政储蓄银行</option>
+              <option value="中信银行">中信银行</option>
+              <option value="中国光大银行">中国光大银行</option>
+              <option value="兴业银行">兴业银行</option>
+              <option value="平安银行">平安银行</option>
+              <option value="浦发银行">浦发银行</option>
+            </select>
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label"><i>*</i>支行名称：</label>
+          <div class="layui-input-block">
+            <input id="bankcity" type="text" name="bankcity" required lay-verify="required" placeholder="请输入支行名称，详细到省市" autocomplete="off" class="layui-input" value="[author:bankcity]">
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label"><i>*</i>银行卡帐号：</label>
+          <div class="layui-input-block">
+            <input id="card" type="text" name="card" required lay-verify="required" placeholder="请输入银行卡帐号" autocomplete="off" class="layui-input" value="[author:card]">
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label"></label>
+          <div class="layui-input-block">
+            <a id="submit">确认</a>
+          </div>
+        </div>
+      </div>
+      {end if}
+    </div>
+  </div>
+</div>
+[mccms_bottom_author]
+<script type="text/javascript">
+$(function(){
+  $('#left-renzheng').addClass('aside-user--selected');
+  //运营主体切换
+  $('.person-btn').click(function () {
+    $(this).addClass('subject-on').siblings().removeClass('subject-on');
+    $('.realname .layui-form-label').html('<i>*</i>真实姓名：');
+    $('.realname input').attr('placeholder','请输入真实姓名');
+    $('.idcard .layui-form-label').html('<i>*</i>身份证号：');
+    $('.idcard input').attr('placeholder','请输入身份证号');
+  });
+  $('.company-btn').click(function () {
+    $(this).addClass('subject-on').siblings().removeClass('subject-on');
+    $('.realname .layui-form-label').html('<i>*</i>企业名称：');
+    $('.realname input').attr('placeholder','请输入企业名称');
+    $('.idcard .layui-form-label').html('<i>*</i>营业执照：');
+    $('.idcard input').attr('placeholder','请输入三合一企业证件号码');
+  });
+  $('#submit').click(function () {
+    $('#submit').hide();
+    var data = {};
+    data.type = $('.subject-on').data('atype');
+    data.realname = $('#realname').val();
+    data.idcard = $('#idcard').val();
+    data.qq = $('#qq').val();
+    data.bank = $('#bank').val();
+    data.bankcity = $('#bankcity').val();
+    data.card = $('#card').val();
+    $.post('[mccms_url_author_renzheng_save]', data).done(function (res) {
+      if (res.code == 1) {
+        mccms.layer.msg('认证提交成功，请耐心等待审核', function() {
+            window.location.reload();
+        });
+      }else{
+        $('#submit').show();
+        mccms.msg(res.msg);
+      }
+    });
+  })
+});
+</script>
+</body>
+</html>

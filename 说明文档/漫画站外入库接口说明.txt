@@ -1,0 +1,52 @@
+﻿
+站外入库接口一般是给第三方软件（如：火车头、ET等）提供的入库方案。
+
+使用前请在后台系统配置-安全配置-外站入库密码设置好（初始密码：123456 必须修改）。
+
+
+漫画入库:
+
+入库接口地址
+http://域名/index.php/api/receive/comic
+
+入库字段名
+pass      入库密码
+cid          分类ID，如：1，或者分类名，如：国漫(不存在会自动新增)
+tid          是否推荐，0未1是
+uid          前台作者用户ID，也就是会员ID
+score        总评分，如：9.8
+name         漫画标题
+notice       作者公告
+text         一句话简介
+pic          漫画竖屏缩略图
+picx         漫画横屏缩略图
+serialize    漫画状态，完结或者连载中
+author       漫画作者
+pic_author   图作者
+txt_author   文作者
+content      漫画介绍
+hits         漫画总人气
+yhits        漫画月人气
+zhits        漫画周人气
+rhits        漫画日人气
+type         漫画类型标签，如：悬疑,都市,热血
+yid          漫画入库状态，0已审核，1待审核
+
+以上字段只有：cid 和 name 字段为必填，其他都可留空
+
+漫画章节入库：
+
+入库接口地址
+http://域名/index.php/api/receive/chapter
+
+入库字段名
+pass      入库密码
+name          章节名称
+mid	      漫画ID（所属哪个漫画，后台可以看到漫画的ID，漫画标题和漫画ID二选一，必填一个，ID优先）
+mname	      漫画标题（所属哪个漫画，漫画标题和漫画ID二选一，必填一个，ID优先）
+mauthor	漫画作者（漫画作者，不传则不判断）
+vip           VIP阅读权限，0免费，1需要VIP
+cion          阅读虚拟币数量，如：5
+pic           图片地址，多长用###来分割，如：http://xxx.com/img/1.jpg###http://xxx.com/img/2.jpg
+yid           入库状态，0已审核，1待审核
+xid           章节排序ID，值越小越靠前（当前漫画中，章节排序ID值不可重复）

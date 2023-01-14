@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>[mccms_title]</title>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<meta name="keywords" content="[mccms_keywords]">
+<meta name="description" content="[mccms_description]">
+[mccms_packs_user]
+<link rel="stylesheet" href="[mccms_tpl]css/cropper.min.css">
+</head>
+<body class="page-user">
+[mccms_head_user]
+<!-- 内容 -->
+<div class="main-container">
+  [mccms_left_user]
+<!-- main-content -->
+  <div class="main-content--aside">
+    <!-- title -->
+    <div class="main-content_title">
+      <h3>安全设置</h3>
+    </div>
+    <div class="main-content__safe clearfix">
+      <h4 class="sub-title">帐号绑定</h4>
+      <!--绑定手机状态-->
+        <div class="bind-list first-item">
+          <div class="bind-name">
+            <i class="iconfont {if:'[user:tel]' == ''}icon-ic-safe-off color-orange{else}icon-ic-safe-on color-green{end if}"></i>
+            绑定手机号
+          </div>
+          <div class="bind-status">
+            {if:'[user:tel]' == ''}
+            未绑定手机号
+            {else}
+            您绑定的手机号：[user:tel]，若丢失或停用，请立即更换，避免账户被盗。
+            {end if}
+          </div>
+          {if:'[user:tel]' == ''}
+          <a class="bind-btn layui-btn layui-btn-primary add_tel">绑定手机号</a>
+          {else}
+          <a class="bind-btn layui-btn layui-btn-primary edit_tel">修改</a>
+          {end if}
+        </div>
+        <div class="bind-list">
+          <div class="bind-name">
+            <i class="iconfont {if:[user:is_qq] == 0}icon-ic-safe-off color-orange{else}icon-ic-safe-on color-green{end if}"></i>
+            绑定QQ
+          </div>
+          <div class="bind-status">
+            {if:[user:is_qq] == 0}
+            未绑定QQ
+            {else}
+            已绑定QQ
+            {end if}
+          </div>
+          {if:[user:is_qq] == 0}
+          <a href="[mccms_url_user_open_index_qq]" class="bind-btn layui-btn layui-btn-primary">绑定QQ</a>
+          {else}
+          <a data-type="qq" class="bind-btn layui-btn layui-btn-primary unbind_btn">解除绑定</a>
+          {end if}
+        </div>
+        <div class="bind-list">
+          <div class="bind-name">
+            <i class="iconfont {if:[user:is_weixin] == 0}icon-ic-safe-off color-orange{else}icon-ic-safe-on color-green{end if}"></i>
+            绑定微信
+          </div>
+          <div class="bind-status">
+            {if:[user:is_qq] == 0}
+            未绑定微信
+            {else}
+            已绑定微信
+            {end if}
+          </div>
+          {if:[user:is_weixin] == 0}
+          <a href="[mccms_url_user_open_index_weixin]" class="bind-btn layui-btn layui-btn-primary">绑定微信</a>
+          {else}
+          <a data-type="weixin" class="bind-btn layui-btn layui-btn-primary unbind_btn">解除绑定</a>
+          {end if}
+        </div>
+        <div class="bind-list">
+          <div class="bind-name">
+            <i class="iconfont {if:[user:is_weibo] == 0}icon-ic-safe-off color-orange{else}icon-ic-safe-on color-green{end if}"></i>
+            绑定微博
+          </div>
+          <div class="bind-status">
+            {if:[user:is_weibo] == 0}
+            未绑定微博
+            {else}
+            已绑定微博
+            {end if}
+          </div>
+          {if:[user:is_weibo] == 0}
+          <a href="[mccms_url_user_open_index_weibo]" class="bind-btn layui-btn layui-btn-primary">绑定微博</a>
+          {else}
+          <a data-type="weibo" class="bind-btn layui-btn layui-btn-primary unbind_btn">解除绑定</a>
+          {end if}
+        </div>
+      </div>
+  </div>
+  <!-- 引入修改用户信息弹框 -->
+<!-- 修改用户信息-用户名/密码 -->
+<div id="dialog-setting-userinfo" class="hide" data-edit="{if:[user:is_name]==1 || [user:is_pass]==1}1{else}0{end if}">
+  <div class="dialog-setting-userinfo">
+    <!-- 提示 -->
+    <div class="layui-form-item">
+      <div class="tip-info">
+        <i class="iconfont icon-ic-safe-off"></i>亲爱的用户，您的账号仅绑定此第三方账号。为了防止账户丢失，请先设置{if:[user:is_name]==1}新的用户名{end if}、{if:[user:is_pass]==1}密码{end if}
+      </div>
+    </div>
+    <div class="layui-form">
+      {if:[user:is_name]==1}
+      <div class="layui-form-item">
+        <label class="layui-form-label layui_label--hor-nopadding">新的用户名：</label>
+        <div class="layui-input-block">
+          <input type="text" name="name" class="layui-input" autocomplete="off"/>
+        </div>
+      </div>
+      {end if}
+      {if:[user:is_pass]==1}
+      <div class="layui-form-item">
+        <label class="layui-form-label layui_label--hor-nopadding">设置新密码：</label>
+        <div class="layui-input-block">
+          <input type="password" name="pass" class="layui-input" autocomplete="off"/>
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label layui_label--hor-nopadding">确认密码：</label>
+        <div class="layui-input-block">
+          <input type="password" name="pass2" class="layui-input" autocomplete="off"/>
+        </div>
+      </div>
+      {end if}
+    </div>
+  </div>
+</div>
+<!-- 绑定手机号码 -->
+<div id="dialog-setting-tel" class="hide">
+  <div class="dialog-setting-userinfo">
+    <div class="layui-form">
+      <div class="layui-form-item">
+        <label class="layui-form-label layui_label--hor-nopadding">手机号码：</label>
+        <div class="layui-input-block" style="position: relative;">
+          <input class="layui-input" id="tel" type="text" name="tel" placeholder="输入常用手机号码" maxlength="11" autocomplete="off">
+          <img title="点击刷新验证码" style="position: absolute; right: 1px; top: 1px; width: 99px; height: 92%; cursor: pointer; display: inline-block;" class="code_pic hide" src="[mccms_url_api_code]">
+        </div>
+      </div>
+      <div class="layui-form-item pic-code">
+        <label class="layui-form-label layui_label--hor-nopadding">图形验证码：</label>
+        <div class="layui-input-block" style="position: relative;">
+          <input maxlength="4" id="pcode" type="text" name="pcode" class="layui-input" placeholder="输入图形验证码" autocomplete="off"/>
+          <div id="pcode-send" style="position: absolute;right: 0;top: 0;width: 99px;height: 38px;line-height: 38px;cursor: pointer;background: #f60;color: #fff;text-align: center;">短信验证</div>
+        </div>
+      </div>
+      <div class="layui-form-item tel-code hide">
+        <label class="layui-form-label layui_label--hor-nopadding">手机验证码：</label>
+        <div class="layui-input-block" style="position: relative;">
+          <input maxlength="6" id="tcode" type="text" name="tcode" class="layui-input" placeholder="输入手机验证码" autocomplete="off"/>
+          <div id="tcode-send" style="position: absolute;right: 0;top: 0;width: 99px;height: 38px;line-height: 38px;cursor: pointer;background: #f30;color: #fff;text-align: center;" data-status="false">再次获取</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+[mccms_bottom_user]
+<script>
+$(function(){
+  $('#left-bind').addClass('aside-user--selected');
+  infobind();
+});
+</script>
+</body>
+</html>

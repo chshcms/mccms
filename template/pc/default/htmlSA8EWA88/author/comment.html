@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>[mccms_title]</title>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<meta name="keywords" content="[mccms_keywords]">
+<meta name="description" content="[mccms_description]">
+[mccms_packs_author]
+</head>
+<body class="p-comic-info">
+[mccms_head_author]
+<!-- 内容 -->
+<div class="main-container">
+  [mccms_left_author]
+  <script>$('#left-comment').addClass('aside-user--selected');</script>
+  <!-- main-content -->
+  <div class="user-right">
+    <div class="user-right-top">
+      <h3>读者评论</h3>
+    </div>
+    <div class="comment-box">
+      <div class="screen">
+        <div class="comment-num">
+          共<span>[mccms_pagenum]</span>条评论
+        </div>
+        <div class="screen-r">
+          <span>漫画名称：</span>
+          <input class="layui-input name-input" name="name" placeholder="请输入漫画名称" value="[name]">        
+          <span>时间：</span>
+          <input class="layui-input time-input" name="time" placeholder="选择时间范围" value="[time]">
+          <a href="javascript:;" class="screen-btn" id="search_btn">搜索</a>
+        </div>
+      </div>
+      <div class="comment-list">
+        <table class="layui-table" lay-even="" lay-skin="row">
+          <colgroup>
+            <col width="100">
+            <col>
+            <col>
+            <col width="80">
+            <col width="100">
+            <col width="100">
+          </colgroup>
+          <thead>
+            <tr>
+              <th style="text-align: center;">用户</th>
+              <th>评论内容</th>
+              <th style="text-align: center;">漫画</th>
+              <th style="text-align: center;">回复数</th>
+              <th style="text-align: center;">评论时间</th>
+              <th style="text-align: center;">操作</th>
+            </tr> 
+          </thead>
+          <tbody>
+          {mccms:comment table="comment" page="15"}
+            <tr id="comment-[comment:id]">
+              <td align="center">[comment:zdy zd=user,nichen,uid]</td>
+              <td>[comment:text face=1]</td>
+              <td align="center"><a href="[comment:link]" target="_blank">[comment:zdy zd=comic,name,mid]</a></td>
+              <td align="center"><span title="查看回复" style="padding: 0px 10px;" data-id="[comment:id]" class="layui-btn layui-btn-xs layui-btn-normal reply-look" id="replynum-[comment:id]">[comment:reply_num]</span></td>
+              <td align="center"{if:'[mccms_date]'=='[comment:addtime style=Y-m-d]'} style="color:red;"{end if}>[comment:addtime style=Y-m-d]</td>
+              <td align="center">
+                <button data-mid="[comment:mid]" data-id="[comment:id]" type="button" class="layui-btn layui-btn-xs reply-btn">回复</button>
+                <button data-type="comment" data-id="[comment:id]" type="button" class="layui-btn layui-btn-xs layui-btn-danger del-btn">删除</button>
+              </td>
+            </tr>
+          {/mccms:comment}
+          {if:[mccms_pagenum] == 0}
+            <tr><td align="center" colspan="6">没有记录!!</td></tr>
+          {end if}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- pagination -->
+    <div class="pagination--center{if:[mccms_pagejs] < 2} hide{end if}" id="collection-pagination">
+      <div class="layui-box layui-laypage layui-laypage-mkz">
+        <a href="[mccms_pageup]" class="layui-laypage-prev">&lt;</a>
+        [mccms_pagenum_10]
+        <a href="[mccms_pagedown]" class="layui-laypage-next">&gt;</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!--回复弹窗-->
+<div class="reply-dialog hide">
+  <textarea name="content" required lay-verify="required" placeholder="请输入4-200个字符的内容" class="layui-textarea"></textarea>
+  <div class="reply-btn-box">
+    <a class="submit">评论</a>
+  </div>
+</div>
+<!--回复详细-->
+<script class="reply-tpl" type="text/html">
+  <table class="layui-table comment-list" lay-even="" lay-skin="row">
+    <thead>
+      <tr>
+        <th style="text-align: center;">用户</th>
+        <th>回复内容</th>
+        <th style="text-align: center;">回复时间</th>
+        <th style="text-align: center;">操作</th>
+      </tr>
+    </thead>
+  {{#layui.each(d, function(index, item) { }}
+    <tr id="reply-{{item.id}}">
+      <td align="center">{{ item.unichen }}</td>
+      <td>{{ item.text }}</td>
+      <td align="center">{{ item.addtime }}</td>
+      <td align="center">
+        <button data-type="reply" data-id="{{item.id}}" data-cid="{{item.cid}}" type="button" class="layui-btn layui-btn-xs layui-btn-danger del-btn">删除</button>
+      </td>
+    </tr>
+  {{# }) }}
+  </table>
+</script>
+[mccms_bottom_author]
+<script type="text/javascript">
+$(function(){
+  mccms.laydate.render({
+    elem: '.time-input',
+    type: 'date',
+    range: true,
+    trigger: 'click'
+  });
+  $('#search_btn').click(function(){
+    var name = $('.name-input').val();
+    var time = $('.time-input').val();
+    if(name == '' && time ==''){
+      mccms.layer.msg('请输入搜索条件');
+    }else{
+      location.href = '[mccms_url_author_comment]?name='+name+'&time='+time;
+    }
+  });
+  //删除
+  $(document).on('click', '.del-btn', function () {
+    var type = $(this).data('type');
+    var cid = $(this).data('cid');
+    var id = $(this).data('id');
+    mccms.layer.open({
+      content: '主人，确定要删除么？(┬＿┬)',
+      yes: function(index, layero){
+        $.post(Mcpath.web+'index.php/author/comment/del', {id:id,type:type}).done(function (res) {
+          if (res.code == 1) {
+            $('#'+type+'-'+id).remove();
+            if(type == 'reply') $('#replynum-'+cid).html(parseInt($('#replynum-'+cid).html())-1);
+          }
+          mccms.layer.msg(res.msg);
+        });
+        mccms.layer.close(index);
+      }
+    });
+  });
+  //评论详细
+  $('.reply-look').click(function(){
+    var id = $(this).data('id');
+    $.post(Mcpath.web+'index.php/author/comment/reply', {id: id}, function (data) {
+      if (data.code == 1) {
+        mccms.laytpl($('.reply-tpl').html()).render(data.data, function(str) {
+          mccms.layer.open({
+            "title": '回复详情',
+            type: 1,
+            area: '60%',
+            shadeClose: 2,
+            content: str
+          });
+        });
+      }else{
+        mccms.layer.msg(data.msg);
+      }
+    });
+  });
+  //评论回复功能
+  $(document).on('click', '.reply-btn', function () {
+    $('.reply-dialog').data('id', $(this).data('id'));
+    $('.reply-dialog').data('mid', $(this).data('mid'));
+    mccms.layer.open({
+      "title": false,
+      type: 1,
+      area: ['760px', '200px'],
+      shadeClose: 2,
+      content: $('.reply-dialog'),
+      end: function () {
+        var _index = layer.index;
+        $('.layui-textarea').val("");
+        $('.reply-dialog').hide();
+        mccms.layer.close(_index);
+      }
+    });
+  });
+  //点击回复
+  $('.submit').on('click', function () {
+    var val = $('.layui-textarea').val();
+    if (val) {
+      if (val.length > 3 && val.length < 201) {
+        var mid = $('.reply-dialog').data('mid');
+        var id = $('.reply-dialog').data('id');
+        $.post(Mcpath.web+'index.php/author/comment/reply_save', {"mid": mid,"cid": id,"text": val}, function (data) {
+          if (data.code == 1) {
+            $('.reply-dialog').hide();
+            mccms.layer.closeAll();
+            $('.layui-textarea').val("");
+            $('#replynum-'+id).html(parseInt($('#replynum-'+id).html())+1);
+          }
+          mccms.layer.msg(data.msg);
+        });
+      } else {
+        mccms.layer.msg("回复的内容字符应该在4到200之间");
+      }
+    } else {
+      mccms.layer.msg("回复的内容不能为空");
+    }
+  });
+});
+</script>
+</body>
+</html>

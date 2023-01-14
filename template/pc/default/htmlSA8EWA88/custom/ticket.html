@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>月票榜 - [mccms_title]</title>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<meta name="keywords" content="[mccms_keywords]">
+<meta name="description" content="[mccms_description]">
+[mccms_packs]
+</head>
+<body class="p-top">
+<div style='display:none;'><img src='[mccms_tpl]images/app_logo.png' /></div>
+[mccms_head]
+<script>$('#nav_hot').addClass('active');</script>
+<div class="top-head-wr">
+    <div class="top-head__bg"></div>
+</div>
+<div class="top-nav">
+    <ul class="clearfix">
+        <li class="top-nav__item"><a href="[mccms_custom_top]"><i class="iconfont icon-ic_ranking_qb"></i> 全部榜单</a></li>
+        <li class="top-nav__item"><a href="[mccms_custom_hot]">年度榜</a></li>
+        <li class="top-nav__item"><a href="[mccms_custom_month]">本月榜</a></li>
+        <li class="top-nav__item"><a href="[mccms_custom_week]">本周榜</a></li>
+        <li class="top-nav__item"><a href="[mccms_custom_day]">今日榜</a></li>
+        <li class="top-nav__item"><a href="[mccms_custom_ascension]">上升榜</a></li>
+        <li class="top-nav__item"><a href="[mccms_custom_score]">评分榜</a></li>
+        <li class="top-nav__item"><a href="[mccms_custom_fav]">收藏榜</a></li>
+        <li class="top-nav__item"><a href="[mccms_custom_reward]">打赏榜</a></li>
+        <li class="top-nav__item active"><a href="[mccms_custom_ticket]">月票榜</a></li>
+        <li class="top-nav__item"><a href="[mccms_custom_pay]">收费榜</a></li>
+    </ul>
+</div>
+<div class="top-list__wr clearfix">
+    <div class="top-list__title">
+      <span>月票榜</span>
+    </div>
+    <div class="top-list__box clearfix">
+        {mccms:comic table="comic" field="*" where="" limit="99" order="ticket desc"}
+        <div class="top-list__box-item">
+            <span class="tag tag--[comic:i]">[comic:i]</span>
+            <a class="cover" href="[comic:link]">
+                <img class="lazy" data-original="[comic:pic]" src="[mccms_tpl]images/bg_loadimg_3x4.png" alt="[comic:name]">
+            </a>
+            <p class="comic__title"><a href="[comic:link]">[comic:name]</a></p>
+            <p class="comic-author">作者：<a href="[comic:authorlink]">[comic:author]</a></p>
+            <p class="comic-feature">{if:'[comic:text]'==''}[comic:content len=12]{else}[comic:text]{end if}</p>
+            <p class="comic-update">更至：<a class="hl" href="[comic:piclink]"><span class="hl">[comic:zdy zd=comic_chapter,name,id,mid]</span></a></p>
+            <p class="comic-count">总月票: [comic:ticket wan=1]</p>
+        </div>
+        {/mccms:comic}
+    </div>
+</div>
+[mccms_bottom]
+</body>
+</html>

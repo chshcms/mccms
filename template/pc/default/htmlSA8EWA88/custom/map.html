@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>网站地图 - [mccms_title]</title>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<meta name="keywords" content="[mccms_keywords]">
+<meta name="description" content="[mccms_description]">
+[mccms_packs]
+</head>
+<body class="p-top">
+<div style='display:none;'><img src='[mccms_tpl]images/app_logo.png' /></div>
+[mccms_head]
+<div class="map-container clearfix">
+    <div class="help-nav-wr">
+      <ul class="help-center-nav clearfix">
+        <li class="help-nav__item"><a href="[mccms_custom_about]">关于我们</a></li>
+        <li class="help-nav__item"><a href="[mccms_custom_contact]">联系我们</a></li>
+        <li class="help-nav__item active"><a href="[mccms_custom_map]">网站地图</a></li>
+        <li class="help-nav__item"><a href="[mccms_custom_notice]">法律声明</a></li>
+        <li class="help-nav__item"><a href="[mccms_custom_comic]">作品要求</a></li>
+        <li class="help-nav__item"><a href="[mccms_custom_signing]">漫画签约</a></li>
+        <li class="help-nav__item"><a href="[mccms_custom_verify]">审核机制</a></li>
+        <li class="help-nav__item"><a href="[mccms_custom_fuli]">福利体系</a></li>
+      </ul>
+    </div>
+<div class="map-content">
+      <div class="map__link-box">
+        <p class="map__link-head">功能模块</p>
+        <ul class="clearfix">
+          <li class="link-item"><a href="[mccms_path]">首页</a></li>
+          <li class="link-item"><a href="[mccms_custom_update]">更新</a></li>
+          <li class="link-item"><a href="[mccms_custom_top]">排行</a></li>
+          <li class="link-item"><a href="[mccms_url_category]">分类</a></li>
+        </ul>
+      </div>
+      <div class="map__link-box">
+        <p class="map__link-head">题材</p>
+        <ul class="clearfix">
+        {mccms:type table="type" where="zd='tags' and fid>0" limit="100" order="xid asc"}
+          <li class="link-item"><a href="[mccms_url_category_tags_[type:id]]">[type:name]</a></li>
+        {/mccms:type}
+        </ul>
+      </div>
+      <div class="map__link-box">
+        <p class="map__link-head">VIP漫画</p>
+        <ul class="clearfix">
+        {mccms:comic table="comic" where="pay=2" limit="10" order="rhits desc"}
+          <li class="link-item"><a href="[comic:link]">[comic:name]</a></li>
+        {/mccms:comic}
+        </ul>
+      </div>
+
+      <div class="map__link-box">
+        <p class="map__link-head">付费漫画</p>
+        <ul class="clearfix">
+        {mccms:comic table="comic" where="pay=1" limit="10" order="rhits desc"}
+          <li class="link-item"><a href="[comic:link]">[comic:name]</a></li>
+        {/mccms:comic}
+        </ul>
+      </div>
+
+      <div class="map__link-box">
+        <p class="map__link-head">完结大作</p>
+        <ul class="clearfix">
+        {mccms:comic table="comic" where="serialize='完结'" limit="10" order="rhits desc"}
+          <li class="link-item"><a href="[comic:link]">[comic:name]</a></li>
+        {/mccms:comic}
+        </ul>
+      </div>
+
+      <div class="map__link-box">
+        <p class="map__link-head">我是读者</p>
+        <ul class="clearfix">
+          <li class="link-item"><a href="[mccms_url_user]">读者中心</a></li>
+          <li class="link-item"><a href="[mccms_url_user_fav]">我的收藏</a></li>
+          <li class="link-item"><a href="[mccms_url_user_read]">阅读历史</a></li>
+          <li class="link-item"><a href="[mccms_url_user_buy_comic]">我的购买</a></li>
+          <li class="link-item"><a href="[mccms_url_user_comment]">我的评论</a></li>
+          <li class="link-item"><a href="[mccms_url_user_buy]">消费记录</a></li>
+        </ul>
+      </div>
+
+      <div class="map__link-box">
+        <p class="map__link-head">我是作者</p>
+        <ul class="clearfix">
+          <li class="link-item"><a href="[mccms_url_author]">作者中心</a></li>
+          <li class="link-item"><a href="[mccms_url_author_comic]">我的作品</a></li>
+          <li class="link-item"><a href="[mccms_url_author_comic_add]">新增漫画</a></li>
+          <li class="link-item"><a href="[mccms_url_author_renzheng]">作者认证</a></li>
+          <li class="link-item"><a href="[mccms_url_author_drawing]">结算中心</a></li>
+          <li class="link-item"><a href="[mccms_url_author_comment]">读者评论</a></li>
+        </ul>
+      </div>
+    </div>
+</div>
+[mccms_bottom]
+</body>
+</html>

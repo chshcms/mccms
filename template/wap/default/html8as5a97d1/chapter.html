@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>[mccms_title]</title>
+  <meta name="keywords" content="[mccms_keywords]">
+  <meta name="description" content="[mccms_description]">
+  [mccms_packs]
+</head>
+<body class="p-read">
+  <div class="top-tool-bar">
+    <a class="back-btn" href="[chapter:link]"><i class="ift-back"></i></a>
+    <h1 class="comic-name">[chapter:name]</h1>
+    <a class="home" href="[mccms_path]"><i class="ift-read_home"></i></a>
+  </div>
+  <main id="mainView" class="read-container">
+    <ul class="comic-list" data-type="1" style="min-height:500px;">
+    {if:[chapter:vip] == 0 && [chapter:cion] == 0}
+    {mccms:pic table="comic_pic" where="cid=[chapter_id]" limit="all" order="xid asc"}
+      <li id="pic_[pic:id]" class="comic-page" data-pid="[pic:id]" data-index="[pic:i]">
+        <img src="[pic:img]" alt="[pic:i].jpg">
+      </li>
+    {/mccms:pic}
+    {end if}
+    </ul>
+    <p class="read-pos">[chapter:name]<span class="comic-i">1</span>/<span class="comic-a">[chapter:count zd=comic_pic,id,cid]</span></p>
+  </main>
+  <div class="read-end hide">
+    <p class="back"><a class="back" href="[chapter:link]">返回</a></p>
+    <p class="txt">该漫画已完结└(^o^)┘</p>
+    <p class="txt2">为作者大大点个赞～</p>
+    <div class="read-end-ctrl">
+      <ul class="clearfix">
+        <li class="ctrl-item">
+          <p class="btn collect"><i class="ift-detail_coll_off"></i></p>
+          <p>收藏</p>
+        </li>
+        <li class="ctrl-item J_ticket">
+          <p class="btn ticket"><i class="ift-detail_monthticke"></i></p>
+          <p>月票</p>
+        </li>
+        <li class="ctrl-item J_gift">
+          <p class="btn gift-btn reward"><i class="ift-detail_reward"></i></p>
+          <p>打赏</p>
+        </li>
+        <li class="ctrl-item">
+          <p class="btn home"><a href="[mccms_path]"><i class="ift-detail_gohome"></i></a></p>
+          <p>首页</p>
+        </li>
+      </ul>
+    </div>
+    <!-- 分割线 -->
+    <div class="gap"></div>
+    <!-- 相关推荐 -->
+    <div class="comic-recommend">
+      <p class="title">相关推荐</p>
+      <ul class="clearfix">
+        {mccms:comic table="comic" limit="3" order="rhits desc"}
+        <li class="rec-item"><div class="cover"><a href="[comic:link]"><img src="[comic:pic]"></a></div><p class="comic-name">[comic:name]</p></li>
+        {/mccms:comic}
+      </ul>
+    </div>
+  </div>
+  <!-- 章节结束 -->
+  <div class="chapter-end hide">
+    <p class="end-txt"><span>您已阅读完：</span>[chapter:name]</p>
+    <div class="end-btns">
+      <ul class="clearfix">
+        <li class="end-itm prev prev-btn"><i class="i-rd-prev"></i>上一章</li>
+        <li class="end-itm"><a href="[chapter:link]"><i class="i-rd-mid"></i>返回详情</a></li>
+        <li class="end-itm next next-btn"><i class="i-rd-next"></i>下一章</li>
+      </ul>
+    </div>
+  </div>
+  <div class="bottom-tool-bar">
+    <ul class="clearfix">
+      <li class="collect" id="collect">
+        <i class="ift-detail_coll_off"></i>
+        <span class="txt">收藏</span>
+      </li>
+      <li class="switch">
+        <i class="ift-read_tab_flip"></i>
+        <span>翻页</span>
+      </li>
+      <li class="share">
+        <i class="ift-detail_share"></i>
+        <span>分享</span>
+      </li>
+      <li class="prev-chapter prev-btn" _href="[chapter_slink]">
+        <i class="ift-read_magic_l"></i>
+        <span>上话</span>
+      </li>
+      <li class="next-chapter next-btn" _href="[chapter_xlink]">
+        <i class="ift-read_magic_r"></i>
+        <span>下话</span>
+      </li>
+    </ul>
+  </div>
+  <!-- 操作遮罩 -->
+  <div class="read-ctrl hide">
+    <div class="up-line"></div>
+    <div class="ctrl-notice">
+      <i class="icon-read-toast"></i>
+    </div>
+    <div class="down-line"></div>
+    <i class="icon-prev"></i>
+    <i class="icon-next"></i>
+  </div>
+  <!-- 礼物打赏 -->
+  <div style="display: none" class="gift-box">
+    <div class="m-gift-box">
+      <h2 class="title">
+        <span>送礼物支持大大</span>
+        <a class="order-g order-g--link" href="[mccms_url_user_pay_index_cion]">充值[mccms_cionname]</a>
+      </h2>
+      <div class="gift-lst">
+        <ul class="clearfix">
+          {mccms:gift table="gift" where="" limit="8" order="id asc"}
+          <li class="gift-itm" data-id="[gift:id]" data-cion="[gift:cion]">
+            <span class="itm-pic"><img src="[gift:pic]"></span>
+            <p class="itm-title">[gift:name]</p>
+            <p class="itm-pay">[gift:cion][mccms_cionname]</p>
+          </li>
+          {/mccms:gift}
+        </ul>
+      </div>
+      <div class="gift-confirm">
+        <span class="confirm-l"><i class="ift-readercenteryb"></i> 我的[mccms_cionname]：<span class="txt cion-num">0</span></span>
+        <span class="btn">赠送</span>
+      </div>
+    </div>
+  </div>
+  <!-- 打赏月票 隐藏 -->
+  <div style="display: none" class="ticket-box">
+    <div class="reward-box">
+      <div class="reward-list">
+        <ul class="clearfix">
+          <li class="reward-item select" data-num="1"><i class="ift-monthticket"></i><span>投1票</span></li>
+          <li class="reward-item" data-num="2"><i class="ift-monthticket"></i><span>投2票</span></li>
+          <li class="reward-item" data-num="5"><i class="ift-monthticket"></i><span>投5票</span></li>
+        </ul>
+      </div>
+      <p class="has">我的月票：<span class="num ticket-num">0</span>张<a class="buy-ticket" href="[mccms_url_user_pay_index_ticket]">购买</a></p>
+    </div>
+  </div>
+  <!-- 百度分享 隐藏 -->
+  <div style="display: none" class="bdshare">
+    <p class="title">分享给朋友</p>
+    <ul class="clearfix bdsharebuttonbox">
+      <li class="ctrl-item"><a class="btn qq share-btn" data-cmd="qq"></a><p>QQ</p></li>
+      <li class="ctrl-item"><a class="btn qqkj share-btn" data-cmd="qzone"></a><p>qq空间</p></li>
+      <li class="ctrl-item"><a class="btn xl share-btn" data-cmd="tsina"></a><p>微博</p></li>
+    </ul>
+  </div>
+  <div style="display: none" class="buy-box">
+    <div class="pay-chapter-box">
+      <p class="chapter-name">购买：[chapter:name]</p>
+      <p class="price">价格：<span><b class="num">[chapter:cion]</b>[mccms_cionname]</span></p>
+      <p class="u-has">账户余额：<b class="cion-num">0</b></p>
+      <span class="buy-btn">立即购买</span>
+      <span class="buy-btn--charge hide"><a href="[mccms_url_user_pay_index_cion]">余额不足，点击充值</a></span>
+      <div class="auto-buy">
+        <label><input class="auto-check" name="autoPuy" type="checkbox">自动购买下一章</label>
+      </div>
+    </div>
+  </div>
+  <div style="display: none" class="vip-box">
+    <div class="pay-chapter-box">
+      <p class="chapter-name">章节：[chapter:name]</p>
+      <p class="u-has" style="padding:10px 0;color:#f60;">Vip专属，您的级别不够</p>
+      <span class="buy-btn--charge"><a href="[mccms_url_user_pay_index_vip]">立即购买VIP</a></span>
+    </div>
+  </div>
+<script>
+var shareArr = [
+    '本宝宝不看别的就看《[chapter:zdy zd=comic,name,mid]》，来[mccms_name]一起围观哦！',
+    '什么？《[chapter:zdy zd=comic,name,mid]》竟是这样的展开？！',
+    '《[chapter:zdy zd=comic,name,mid]》正在[mccms_name]上超神，快来围观啊！',
+    '给《[chapter:zdy zd=comic,name,mid]》打CALL就来[mccms_name]，嗨到飞起啦！'
+  ],shareIndex = Math.floor(Math.random() * 4),shareTxt = shareArr[shareIndex],sharePic = '[chapter:zdy zd=comic,pic,mid]';
+$(function(){
+  setTimeout(function() {
+    comic.read([chapter:mid],[chapter:id],[chapter:vip],[chapter:cion]);
+  },500);
+})
+</script>
+</body>
+</html>

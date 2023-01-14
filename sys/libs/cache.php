@@ -1,0 +1,14 @@
+<?php
+define('Cache_Mode',0);
+define('Cache_Rand','ygmjqw7jpia4aughbhj');
+define('Cache_Mem_Ip','127.0.0.1');
+define('Cache_Mem_Port',11211);
+define('Cache_Mem_Pass','');
+define('Cache_Redis_Ip','127.0.0.1');
+define('Cache_Redis_Port',6379);
+define('Cache_Redis_Pass','');
+define('Cache_Time_Index',1800);
+define('Cache_Time_List',3600);
+define('Cache_Time_Show',3600);
+define('Cache_Time_Pic',3600);
+define('Cache_Time',7200);

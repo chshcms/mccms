@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>[mccms_title]</title>
+  <meta name="keywords" content="[mccms_keywords]">
+  <meta name="description" content="[mccms_description]">
+  [mccms_packs]
+</head>
+<body class="p-user-history">
+  <header class="header">
+    <div class="shelf-nav history-nav">
+      <ul class="clearfix">
+        <li class="nav-item active">历史</li>
+        <li class="nav-item">
+          <a href="[mccms_url_user_fav]">收藏</a>
+        </li>
+      </ul>
+      <span class="underline"></span>
+    </div>
+    <div class="clean-up" data-id="1">
+      <i class="ift-list_arrange"></i>
+      <span class="history-settle">整理</span>
+    </div>
+  </header>
+  <main class="main bookshelf-container under-header">
+    {if:[mccms_pagenum] == 0}
+    <!-- 无阅读历史 -->
+    <div class="no-history">
+      <div class="no-history-bg"></div>
+      <p class="txt">主人还没阅读任何漫画咯~</p>
+      <p class="txt2">赶快去追一部漫画吧～</p>
+    </div>
+    <!-- 相关推荐 -->
+    <div class="recommend">
+      <h2 class="title">相关推荐</h2>
+      <div class="recommend-list">
+        <ul class="clearfix">
+          {mccms:comic table="comic" limit="3" order="rhits desc"}
+          <li class="comic-item">
+            <a href="[comic:link]"><img class="cover" src="[comic:pic]" alt="[comic:name]"></a>
+            <div class="comic-info-box">
+              <p class="comic-name">[comic:name]</p>
+            </div>
+          </li>
+          {/mccms:comic}
+          </ul>
+      </div>
+    </div>
+    {end if}
+    <!-- 阅读历史列表 -->
+    <div class="read-history-list">
+    {mccms:read table="read" page="20" order="id desc"}
+      <div class="comic-list-item clearfix" data-id='[read:id]'>
+        <div class="delete-hide-block"><p class="delete-select-btn"></p></div>
+        <a class="cover" href="[read:link]"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" style="opacity: 1; background: url([read:zdy zd=comic,pic,mid]) center center / cover no-repeat;"></a>
+        <div class="comic-item-info">
+          <p class="comic-name"><a href="[read:link]">[read:zdy zd=comic,name,mid]</a></p>
+          <p class="comic-author">[read:zdy zd=comic,author,mid]</p>
+          <p class="comic-read-at">阅读至：[read:zdy zd=comic_chapter,name,cid,id]</p>
+          <p class="comic-update-at"><a href="[mccms_url_chapter_index_[read:mid]_[read:zdy zd=comic_chapter,id,mid,mid]]">更新至：[read:zdy zd=comic_chapter,name,mid,mid]</a></p>
+        </div>
+        <a href="[mccms_url_chapter_index_[read:mid]_[read:cid]]" class="fast-read-btn"><i class="ift-searchlist_continue"></i><span>续看</span> </a>
+      </div>
+    {/mccms:read}
+    </div>
+    {if:[mccms_pagejs] > 1}
+    <div class="getmore" onclick="location.href='[mccms_pagedown]';">点击加载下一页</div>
+    {end if}
+  </main>
+  <!-- confirm layout -->
+  <div class="clean-confirm hide">
+    <span class="select-all"><i class="ift-book_choose_off_n"></i> 全选</span>
+    <span class="delete"><i class="ift-book_delete"></i> 删除</span>
+  </div>
+[mccms_bottom]
+<script>
+$(function(){
+  $('#nav-read').addClass('z-active');
+  user.read();
+});
+</script>
+</body>
+</html>

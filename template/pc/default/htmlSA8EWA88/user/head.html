@@ -1,0 +1,83 @@
+<div class="header-user-wrapper">
+  <div class="main-container clearfix">
+    <!-- logo -->
+    <a href="[mccms_url_user]" class="header-logo">
+      <img src="[mccms_tpl]images/user/pic_dzzx_logo.png" />
+    </a>
+    <!-- menu -->
+    <ul class="nav-menu">
+      <li><a rel="nofollow" href="[mccms_path]">漫画首页</a></li>
+      <li><a rel="nofollow" href="[mccms_url_book]">小说首页</a></li>
+      <li><a rel="nofollow" href="[mccms_url_user_info]">账户设置</a></li>
+      <li><a rel="nofollow" href="[mccms_url_user_message]">消息</a><i></i></li>
+    </ul>
+    <!-- search -->
+    <div class="j-header-searchbox search-box">
+      <input class="j-header-search-input" type="text" name="user-search-icon" value="" placeholder="请输入作品名／作者" autocomplete="off" />
+      <div class="j-header-search-btn search-btn">
+        <i class="icon-search-white"></i>
+      </div>
+    </div>
+    <div class="fr">
+      {if:'[mccms_author]' == '0'}
+      <!-- switch -->
+      <ul class="switch-tab reader">
+        <a rel="nofollow" href="[mccms_url_author]">去作者中心</a>
+      </ul>
+      {end if}
+      <!-- user-box -->
+      <div class="j-header-avatar user-box">
+        <div class="user-avatar">
+          <a href="[mccms_url_user]">
+            <img class="j-user-avatar" src="[user:pic]" />
+          </a>
+        </div>
+        <div class="j-dialog-avatar dialog__header-avatar hide">
+            <div class="in-dialog--avatar">
+                <span class="triangle"><i class="iconfont icon-ic_nav_toast_sj"></i></span>
+                <div class="j-dialog-tourist row-1">
+                    <p class="base-info">
+                        <a class="j-user-name nickname" href="[mccms_url_user_login]">游客</a>
+                        <i class="vip-tag icon icon-vip-tag"></i>
+                        <a class="j-user-logout logout" href="[mccms_url_user_login]">登录领更多</a>
+                    </p>
+                    <p class="expire">VIP到期：<span class="j-user-vip-time">体验已到期</span></p>
+                </div>
+                <div class="row-2">
+                    <div class="fund-item">
+                        <div class="fund-item__icon"><i class="icon-user-yb"></i></div>
+                        <div class="fund-item__info">金币<br><span class="j-user-gold">0</span></div>
+                    </div>
+                    <div class="fund-item">
+                        <div class="fund-item__icon"><i class="icon-user-yp"></i></div>
+                        <div class="fund-item__info">月票<br><span class="j-user-ticket">0</span></div>
+                    </div>
+                </div>
+            </div>
+            <script class="userinfo" type="text/html">
+                <span class="triangle"><i class="iconfont icon-ic_nav_toast_sj"></i></span>
+                <div class="j-dialog-user row-1">
+                    <p class="base-info">
+                        <a class="j-user-name nickname" href="[mccms_url_user]">{{d.nichen}}</a>
+                        <i class="j-user-vip vip-tag icon-vip-tag icon-vip-type2"></i>
+                        <a class="j-user-logout logout" href="javascript:;">退出登录</a>
+                    </p>
+                    <p class="expire">VIP到期：<span class="j-user-vip-time">{{d.viptime}}</span></p>
+                    <a class="j-agin-buy-vip buy-vip" href="javascript:;">续费VIP</a>
+                </div>
+                <div class="row-2">
+                    <div class="fund-item">
+                        <div class="fund-item__icon"><i class="icon-user-yb"></i></div>
+                        <div class="fund-item__info">金币<br><span class="j-user-gold">{{d.cion}}</span></div>
+                    </div>
+                    <div class="fund-item">
+                        <div class="fund-item__icon"><i class="icon-user-yp"></i></div>
+                        <div class="fund-item__info">月票<br><span class="j-user-ticket">{{d.ticket}}</span></div>
+                    </div>
+                </div>
+            </script>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

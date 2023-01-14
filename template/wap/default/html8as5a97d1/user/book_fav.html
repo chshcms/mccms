@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>[mccms_title]</title>
+  <meta name="keywords" content="[mccms_keywords]">
+  <meta name="description" content="[mccms_description]">
+  [mccms_packs_book]
+  <link rel="stylesheet" href="[mccms_tpl]book/css/bookshelf.css">
+</head>
+<body class="story-bookshelf">
+<!-- 头部 -->
+<header class="header-bar">
+  <div class="l-toolbar">
+    <a class="go-back"></a>
+  </div>
+  <div class="item-nav">
+    <a href="[mccms_url_user_read_book]" class="j-nav-item item">历史</a>
+    <a href="[mccms_url_user_fav_book]" class="j-nav-item item active">收藏</a>
+    <a href="[mccms_url_user_buy_book]" class="j-nav-item item">订购</a>
+  </div>
+  <div class="r-toolbar">
+    <div class="j-toolbar-editor status-editor">
+      <i class="j-toolbar-editor__i i-editor"></i>
+      <div class="j-toolbar-editor__text text hide">完成</div>
+    </div>
+  </div>
+</header>
+<!-- 收藏 -->
+<div class="mescroll story-bookshelf__collect-list">
+  <ul class="item-ul">
+  {mccms:read table="book_fav" page="20" order="id desc"}
+    <li class="j-collect-item item" data-id="[read:id]">
+      <div class="item-select">
+        <i class="i-choose"></i>
+      </div>
+      <div class="j-collect-link item-link" data-href="[read:infolink]">
+        <div class="item-cover">
+          <img class="lazy cover loaded" src="[mccms_tpl]img/bg_loading_img_3.4.png" data-src="[read:zdy zd=book,pic,bid]" alt="[read:zdy zd=book,name,bid]"> 
+        </div>
+        <div class="item-info">
+          <div class="title">[read:zdy zd=book,name,bid]</div>
+          <div class="look">更至：[read:zdy zd=book,nums,bid]章</div>
+        </div>
+      </div>
+    </li>
+  {/mccms:read}
+  </ul>
+  {if:[mccms_pagejs] > 1}
+  <div class="getmore" onclick="location.href='[mccms_pagedown]';">点击加载下一页</div>
+  {end if}
+  <!-- 为空 -->
+  <div class="j-collect-empty{if:[mccms_pagenum] > 0} hide{end if}">
+    <div class="item-status__empty">
+      <div class="tip-text">主人,还没有收藏过小说呦</div>
+      <div class="tip-des">收藏后可收到更新提醒哦~~</div>
+    </div>
+  </div>
+  <!-- 页脚工具栏 -->
+  <div class="j-his-toolbar item-toolbar">
+    <div class="j-his-btn-selectall btn-selectall"><i class="i-selectall"></i><span>全选</span></div>
+    <div class="j-his-btn-delete btn-delete disabled">删除</div>
+  </div>
+</div>
+<script>
+$(function(){
+  book.shelfcase('fav');
+})
+</script>
+</body>
+</html>

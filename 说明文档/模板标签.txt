@@ -1,0 +1,330 @@
+模板目录
+系统模板系统放在/template/目录下。在后台站点设置中，可以选择当前使用的模板
+│─template/[pc/wap]/1/ 模板1
+│ ├─js js文件
+│ ├─css css文件
+│ ├─images 图片文件
+│ ├─html 模板文件目录（该目录名可以随意修改，注意tpl.php也有需要同时修改）
+│ │  │─custom 自定义模板目录
+│ │  │─author 作者中心目录
+│ │  │  │─packs.html 样式模版
+│ │  │  │─head.html 模板头部文件
+│ │  │  │─bottom.html 模板底部文件
+│ │  │  │─left.html 模板左部文件
+│ │  │  │─right.html 模板右部文件
+│ │  │  │─chapter.html 章节列表模版
+│ │  │  │─chapter_add.html 新增章节模版
+│ │  │  │─chapter_edit.html 修改章节模版
+│ │  │  │─comic.html 漫画列表模版
+│ │  │  │─comic_add.html 新增漫画模版
+│ │  │  │─comic_info.html 漫画详情模版
+│ │  │  │─comment.html 读者评论模版
+│ │  │  │─drawing.html 提现记录模版
+│ │  │  │─drawing_add.html 申请提现模版
+│ │  │  │─home.html 作者主页模版
+│ │  │  │─income.html 分成记录模版
+│ │  │  │─index.html 作者中心主页模版
+│ │  │  │─renzheng.html 作者认证模版
+│ │  │─user 读者中心目录
+│ │  │  │─packs.html 样式模版
+│ │  │  │─head.html 模板头部文件
+│ │  │  │─bottom.html 模板底部文件
+│ │  │  │─left.html 模板左部文件
+│ │  │  │─right.html 模板右部文件
+│ │  │  │─index.html 读者中心主页模版
+│ │  │  │─bind.html 第三方账号绑定模版
+│ │  │  │─buy.html 消费记录模版
+│ │  │  │─comic.html 漫画购买记录模版
+│ │  │  │─comment.html 评论记录模版
+│ │  │  │─fav.html 漫画收藏记录模版
+│ │  │  │─info.html 资料修改模版
+│ │  │  │─info_pass.html 密码修改模版
+│ │  │  │─message.html 消息列表模版
+│ │  │  │─order.html 充值订单记录模版
+│ │  │  │─read.html 阅读记录模版
+│ │  │  │─ticket.html 月票消费记录模版
+│ │  │  │─pay.html 充值中心模版
+│ │  │  │─pay_cion.html 虚拟币充值模版
+│ │  │  │─pay_ticket.html 购买月票模版
+│ │  │  │─pay_vip.html 充值VIP模版
+│ │  │  │─reg.html 用户注册模版
+│ │  │  │─login.html 用户登陆模版
+│ │  │  │─pass.html 找回密码模版
+│ │  │─packs.html 样式模版
+│ │  │─head.html 模板头部文件
+│ │  │─bottom.html 模板底部文件
+│ │  │─left.html 模板左部文件
+│ │  │─right.html 模板左部文件
+│ │  │─category.html 漫画检索模版
+│ │  │─chapter.html 漫画阅读模版
+│ │  │─comic.html 漫画详情模版
+│ │  │─comment.html 漫画评论模版
+│ │  │─error.html 错误提示模版
+│ │  │─index.html 主页模版
+│ │  │─lists.html 分类页模版
+│ │  │─search.html 漫画搜索模版
+│ ├─pic.png 模板演示图片文件
+│ ├─tpl.php 模板信息文件
+│─tempalte/[pc/wap]/2/ 模板2
+│─…
+│─template/[pc/wap]/n/ 模板N
+    
+内置JS说明
+	mccms.wap 是否为手机
+	mccms.user.log 是否登陆
+	mccms.user.nichen 用户昵称/笔名
+	mccms.user.pic 用户头像
+	mccms.user.vip 是否是VIP用户
+	mccms.user.cion 剩余虚拟货币
+	mccms.user.ticket 剩余月票
+	mccms.user.viptime 用户VIP到期时间
+	mccms.code_send(post,callback) 发送手机验证码：post请求对象：tel手机号码，pcode图形验证码，callback回调方法
+	mccms.score(post,callback) 漫画评分：post请求对象：mid漫画ID，bid小说ID，fen分数
+	mccms.comment(post,callback) 评论列表：post请求对象：mid漫画ID，bid小说ID，page页数（获取成功会加载到class为mccms_comment_list的元素中），callback回调方法
+	mccms.comment_send(post,callback) 发表评论：post请求对象：mid漫画ID，bid小说ID, text评论内容，cid评论ID（回复时必填），fid回复上级ID，callback回调方法
+	mccms.comment_zan(post,callback) 评论点赞：post请求对象：id评论ID，fid回复ID，callback回调方法
+	mccms.ticket_send(post,callback) 打赏月票：post请求对象：mid漫画ID，bid小说ID，nums打赏张数，hid显示月票数量的对象，执行成功会改变hid的最新月票量，callback回调方法
+	mccms.message(callback) 未读消息：callback回调方法
+	mccms.sendgift(post,callback) 打赏礼物：post请求对象：mid漫画ID，bid小说ID，gid礼物ID，hid用户显示剩余虚拟币的元素，callback回调方法
+	mccms.isfav(post,callback) 判断漫画是否收藏：post请求对象：mid漫画ID，bid小说ID，hid改变状态的元素，css是class名，callback回调方法
+	mccms.fav(post,callback) 漫画收藏：post请求对象：mid漫画ID，bid小说ID，hid改变状态的元素，css是class名，callback回调方法
+	mccms.login(name,pass,callback) 用户异步登陆：name账号或者手机号，pass密码，callback回调方法
+	mccms.logout(callback) 用户异步退出登陆，callback回调方法
+	mccms.read(post) 写入阅读记录：post请求对象：mid漫画ID，bid小说ID，cid章节ID，pid图片ID（小说留空），callback回调方法
+	mccms.msg(txt,cid,this) 提示框：txt提示内容，cid提示类型1成功，2失败，3吸附tps提示，this(cid为3时必选，元素对象)
+	mccms.tpl(hid,vid,link,post) 模版引擎：hid模版元素，vid显示元素，link请求地址，post请求参数对象
+	mccms.gotop(hid) 返回顶部：hid是点击事件返回顶部的元素
+	mccms.get_cookie(name) 获取cookie浏览器缓存：name为cookie名
+	mccms.set_cookie(name,val,day) 写入cookie浏览器缓存：name为cookie名，val内容，day保存天数
+	mccms.del_cookie(name) 删除cookie浏览器缓存：name为cookie名
+	    
+全局标签
+
+	//模版引入
+	[mccms_head] 顶部模版
+	[mccms_bottom] 底部模版
+	[mccms_left] 左部模版
+	[mccms_right] 右部模版
+	[mccms_head_([0-9a-zA-Z\_\-]+)] 自定义顶部模版
+	[mccms_bottom_([0-9a-zA-Z\_\-]+)] 自定义底部模版
+	[mccms_left_([0-9a-zA-Z\_\-]+)] 自定义左部模版
+	[mccms_right_([0-9a-zA-Z\_\-]+)] 自定义右部模版
+	//站点配置信息
+	[mccms_tpl] 模版路径
+	[mccms_url] 网站域名
+	[mccms_name] 网站名称
+	[mccms_basepath] 静态文件路径，默认是 ./packs/
+	[mccms_path] 网站路径
+	[mccms_icp] 备案号
+	[mccms_stat] 统计代码
+	[mccms_qq] 联系QQ
+	[mccms_tel] 联系电话
+	[mccms_mail] 联系邮箱
+	[mccms_date] 当前年月日，如：2020-01-01
+	[mccms_year] 当前年份，如:2020
+	[mccms_month] 当前月份，如:03
+	[mccms_day] 当前日期，如:30
+	[mccms_week] 当前周，如:2
+	[mccms_time] 今日0点时间戳
+	[mccms_url_book] 小说主页链接
+	//用户相关
+	[mccms_author] 是否开启作者中心
+	[mccms_reg] 是否开始注册
+	[mccms_istel] 是否开启手机验证
+	[mccms_cionname] 虚拟货币名称
+	[mccms_rmbtocion] 人民币转换比列，1人民币等于多少虚拟货币
+	[mccms_isqqpay] 是否开启QQ钱包支付
+	[mccms_iswxpay] 是否开启微信支付
+	[mccms_isalipay] 是否开启支付宝支付
+	[mccms_vip_rmb_1] Vip包月价格
+	[mccms_vip_rmb_2] Vip季度价格
+	[mccms_vip_rmb_3] Vip半年价格
+	[mccms_vip_rmb_4] Vip包年价格
+	//SEO标签
+	[mccms_title] 网站SEO标题
+	[mccms_keywords] 网站SEO关键词
+	[mccms_description] 网站SEO描述
+	    
+周标签
+
+{mccms:week}
+    [week:i] 序号
+    [week:kstime] 周开始时间戳
+    [week:jstime] 周结束时间戳
+    [week:num] 周（数字，如：1）
+    [week:name] 周（中文，如：周一）
+{/mccms:week}
+    
+自定义标签
+
+//自定义统计
+[mccms_count_数据表名|查询条件|查询条件|...]
+  比如查询今日更新漫画数量：[mccms_count_comic_1]
+  比如查询Vip会员数量：[mccms_count_user|vip=1]
+//自定义模版链接
+[mccms_custom_模版文件名]
+  模版文件名只能是字母或者数字以及下划线，且模版必须在custom目录中
+  如：[mccms_custom_hot]，访问的模版则是当前模版在custom目录中的hot.html模版
+//自定义任意地址链接
+[mccms_url_链接地址]
+  链接地址只能是字母或者数字以及下划线，且网站必须存在的页面
+  如作者投稿链接：[mccms_url_author_comic_add]
+//数字转换标签，并且以万为单位进行格式化
+[mccms_zhuan_原数字_转换方法_对象数字]
+  转换方法：1,2,3,4分别代表加减乘除
+  如：[mccms_zhuan_50_3_10] 执行方法：50x10 输出结果为 500
+    
+条件判断IF标签
+code
+{if:条件}
+.....
+{else}
+.....
+{end if}
+//嵌套判断方法
+{if:条件}
+    {if2:条件}
+    .....
+    {else2}
+    .....
+    {end if2}
+{end if}
+比如给小于10的漫画排序前加上0：{if:[comic:i] < 10}0{end if}[comic:i]
+    
+全局基础标签生成
+
+{mccms:标示 table="数据表" field="显示字段" where="查询条件" limit="显示数量" group="去相同字段内容" order="排序方法"}
+    当前循环序号：[标示:i]（从1开始）
+    字段调用方式：[标示:字段名称]
+{/mccms:标示}
+
+标示：为小写字母或者数字
+table：数据表名称：也就是需要调用的数据表（不包含表前缀）
+field：需要显示的字段：数据表字段名称，需要查询所有字段留空或者*即可
+where：查询条件，如：id=5
+limit：调用数量/偏移量，分页用page，如：10 / 5,10
+group：显示相同字段不重复记录，字段名（只能单个字段）
+sort：排序方式, 缺省值为id desc
+
+//最新更新20部漫画实例
+{mccms:comic table="comic" field="*" limit="20" order="addtime desc"}
+    <a href="[comic:link]">[comic:i].[comic:name]</a>
+{/mccms:comic}
+//或者推荐20部漫画并按周人气排序
+{mccms:comic table="comic" field="*" where="tid=1" limit="20" order="zhits desc"}
+    <a href="[comic:link]">[comic:i].[comic:name]</a>
+{/mccms:comic}
+//下面为一级嵌套二级案列，按分类显示嵌套，并显示最新10部漫画
+{mccms:class table="class" where="fid=1" order="xid asc"}
+<a href="[class:classlink]">[class:i].[class:name]</a>
+    {mccms:comic table="comic" where="cid=[class:id]" limit="10" order="addtime desc"}
+        <a href="[comic:link]">[comic:i].[comic:name]</a>
+    {/mccms:comic}
+{/mccms:class}
+    
+字段标签自定义
+
+	//内部字段自定义标签
+	格式化时间：[标示:addtime style=Y-m-d H:i:s] 可以多个或者单个，=time 显示 XX小时前
+	以万为单位格式化数字：[标示:hits wan=1]
+	Tags标签加链接：[标示:tags url=1]
+	字符截取：[标示:name len=10]，len=显示数量
+	解析评论表情：[标示:content face=1] 会把表情字符替换为图片显示
+	//外部字段自定义标签
+	i：序号
+	classname：漫画分类名称
+	classlink：漫画分类链接地址
+	link：漫画链接地址
+	piclink：章节链接地址
+	bclasslink：小说分类链接地址
+	infolink：小说详情链接地址
+	readlink：小说章节链接地址
+	authorlink：作者中心链接地址
+	userlink：作者主页链接地址
+	authorpic：用户头像图片地址
+	type：漫画类别（tags）
+	scorenum：评分整数
+	ticket_rank：漫画月票排名
+	cion_rank：漫画打赏排名
+	book_ticket_rank：小说月票排名
+	book_cion_rank：小说打赏排名
+	is_zan：评论是否被赞
+	zdy：自定义字段查询，[标示:zdy zd=表名,显示字段,当前字段,条件字段]
+	     如查询当前漫画的分类英文名称：[comic:zdy zd=class,yname,cid,id]
+	count：统计标签，[标示:count zd=表名,当前字段,条件字段]
+	       如统计当前漫画的章节数量：[comic:count zd=comic_chapter,id,mid]
+	sum：统计字段总和，[标示:sum zd=表名,统计字段,当前字段,条件字段]
+	     如统计当前用户的打赏虚拟币总和：[user:sum zd=gift_reward,cion,id,uid]
+	    
+漫画当前数据
+
+	//分类，lists.html模版
+	[class_字段名]
+	[mccms_cid] //当前ID
+	[mccms_fid] //上级ID
+	//漫画详情，comic.html模版
+	[comic_字段名]
+	//章节详情，chapter.html模版
+	[chapter_字段名]
+	[chapter_sid] //上一话章节ID
+	[chapter_sname] //上一话章节名称
+	[chapter_slink] //上一话章节链接
+	[chapter_xid] //下一话章节ID
+	[chapter_xname] //下一话章节名称
+	[chapter_xlink] //下一话章节链接
+	[comic_name] //漫画名称
+	[comic_link] //漫画链接
+	//搜索页 search.html
+	[mccms_key] //搜索关键词
+	//智能检索页 category.html
+	[title] //检索标题
+	[order] //排序方式
+	[list] //分类ID
+	[pay] //收费方式
+	[finish] //连载方式
+	[mccms_json] //当前条件的json数据
+
+小说当前数据
+
+	//分类，lists.html模版
+	[class_字段名]
+	[mccms_cid] //当前ID
+	[mccms_fid] //上级ID
+	//小说详情，info.html模版
+	[book_字段名]
+	//章节详情，read.html模版
+	[read_字段名]
+	[read_sid] //上一章节ID
+	[read_sname] //上一章节名称
+	[read_slink] //上一章节链接
+	[read_xid] //下一章节ID
+	[read_xname] //下一章节名称
+	[read_xlink] //下一章节链接
+	[book_字段名] //小说内容
+	[book_name] //小说名称
+	[book_link] //小说链接
+	//搜索页 search.html
+	[mccms_key] //搜索关键词
+	//智能检索页 category.html
+	[title] //检索标题
+	[order] //排序方式
+	[list] //分类ID
+	[pay] //收费方式
+	[tags] //主题标签
+	[finish] //连载方式
+	[mccms_json] //当前条件的json数据
+	    
+全局翻页标签
+
+	[mccms_page] //当前页码(从1开始)
+	[mccms_pagejs] //总页数
+	[mccms_pagenum] //总数量
+	[mccms_pagesize] //每页显示多少条记录
+	[mccms_pageup] //上一页连接
+	[mccms_pagedown] //下一页连接
+	[mccms_pagefirst] //首页连接
+	[mccms_pagelast] //尾页连接
+	[mccms_pagelist] //翻页标签
+	[mccms_pagenum_8] //显示页数，当前页CSS元素为 on
+	    
+漫城CMS - 用心与你沟通

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>[mccms_title]</title>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<meta name="keywords" content="[mccms_keywords]">
+<meta name="description" content="[mccms_description]">
+[mccms_packs]
+</head>
+<body class="p-detail">
+<div style='display:none;'><img src='[mccms_tpl]images/app_logo.png' /></div>
+[mccms_head]
+<div class="de-info-wr" data-price="49" data-is_vip="1">
+    <div class="de-info__bg" style="background-image: url('[comic:pic]');"></div>
+    <div class="de-info__overlay">
+        <div class="overlay-bottom"></div>
+    </div>
+    <div class="container--response">
+        <div class="de-info__box">
+            <div class="de-info__cover"><img class="lazy" src="[comic:pic]" alt="[comic:name]"></div>
+            <p class="comic-title j-comic-title">[comic_name]</p>
+            <div class="comic-author">
+                <a href="[comic:userlink]"><img class="avatar" src="[comic:authorpic]" alt="[comic:author]"></a>
+                <span class="name"><a href="[comic:userlink]">[comic:author]</a></span>
+                <span>|</span>
+                <span><a href="[comic:userlink]">[comic:count zd=comic,uid,uid]部作品</a></span>
+            </div>
+            <div class="comic-status">
+                <span class="text">题材: <b>[comic:type url=1]</b></span>
+                <span class="text">收藏: <b>[comic:shits wan=1]</b></span>
+                <span class="text">人气: <b>[comic:hits wan=1]</b></span>
+            </div>
+            <div class="comic-intro">
+                <span class="title">简介: </span>
+                <p class="intro">
+                [comic:content len=100]<p class="show"><span class="txt">展开</span> <i class="iconfont">&#xe6a3;</i></p>
+                <p class="intro-total">[comic:content]</p>
+                </p>
+            </div>
+            <div class="comic-handles clearfix">
+                <a class="btn--read" href="[comic:piclink]">
+                    <i class="icon-de-read"></i>
+                    <span class="txt1">开始阅读</span>
+                </a>
+                <a data-id="[comic:id]" class="btn--collect j-user-collect" href="javascript:void(0);">
+                    <i class="icon-de-coll_hl"></i>
+                    <i class="icon-de-coll"></i>
+                    <span class="txt1">收藏</span>
+                    <span class="txt2">已收藏</span>
+                </a>
+            </div>
+            <div class="de-rate-wr">
+                <div class="rate-handle" data-score="[comic:scorenum]"></div>
+                <p class="rate-count">（<span class="num">[comic:count zd=comic_score,id,mid]</span>人评价）</p>
+            </div>
+            <div class="de-user-handle">
+                <a data-id="[comic:id]" data-name="[comic:name]" data-rank="[comic:ticket_rank]" data-ticket="[comic:ticket]" class="btn--ticket" href="javascript:void(0);"><i class="icon-de-ticket"></i>投月票(<font class='ticket-num'>[comic:ticket]</font>)</a>
+                <a class="btn--gold" href="javascript:void(0);"><i class="icon-de-gold "></i>打赏(<font class="cion-num">[comic:cion]</font>) </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container--response de-container-wr clearfix">
+    <div class="de-container">
+        <div class="de-chapter">
+            <div class="de-chapter__title">
+                <span>连载</span>
+                <span class="update-time">[comic:zdy zd=comic_chapter,name,id,mid]</span>
+                <div class="btn--sort reversed" style="display: block;">
+                  <span class="dx"><i class="iconfont icon-sortdown"></i> 倒序</span>
+                  <span class="zx"><i class="iconfont icon-sortup"></i> 正序</span>
+                </div>
+            </div>
+            <div class="chapter__list clearfix">
+                <ul class="chapter__list-box clearfix">
+                {mccms:chapter table="comic_chapter" where="mid=[comic_id]" limit="all" order="xid asc"}
+                    <li class="j-chapter-item chapter__item chapter-[chapter:id]">
+                        <a class="j-chapter-link" href="[chapter:piclink]">
+                            {if:'[chapter:vip]'>'0'}<i class="vip-tag iconfont icon-ic_readlist_vip1"></i>{end if}
+                            {if:'[chapter:cion]'>'0'}<i class="lock iconfont">&#xe66e;</i>{end if}
+                            {if:'[chapter:addtime style=Y-m-d]'=='[mccms_date]'}<i class="j-update-icon icon-has-update"></i>{end if}
+                            [chapter:name]
+                        </a>
+                    </li>
+                {/mccms:chapter}
+                </ul>
+                <div class="chapter__more hide" data-id="1">
+                    <a class="btn close" href="javascript:void(0);">
+                        <span class="down" href="javascript:void(0);">查看所有章节 <i class="iconfont icon-ic_detaillist_down1"></i></span>
+                        <span class="up" href="javascript:void(0);">收起 <i class="iconfont icon-ic_detaillist_up"></i></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <a class="de__ad" href="[mccms_path]" style="background-image: url(https://oss.mkzcdn.com/image/20200102/5e0ddfd6515f1-1110x140.jpg!banner-1400);" target="_blank"></a>
+        <div class="de-gift">
+            <div class="de-gift__title">
+                <span>用礼物支持大大</span>
+                <p class="txt fr">
+                    <span>[mccms_cionname]余额 <b class="hl j-user-gold">0</b></span>
+                    <span class="gap">|</span>
+                    <a class="j-pay-gold" href="javascript:;">充值[mccms_cionname]</a>
+                </p>
+            </div>
+            <div class="de-gift__scroll clearfix"></div>
+            <ul class="de-gift__item-box clearfix">
+            {mccms:gift table="gift" where="" limit="8" order="id asc"}
+                <li class="de-gift__item{if:[gift:i]==1} active{end if}" data-id="[gift:id]" data-cion="[gift:cion]">
+                  <img class="gift-pic" src="[gift:pic]" alt="[gift:name]">
+                  <p class="title">[gift:name]</p>
+                  <p class="price">[gift:cion][mccms_cionname]</p>
+                </li>
+            {/mccms:gift}
+            </ul>
+            <div class="send-gift" data-mid="[comic:id]" data-id="0" data-cion="0">
+                <span class="j-loading-icon loading-icon hide">
+                    <i class="layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop"></i>
+                </span>
+                <span class="txt">我要打赏</span>
+            </div>
+        </div>
+        <div class="guess-u-like clearfix">
+            <p class="guess__title">猜你喜欢！最热漫画等你翻牌</p>
+            <div class="guess__list clearfix">
+                <div class="slide-wrapper">
+                    {mccms:comic table="comic" where="cid=[comic_cid]" limit="8" order="zhits desc"}
+                    <div class="guess-item slide-item">
+                        <div class="cover">
+                            <a href="[comic:link]"><img class="lazy-slide lazy" data-original="[comic:pic]" src="[mccms_tpl]images/bg_loadimg_3x4.png" alt="[comic:name]"></a>
+                            <div class="cover__tag">[comic:zdy zd=comic_chapter,name,id,mid]</div>
+                        </div>
+                        <p class="comic__title"><a href="[comic:link]">[comic:name]</a></p>
+                        <p class="comic__feature">{if:'[comic:text]'==''}[comic:content len=10]{else}[comic:text]{end if}</p>
+                    </div>
+                    {/mccms:comic}
+                </div>
+                <div class="prev"><i class="layui-icon layui-icon-left"></i></div>
+                <div class="next"><i class="layui-icon layui-icon-right"></i></div>
+            </div>
+        </div>
+        <div class="j-module-comment de-comment">
+            <p class="de-comment__title">评论 <span class="count">共 <b class="j-comment-num hl">[comic:count zd=comment,id,mid]</b> 条评论</span></p>
+            <div class="comment-box de-comment__item">
+                <div class="de-comment__item-left">
+                    <div class="de-comment__item--avatar j-user-login">
+                        <img class="j-user-avatar" src="[mccms_basepath]mccms/user.png" alt="">
+                    </div>
+                </div>
+                <div class="de-comment__item-right">
+                    <div class="j-user-nick-name de-comment__item--nickname nickname" style="margin-bottom:8px;">主人，登录后才能发表评论呦~</div>
+                    <div class="j-comment-box de-comment__item--comment">
+                        <div class="de-comment__textarea-wrap">
+                            <div class="comment-kuang j-comment-textarea de-comment__item--textarea has-placeholder" contenteditable="true" placeholder="看点槽点，不吐不快！别憋着，马上大声说出来吧～">看点槽点，不吐不快！别憋着，马上大声说出来吧～</div>
+                        </div>
+                        <div class="de-comment__item--btn-group">
+                            <div class="j-comment-emoji de-comment__item--emoji"><i class="icon-comment-emoji"></i><span>表情</span>
+                            <div class="j-comment-face-box de-comment__face-box hide">
+                                <div class="triangle-up"></div>
+                                <div class="de-comment__face-con">
+                                    <ul class="j-facelist de-comment__face-list">
+                                        {mccms:face}
+                                        <li class="j-face-item face-item" data-id="[face:label]">
+                                            <img class="j-face-img" src="[face:pic]" alt="">
+                                            <p class="j-face-name">[face:name]</p>
+                                        </li>
+                                        {/mccms:face}
+                                    </ul>
+                                </div>
+                            </div>
+                            </div>
+                            <div data-id="[comic:id]" class="j-comment-submit de-comment__item--submit">
+                                发布评论
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mccms_comment_list"><span style="text-align: center;display: block;">评论加载中...</span></div>
+        </div>
+    </div>
+    <div class="de-rank-wr clearfix">
+        <div class="de-rank-box">
+            <p class="head">打赏榜</p>
+            <div class="rank-list">
+                {mccms:comic table="comic" limit="10" order="cion desc"}
+                <div class="rank-item{if:[comic:i]==1} active{end if}">
+                    <div class="item--default">
+                        <span class="num num--[comic:i]">[comic:i]</span>
+                        <span class="comic-name"><a href="[comic:link]">[comic:name]</a></span>
+                        <span class="count">打赏：[comic:cion]</span>
+                    </div>
+                    <div class="item--detail hide">
+                        <a class="cover" href="[comic:link]"><img class="lazy" src="[comic:pic]" alt="[comic:name]"></a>
+                        <p class="comic__title"><a href="[comic:link]">[comic:name]</a></p>
+                        <p class="comic__feature">{if:'[comic:text]'==''}[comic:content len=10]{else}[comic:text]{end if}</p>
+                        <p class="count">打赏：[comic:cion]</p>
+                        <span class="num num--[comic:i]">[comic:i]</span>
+                    </div>
+                </div>
+                {/mccms:comic}
+            </div>
+        </div>
+        <div class="de-rank-box">
+            <p class="head">月票榜</p>
+            <div class="rank-list">
+                {mccms:comic table="comic" limit="10" order="ticket desc"}
+                <div class="rank-item{if:[comic:i]==1} active{end if}">
+                    <div class="item--default">
+                        <span class="num num--[comic:i]">[comic:i]</span>
+                        <span class="comic-name"><a href="[comic:link]">[comic:name]</a></span>
+                        <span class="count">月票：[comic:ticket]</span>
+                    </div>
+                    <div class="item--detail hide">
+                        <a class="cover" href="[comic:link]"><img class="lazy" src="[comic:pic]" alt="[comic:name]"></a>
+                        <p class="comic__title"><a href="[comic:link]">[comic:name]</a></p>
+                        <p class="comic__feature">{if:'[comic:text]'==''}[comic:content len=10]{else}[comic:text]{end if}</p>
+                        <p class="count">月票：[comic:ticket]</p>
+                        <span class="num num--[comic:i]">[comic:i]</span>
+                    </div>
+                </div>
+                {/mccms:comic}
+            </div>
+        </div>
+        <div class="de-daily">
+            <p class="head">最近更新</p>
+            <div class="daily-list">
+            {mccms:comic table="comic" limit="10" order="addtime desc"}
+                <div class="daily__item">
+                    <a class="cover" href="[comic:link]"><img class="lazy" data-original="[comic:pic]" src="[mccms_tpl]images/bg_loadimg_3x4.png" alt="[comic:name]"></a>
+                    <p class="comic-title"><a href="[comic:link]">[comic:name]</a></p>
+                    <p class="tags">[comic:type]</p>
+                    <p class="feature">{if:'[comic:text]'==''}[comic:content len=10]{else}[comic:text]{end if}</p>
+                </div>
+            {/mccms:comic}
+        </div>
+      </div>
+    </div>
+</div>
+[mccms_bottom]
+<script src="[mccms_tpl]js/jquery.liMarquee.js"></script>
+<script type="text/javascript">
+$(function(){
+    chapterMore();
+    get_comment([comic:id]);
+    get_Score([comic:id]);
+    giftList([comic:id]);
+    isCollect([comic:id]);
+    isBuyRead([comic:id]);
+})
+</script>
+</body>
+</html>
