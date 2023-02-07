@@ -283,7 +283,7 @@ layui.use(['form','upload'], function(){
         url: '<?=links('ajax','upload')?>',
         accept: 'file',
         acceptMime: 'image/*',
-        exts: 'jpg|png|gif|bmp|jpeg',
+        exts: '<?=Annex_Ext?>',
         done: function(res){
             if(res.code == 0){
                 layer.msg(res.msg,{icon: 1});
@@ -298,7 +298,7 @@ layui.use(['form','upload'], function(){
         url: '<?=links('ajax','upload')?>',
         accept: 'file',
         acceptMime: 'image/*',
-        exts: 'jpg|png|gif|bmp|jpeg',
+        exts: '<?=Annex_Ext?>',
         done: function(res){
             if(res.code == 0){
                 layer.msg(res.msg,{icon: 1});

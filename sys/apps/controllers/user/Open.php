@@ -57,8 +57,10 @@ class Open extends Mccms_Controller {
             //否则新增会员
             $add['addtime'] = time();
             $add['name'] = 'T-'.substr(md5($add['addtime']),8,-8);
+            $add['nichen'] = $arr['nichen'];
+            $add['pic'] = $arr['pic'];
             $add['sid'] = 0;
-            $add['pass'] = '123456';
+            $add['pass'] = time();
             $add['cion'] = User_Reg_Cion;
             $add['vip'] = User_Reg_Vip;
             $add['viptime'] = 0;

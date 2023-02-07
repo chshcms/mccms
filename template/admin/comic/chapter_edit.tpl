@@ -159,7 +159,7 @@ layui.use(['form','upload'], function(){
         multiple: true,
         accept: 'file',
         acceptMime: 'image/*',
-        exts: 'jpg|png|gif|bmp|jpeg',
+        exts: '<?=Annex_Ext?>',
         done: function(res){
             if(res.code == 0){
                 layer.msg(res.msg,{icon: 1});

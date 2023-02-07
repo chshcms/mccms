@@ -171,14 +171,16 @@ class User extends Mccms_Controller {
 		if($size == 0 || $size > 100) $size = 15;
 		if($page == 0) $page = 1;
 		
-		$sql = 'select '.$zd.',cid zid from '.Mc_SqlPrefix.$table.' where uid='.$this->uid.' GROUP BY '.$zd.' order by id desc';
+		$sql = 'select count('.$zd.') num from '.Mc_SqlPrefix.$table.' where uid='.$this->uid.' GROUP BY '.$zd;
+        $row2 = $this->db->query($sql)->row_array();
         //总数量
-		$nums = $this->mcdb->get_sql_nums($sql);
+		$nums = $row2 ? $row2['num'] : 0;
 		//总页数
 		$pagejs = ceil($nums / $size);
 		if($pagejs == 0) $pagejs = 1;
 		//偏移量
 		$limit = $size*($page-1).','.$size;
+        $sql = 'select max(a.id) id,a.'.$zd.',max(a.cid) zid from '.Mc_SqlPrefix.$table.' a left join '.Mc_SqlPrefix.'book b on a.mid=b.id where a.uid='.$this->uid.' GROUP BY a.'.$zd.' order by id desc';
 		$read = $this->mcdb->get_sql($sql.' limit '.$limit,1);
 		$i = 0;
 		foreach ($read as $k => $v) {

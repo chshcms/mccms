@@ -39,7 +39,7 @@ class Cases extends Mccms_Controller {
 		if($pagejs == 0) $pagejs = 1;
 		//偏移量
 		$limit = $size*($page-1).','.$size;
-		$sql = 'select a.id,a.mid,b.cid zid,b.pid from '.Mc_SqlPrefix.'fav a left join '.Mc_SqlPrefix.'read b on a.mid=b.mid and b.uid='.$this->uid.' where a.uid='.$this->uid.' GROUP BY a.mid order by b.addtime desc';
+		$sql = 'select max(a.id) id,a.mid,max(b.cid) zid,max(b.pid) pid from '.Mc_SqlPrefix.'fav a left join '.Mc_SqlPrefix.'read b on a.mid=b.mid and b.uid='.$this->uid.' where a.uid='.$this->uid.' GROUP BY a.mid order by id desc';
 		$fav = $this->mcdb->get_sql($sql.' limit '.$limit,1);
 		$i = 0;
 		foreach ($fav as $k => $v) {
@@ -81,7 +81,7 @@ class Cases extends Mccms_Controller {
 		if($pagejs == 0) $pagejs = 1;
 		//偏移量
 		$limit = $size*($page-1).','.$size;
-		$sql = 'select a.id,a.bid,b.cid zid from '.Mc_SqlPrefix.'book_fav a left join '.Mc_SqlPrefix.'book_read b on a.bid=b.bid and b.uid='.$this->uid.' where a.uid='.$this->uid.' GROUP BY a.bid order by b.addtime desc';
+		$sql = 'select max(a.id) id,a.bid,max(b.cid) zid from '.Mc_SqlPrefix.'book_fav a left join '.Mc_SqlPrefix.'book_read b on a.bid=b.bid and b.uid='.$this->uid.' where a.uid='.$this->uid.' GROUP BY a.bid order by id desc';
 		$fav = $this->mcdb->get_sql($sql.' limit '.$limit,1);
 		$i = 0;
 		foreach ($fav as $k => $v) {

@@ -51,7 +51,7 @@ class Init extends Mccms_Controller {
         $type = $this->input->get_post('type',true);
         $config = require FCPATH.'sys/libs/app.php';
         $d['code'] = 1;
-        $d['txt'] = isset($config['html'][$type]) ? $config['html'][$type] : '';
+        $d['txt'] = isset($config['html'][$type]) ? str_decode($config['html'][$type]) : '';
 		get_json($d);
     }
 }

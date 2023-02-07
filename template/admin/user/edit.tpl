@@ -629,7 +629,7 @@ layui.use(['form','upload','laydate'], function(){
         url: '<?=links('ajax','upload')?>?dir=<?=sys_auth('user')?>&sy=no',
         accept: 'file',
         acceptMime: 'image/*',
-        exts: 'jpg|png|gif|bmp|jpeg',
+        exts: '<?=Annex_Ext?>',
         done: function(res){
             if(res.code == 0){
                 layer.msg(res.msg,{icon: 1});

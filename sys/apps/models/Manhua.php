@@ -92,27 +92,29 @@ class Manhua extends CI_Model{
     }
 
     //更新漫画的type表记录
-    function get_set_type($arr='',$mid=0){
-    	//先获取去原有的记录
-    	$array = $this->mcdb->get_select('comic_type','id',array('mid'=>$mid),'id DESC',10000);
-    	//定义新的ID
-    	$new_id = array();
-        foreach ($arr as $zd=>$v) {
-        	foreach ($v as $_id){
-        		$_id = (int)$_id;
-            	$row = $this->mcdb->get_row('comic_type','id',array('tid'=>$_id,'mid'=>$mid));
-	            if(!$row){
-	                $new_id[] = $this->mcdb->get_insert('comic_type',array('tid'=>$_id,'mid'=>$mid));
-	            }else{
-	                $new_id[] = $row->id;
-	            }
+    function get_set_type($arr=array(),$mid=0){
+        if(!empty($arr)){
+            //定义新的ID
+            $new_id = array();
+            foreach ($arr as $zd=>$v) {
+                foreach ($v as $_id){
+                    $_id = (int)$_id;
+                    $row = $this->mcdb->get_row('comic_type','id',array('tid'=>$_id,'mid'=>$mid));
+                    if(!$row){
+                        $new_id[] = $this->mcdb->get_insert('comic_type',array('tid'=>$_id,'mid'=>$mid));
+                    }else{
+                        $new_id[] = $row->id;
+                    }
+                }
             }
         }
+        //先获取去原有的记录
+        $array = $this->mcdb->get_select('comic_type','id',array('mid'=>$mid),'id DESC',10000);
         //删除不需要的
         foreach ($array as $row) {
-        	if(!in_array($row['id'],$new_id)){
-        		$this->mcdb->get_del('comic_type',$row['id']);
-        	}
+            if(!in_array($row['id'],$new_id)){
+                $this->mcdb->get_del('comic_type',$row['id']);
+            }
         }
         return true;
     }

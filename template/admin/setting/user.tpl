@@ -510,7 +510,7 @@ layui.use(['layedit', 'layer', 'form'], function () {
             url: '<?=links('ajax','upload')?>?dir=<?=sys_auth('editor')?>',
             accept: 'image',
             acceptMime: 'image/*',
-            exts: 'jpg|png|gif|bmp|jpeg',
+            exts: '<?=Annex_Ext?>',
             size: '10240'
         }
         //右键删除图片/视频时的回调参数，post到后台删除服务器文件等操作，

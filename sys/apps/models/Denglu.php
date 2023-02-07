@@ -29,7 +29,7 @@ class Denglu extends CI_Model{
         }else{
             $arr['type'] = $type;
             $did = $this->mcdb->get_insert('user_oauth',$arr);
-            return array('id'=>$did,'uid'=>0);
+            return array('id'=>$did,'uid'=>0,'nichen'=>$arr['nichen'],'pic'=>$arr['pic']);
         }
     }
 
@@ -54,12 +54,13 @@ class Denglu extends CI_Model{
             }
             //获取OPENID
             $graph_url = "https://graph.qq.com/oauth2.0/me?access_token=".$arr['access_token'];
-            $json = getcurl($graph_url);
+            $json = str_replace(array('callback( ',' );'),'',getcurl($graph_url));
+            $arr2 = json_decode($json,1);
             //得到openid
-            if(strpos($json,'"openid":"') === false){
+            if(empty($arr2['openid'])){
                 error('错误提示','QQ登陆，获取openid失败!!!');
             }
-            $openid = $this->str_substr('"openid":"','"',$json);
+            $openid = $arr2['openid'];
             //获取用户信息
             $get_user_info = "https://graph.qq.com/user/get_user_info?"
                    . "access_token=" . $arr['access_token']

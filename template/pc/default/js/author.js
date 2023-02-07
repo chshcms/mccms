@@ -254,7 +254,8 @@ var Pay_Show = function(type){
         }
     }
 }
-var comic_edit = function(mid){
+var comic_edit = function(mid,type){
+    if(type != 'book') type = 'comic';
     mccms.form.render();
     if(mid == 0){
         var url_x = mccms.get_cookie('urlx');
@@ -283,7 +284,7 @@ var comic_edit = function(mid){
         crop: function (e) {
           uploadY.render({
             elem: '#yInput',
-            url: Mcpath.web+'index.php/author/comic/uppic',
+            url: Mcpath.web+'index.php/author/'+type+'/uppic',
             auto: false,
             bindAction: '.J_confirm_y',
             before: function () {
@@ -328,7 +329,7 @@ var comic_edit = function(mid){
         crop: function (e) {
           uploadX.render({
             elem: '#xInput',
-            url: Mcpath.web+'index.php/author/comic/uppic',
+            url: Mcpath.web+'index.php/author/'+type+'/uppic',
             auto: false,
             bindAction: '.J_confirm_x',
             before: function () {
