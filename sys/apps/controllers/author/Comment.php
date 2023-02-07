@@ -19,7 +19,7 @@ class Comment extends Mccms_Controller {
     public function index($page=1) {
         $this->users->author();
         $name = safe_replace($this->input->get_post('name',true));
-        $time = $this->input->get_post('time',true);
+        $time = safe_replace($this->input->get_post('time',true));
         $page = (int)$page;
         if($page == 0) $page = 1;
         $data = $parame = $wh = array();
@@ -81,7 +81,7 @@ class Comment extends Mccms_Controller {
     public function book($page=1) {
         $this->users->author();
         $name = safe_replace($this->input->get_post('name',true));
-        $time = $this->input->get_post('time',true);
+        $time = safe_replace($this->input->get_post('time',true));
         $page = (int)$page;
         if($page == 0) $page = 1;
         $data = $parame = $wh = array();
