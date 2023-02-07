@@ -958,6 +958,7 @@ var book = {
 			$('.chapter-title-mini').css('font-size',(parseInt(size)-2)+'px');
 		}
 	    //离开前记录阅读记录
+	    mccms.read({did:bid,cid:cid,type:'book'});
 	    window.onbeforeunload = function () {
 	        mccms.read({did:bid,cid:cid,type:'book'});
 	    }

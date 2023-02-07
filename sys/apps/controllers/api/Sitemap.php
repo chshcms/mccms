@@ -12,12 +12,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Sitemap extends Mccms_Controller {
 
-	public function __construct(){
-		parent::__construct();
+    public function __construct(){
+        parent::__construct();
         $this->ssl = is_ssl() ? 'https://' : 'http://';
-	}
+    }
 
-	//百度
     public function index($type='baidu') {
         $type = str_replace('.xml','',$type);
         $arr = array('baidu','google','so','shenma','sogou','bing');
@@ -32,18 +31,22 @@ class Sitemap extends Mccms_Controller {
         }
         $data = $this->mcdb->get_select('book','id,yname,addtime',array('yid'=>0,'addtime>'=>$jtime),'addtime DESC',5000);
         foreach ($data as $k => $v) {
+            $url = get_url('book_info',$v);
+            if(!strstr($url,'://')) $url = $this->ssl.Web_Url.$url;
             if($type == 'so'){
-                $xml .= '<sitemap><loc>'.$this->ssl.Web_Url.get_url('book_info',$v).'</loc><lastmod>'.date('Y-m-d',$v['addtime']).'</lastmod></sitemap>';
+                $xml .= '<sitemap><loc>'.$url.'</loc><lastmod>'.date('Y-m-d',$v['addtime']).'</lastmod></sitemap>';
             }else{
-                $xml .= '<url><loc>'.$this->ssl.Web_Url.get_url('book_info',$v).'</loc><lastmod>'.date('Y-m-d',$v['addtime']).'</lastmod><changefreq>always</changefreq><priority>0.8</priority></url>';
+                $xml .= '<url><loc>'.$url.'</loc><lastmod>'.date('Y-m-d',$v['addtime']).'</lastmod><changefreq>always</changefreq><priority>0.8</priority></url>';
             }
         }
         $data = $this->mcdb->get_select('comic','id,yname,addtime',array('yid'=>0,'addtime>'=>$jtime),'addtime DESC',5000);
         foreach ($data as $k => $v) {
+            $url = get_url('show',$v);
+            if(!strstr($url,'://')) $url = $this->ssl.Web_Url.$url;
             if($type == 'so'){
-                $xml .= '<sitemap><loc>'.$this->ssl.Web_Url.get_url('show',$v).'</loc><lastmod>'.date('Y-m-d',$v['addtime']).'</lastmod></sitemap>';
+                $xml .= '<sitemap><loc>'.$url.'</loc><lastmod>'.date('Y-m-d',$v['addtime']).'</lastmod></sitemap>';
             }else{
-                $xml .= '<url><loc>'.$this->ssl.Web_Url.get_url('show',$v).'</loc><lastmod>'.date('Y-m-d',$v['addtime']).'</lastmod><changefreq>always</changefreq><priority>0.8</priority></url>';
+                $xml .= '<url><loc>'.$url.'</loc><lastmod>'.date('Y-m-d',$v['addtime']).'</lastmod><changefreq>always</changefreq><priority>0.8</priority></url>';
             }
         }
         if($type == 'so'){
@@ -53,5 +56,5 @@ class Sitemap extends Mccms_Controller {
         }
         header('Content-Type: text/xml;charset=UTF-8');
         echo $xml;
-	}
+    }
 }

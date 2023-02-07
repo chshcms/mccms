@@ -127,13 +127,18 @@ class Receive extends Mccms_Controller {
 		$data['addtime'] = time();
 
 		//判断章节是否存在
-		$row = $this->mcdb->get_row_arr('comic_chapter','id',array('name'=>$data['name'],'mid'=>$mid));
+		$row = $this->mcdb->get_row_arr('comic_chapter','id',array('name'=>$data['name'],'mid'=>$mid,'xid'=>$data['xid']));
 		if(!$row){
+			if($data['xid'] == 0){
+				$data['xid'] = (int)getzd('comic_chapter','xid',$mid,'mid','xid desc');
+				$data['xid']++;
+			}
 			$data['mid'] = $mid;
             $id = $this->mcdb->get_insert('comic_chapter',$data);
             //更新漫画总章节数
             $this->db->query('update '.Mc_SqlPrefix.'comic set nums=nums+1,addtime='.time().' where id='.$mid);
 		}else{
+			unset($data['xid']);
             $this->mcdb->get_update('comic_chapter',$row['id'],$data);
             $id = $row['id'];
 		}
