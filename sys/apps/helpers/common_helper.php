@@ -170,13 +170,15 @@ function str_encode($str){
 	}else{
 		$str=str_replace("<","&lt;",$str);
 		$str=str_replace(">","&gt;",$str);
-		$str=str_replace("\"","&quot;",$str);
+		$str=str_replace('"',"&quot;",$str);
 		$str=str_replace("'",'&#039;',$str);
 		$str=str_replace("$","&#36;",$str);
 		$str=str_replace("{","&#123;",$str);
 		$str=str_replace("}","&#125;",$str);
 		$str=str_replace("(","&#40;",$str);
 		$str=str_replace(")","&#41;",$str);
+		$str=str_replace("%","&#37",$str);
+		$str=str_replace('\\','&#92',$str);
 	}
 	return $str;
 }
@@ -189,8 +191,15 @@ function str_decode($str){
 	}else{
 		$str=str_replace("&lt;","<",$str);
 		$str=str_replace("&gt;",">",$str);
-		$str=str_replace("&quot;","\"",$str);
+		$str=str_replace("&quot;",'"',$str);
 		$str=str_replace("&#039;","'",$str);
+		$str=str_replace("&#36;","$",$str);
+		$str=str_replace("&#123;","{",$str);
+		$str=str_replace("&#125;","}",$str);
+		$str=str_replace("&#40;","(",$str);
+		$str=str_replace("&#41;",")",$str);
+		$str=str_replace("&#37","%",$str);
+		$str=str_replace('&#92','\\',$str);
 	}
 	return $str;
 }
@@ -206,8 +215,6 @@ function safe_replace($string){
 			$string = str_replace('%20','',$string);
 			$string = str_replace('%27','',$string);
 			$string = str_replace('%2527','',$string);
-			$string = str_replace("'",'&#039;',$string);
-			$string = str_replace('"','&quot;',$string);
 			$string = str_replace(';','',$string);
 			$string = str_replace('*','',$string);
 			$string = str_replace('<','&lt;',$string);
