@@ -114,13 +114,13 @@ class Install extends Mccms_Controller {
             $data['install'] = 'ok';
             $this->load->view('temp_1.html',$data);
         }else{
+            $this->load->helper('string');
             $web_name = $this->input->post('web_name');
             $web_url = $this->input->post('web_url');
             $admin_name = $this->input->post('admin_name');
             $admin_pass = $this->input->post('admin_pass');
             $admin_nichen = $this->input->post('admin_nichen');
             $admin_code = $this->input->post('admin_code');
-
             if(empty($web_name)||empty($web_url)||empty($admin_name)||empty($admin_pass)||empty($admin_code)){
             	exit('<font color=red>请把数据填写完整！</font>，<a href="javascript:history.back();">返回<<</a>');
             }
@@ -132,23 +132,28 @@ class Install extends Mccms_Controller {
             if(!write_file(MCCMSPATH.'libs/config.php', $config)){
                 exit('<font color = red>文件./sys/libs/config.php，没有写入权限！</font>，<a href="javascript:history.back();">返回<<</a>');
 			}
-            //写入管理员
-            $this->load->model('mcdb');
-	        $this->load->helper('string');
-            $data['name'] = $admin_name;
-            $data['pass'] = md5($admin_pass);
-            $data['nichen'] = $admin_nichen;
-            $this->mcdb->get_insert('admin',$data);
-
             if(!write_file('./caches/install.lock', 'mccms')){
                 exit('<font color=red>目录./packs/install/，没有写入权限！</font>，<a href="javascript:history.back();">返回<<</a>');
             }
+            //修改后台入口
+            $adminfile = random_string('alnum',8);
+            if(!rename(FCPATH.'admin.php',FCPATH.$adminfile.'.php')){
+                exit('<font color=red>文件./admin.php，没有修改权限！</font>，<a href="javascript:history.back();">返回<<</a>');
+            }
+            //写入管理员
+            $this->load->model('mcdb');
+            $data['name'] = $admin_name;
+            $data['pass'] = md5($admin_pass);
+            $data['nichen'] = $admin_nichen;
+            $res = $this->mcdb->get_insert('admin',$data);
+            if(!$res) exit('<font color=red>增加管理员失败！</font>，<a href="javascript:history.back();">返回<<</a>');
             header("location:".links('install','save6'));
         }
 	}
   
 	public function save6(){
-            $this->load->view('temp_7.html');
+        $data['adminname'] = $this->input->get('file');
+        $this->load->view('temp_7.html',$data);
     }
 
 	public function dbtest(){

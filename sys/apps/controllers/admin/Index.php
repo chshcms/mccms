@@ -15,6 +15,7 @@ class Index extends Mccms_Controller {
 	    parent::__construct();
 		//判断是否登陆
 		$this->admin->login();
+		if(SELF == 'admin.php') exit('请修改 ./admin.php后台入口文件名，防止暴露攻击~！');
 	}
 
 	public function index()
