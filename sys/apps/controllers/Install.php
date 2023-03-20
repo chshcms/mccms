@@ -147,7 +147,7 @@ class Install extends Mccms_Controller {
             $data['nichen'] = $admin_nichen;
             $res = $this->mcdb->get_insert('admin',$data);
             if(!$res) exit('<font color=red>增加管理员失败！</font>，<a href="javascript:history.back();">返回<<</a>');
-            header("location:".links('install','save6'));
+            header("location:".links('install/save6').'?file='.$adminfile);
         }
 	}
   
