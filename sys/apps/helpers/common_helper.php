@@ -518,13 +518,15 @@ function formatsize($size, $dec=2){
 function is_ssl(){
 	if(Web_Ssl_Mode == 1) return TRUE;
     if(!isset($_SERVER)) return FALSE;
-    if(isset($_SERVER['HTTPS']){
+    if(isset($_SERVER['HTTPS'])){
     	if($_SERVER['HTTPS'] === 1) {  //Apache
         	return TRUE;
 	    } elseif ($_SERVER['HTTPS'] === 'on') { //IIS
 	        return TRUE;
 	    }
-    }elseif($_SERVER['SERVER_PORT'] == 443 || $_SERVER['HTTP_X_CLIENT_SCHEME'] == 'https' || $_SERVER['REQUEST_SCHEME'] == 'https'){ //协议头
+	}elseif(isset($_SERVER['HTTP_X_CLIENT_SCHEME']) && $_SERVER['HTTP_X_CLIENT_SCHEME'] == 'https'){
+		return TRUE;
+    }elseif($_SERVER['SERVER_PORT'] == 443 || $_SERVER['REQUEST_SCHEME'] == 'https'){ //协议头
         return TRUE;
     }
     return FALSE;

@@ -22,7 +22,7 @@ require_once 'push.php';
 require_once 'caiji.php';
 require_once 'ver.php';
 //判断开启SSL
-if(Web_Ssl_Mode == 1 && $_SERVER['HTTP_X_CLIENT_SCHEME'] == 'http' && $_SERVER['REQUEST_SCHEME'] == 'http'){
+if(Web_Ssl_Mode == 1 && isset($_SERVER['HTTP_X_CLIENT_SCHEME']) && $_SERVER['HTTP_X_CLIENT_SCHEME'] == 'http' && $_SERVER['REQUEST_SCHEME'] == 'http'){
 	header("location:https://".Web_Url.Web_Path);exit;
 }
 //手机客户端访问标示
