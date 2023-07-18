@@ -539,7 +539,7 @@ function get_comment_page($nums=1,$pagejs,$page=1,$size=10,$mid=0,$bid=0){
 }
 //获取分页数目	
 function getpagenum($str){
-	preg_match('/\{mccms_pagenum_([\d]*)\}/',$str,$pagearr);
+	preg_match('/\[mccms_pagenum_([\d]*)\]/',$str,$pagearr);
 	if(!empty($pagearr)){
 		if(isset($pagearr[1]) && (int)$pagearr[1] > 0){
 			$pagenum = $pagearr[1];
