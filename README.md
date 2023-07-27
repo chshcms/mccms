@@ -31,12 +31,10 @@ MySQL 5.5 ~ 5.8
 
 #### 商业系统
 
-<div align="center" >
-    <img src="https://foruda.gitee.com/images/1679299172090129679/f021ad8e_8203223.png" />
-</div>
+开源不易，以下如果有需要，请支持一下，感谢您的支持，让我们更多动力！
 
-<br>
- **Mccms各大交流群：** 
+
+#### Mccms各大交流群：
 
 QQ交流①群：[1054580990](https://jq.qq.com/?_wv=1027&k=ZKjEtsO5)<br>
 QQ交流②群：[653101097](https://jq.qq.com/?_wv=1027&k=krhigFAO)<br>
