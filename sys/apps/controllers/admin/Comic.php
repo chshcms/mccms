@@ -430,10 +430,13 @@ class Comic extends Mccms_Controller {
  	    }
  	    if(empty($id)) get_json('ID不能为空~!');
  	    $arr = explode(',', $id);
+ 	    $min = 0;
  	    foreach ($arr as $_id) {
+ 	    	if($mid == 0) $mid = (int)getzd('comic_chapter','mid',$_id);
     		$this->manhua->chapter_del($_id);
  	    }
-
+ 	    //更新漫画章节数
+ 	    if($mid > 0) $this->mcdb->get_update('comic',$mid,array('nums'=>(int)$this->mcdb->get_nums('comic_chapter',array('mid'=>$mid,'yid'=>0)),'id'=>$mid));
 		$arr['msg'] = '恭喜您，删除成功~!';
 		$arr['url'] = links('comic','chapter');
 		get_json($arr,1);

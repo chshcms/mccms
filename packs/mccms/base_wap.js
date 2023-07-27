@@ -7,7 +7,7 @@ var mccms = {
 	ios  	    : navigator.userAgent.match(/iPad|iPhone|iPod/i) != null,
 	index       : null,
 	layer       : layer,
-	user        : {log:0,nichen:'游客',pic:Mcpath.basepath+'mccms/user.png',vip:0,cion:0,ticket:0,viptime:0},
+	user        : {log:-1,nichen:'游客',pic:Mcpath.basepath+'mccms/user.png',vip:0,cion:0,ticket:0,viptime:0},
 	//默认加载
 	init : function(){
 		//会员信息
