@@ -316,10 +316,10 @@ class Pay extends Mccms_Controller {
 		if($pid == 2){
 			$this->db->query('update '.Mc_SqlPrefix.'user set rmb=rmb+'.$row['rmb'].' where id='.$row['uid']);
 			$title = '您申请的提现审核未通过';
-			$text = '亲爱的作者，您申请的作者认证于'.date('Y-m-d H:i:s').'时间审核未通过，原因：'.$msg;
+			$text = '亲爱的作者，您申请的提现于'.date('Y-m-d H:i:s').'审核未通过，原因：'.$msg;
 		}else{
 			$title = '您申请的提现审核已通过';
-			$text = '亲爱的作者，您申请的作者认证于'.date('Y-m-d H:i:s').'时间审核通过，已完成打款，请注意查收您的银行账号';
+			$text = '亲爱的作者，您申请的提现于'.date('Y-m-d H:i:s').'审核通过，已完成打款，请注意查收您的银行账号';
 		}
 		//发送消息
 		$add['uid'] = $row['uid'];
