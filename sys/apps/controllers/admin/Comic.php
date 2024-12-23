@@ -749,7 +749,7 @@ class Comic extends Mccms_Controller {
 		}else{
 			$edit['cid'] = (int)$this->input->post('cid',true);
 			$edit['zd'] = $this->input->post('zd',true);
-			if(preg_match("/^[A-Za-z]/",$edit['zd'])) get_json('字段只能是2-15位英文字母');
+			if(!preg_match("/^[A-Za-z]/",$edit['zd'])) get_json('字段只能是2-15位英文字母');
 		}
 		if($id == 0){
 			$res = $this->mcdb->get_insert('type',$edit);

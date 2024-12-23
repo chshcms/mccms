@@ -87,9 +87,11 @@ class Tongbu extends CI_Model{
             $darr = explode('/',$dir);
             $dir2 = '';
             foreach ($darr as $v) {
-                if(!empty($v)) $dir2 .= '/'.$v;
-                $res = $this->ftp->changedir($dir2,true);
-                if(!$res) $this->ftp->mkdir($dir2, 0755);
+                if(!empty($v)){
+                    $dir2 .= '/'.$v;
+                    $res = $this->ftp->changedir($dir2,true);
+                    if(!$res) $this->ftp->mkdir($dir2);
+                }
             }
 			$res = $this->ftp->upload($file_path, $ftp_file_path);
 			$this->ftp->close();
