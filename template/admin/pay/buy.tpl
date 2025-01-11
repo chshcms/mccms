@@ -39,8 +39,8 @@
                         <div class="layui-form toolbar">
                             <div class="layui-form-item">
                                 <div class="layui-inline">
-                                    <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="Admin.del('<?=links('pay','buy_del',$type)?>','pay')"><i class="layui-icon"></i>批量删除</button>
-                                    <button class="layui-btn icon-btn layui-btn-sm layui-btn-normal" onclick="Admin.get_excel('pay');"><i class="layui-icon">&#xe67d;</i>导出xls</button>
+                                    <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="Admin.del('<?=links('pay','buy_del',$type)?>','buy')"><i class="layui-icon"></i>批量删除</button>
+                                    <button class="layui-btn icon-btn layui-btn-sm layui-btn-normal" onclick="Admin.get_excel('buy');"><i class="layui-icon">&#xe67d;</i>导出xls</button>
                                 </div>
                                 <div class="layui-inline mr0">
                                     <div class="layui-input-inline">
@@ -62,13 +62,13 @@
                                     </div>
                                 </div>
                                 <div class="layui-inline mr0">
-                                    <button class="layui-btn layui-btn-sm" data-id="pay" lay-submit lay-filter="table-sreach">
+                                    <button class="layui-btn layui-btn-sm" data-id="buy" lay-submit lay-filter="table-sreach">
                                         <i class="layui-icon">&#xe615;</i>搜索
                                     </button>
                                 </div>
                             </div>
                         </div>
-                        <table class="layui-table" lay-even lay-skin="row" lay-data="{url:'<?=links('pay','buy_ajax',$type)?>',limit:20,limits:[20,30,50,100,500],page:{layout:['count','prev','page','next','refresh','skip','limit']},id:'pay'}" lay-filter="pay">
+                        <table class="layui-table" lay-even lay-skin="row" lay-data="{url:'<?=links('pay','buy_ajax',$type)?>',limit:20,limits:[20,30,50,100,500],page:{layout:['count','prev','page','next','refresh','skip','limit']},id:'buy'}" lay-filter="buy">
                           <thead>
                             <tr>
                             <?php if(defined('MOBILE')){ ?>

@@ -322,7 +322,41 @@ layui.use(['layer','form','element','table','laydate','util'],function() {
         if (checkStatus.data.length == 0) {
             layer.msg('请选择要导出的数据', {icon: 2,shift:6});
         } else {
-            table.exportFile(insTb.config.id, checkStatus.data,'xls');
+            let header = [],data = [];
+            if(_id == 'pay'){
+                header = ['订单号','备注','金额','用户ID','状态','时间'];
+                for(let i=0;i<checkStatus.data.length;i++){
+                    let state = checkStatus.data[i].pid == 1 ? '已支付' : '未支付';
+                    let time = new Date(checkStatus.data[i].addtime*1000).toLocaleString();
+                    data.push([checkStatus.data[i].dd,checkStatus.data[i].text,checkStatus.data[i].rmb,checkStatus.data[i].uid,state,time]);
+                }
+            }else if(_id == 'buy'){
+                header = ['备注','金币数量','用户ID','IP','时间'];
+                for(let i=0;i<checkStatus.data.length;i++){
+                    let time = new Date(checkStatus.data[i].addtime*1000).toLocaleString();
+                    data.push([checkStatus.data[i].text,checkStatus.data[i].cion,checkStatus.data[i].uid,checkStatus.data[i].ip,time]);
+                }
+            }else if(_id == 'income'){
+                header = ['备注','总金币','分成金币','用户ID','时间'];
+                for(let i=0;i<checkStatus.data.length;i++){
+                    let time = new Date(checkStatus.data[i].addtime*1000).toLocaleString();
+                    data.push([checkStatus.data[i].text,checkStatus.data[i].zcion,checkStatus.data[i].cion,checkStatus.data[i].uid,time]);
+                }
+            }else if(_id == 'drawing'){
+                header = ['提现订单','金额','用户ID','IP','状态','时间'];
+                for(let i=0;i<checkStatus.data.length;i++){
+                    let state = checkStatus.data[i].pid == 1 ? '已打款' : (checkStatus.data[i].pid == 2 ? '已失败' : '待处理');
+                    let time = new Date(checkStatus.data[i].addtime*1000).toLocaleString();
+                    data.push([checkStatus.data[i].dd,checkStatus.data[i].rmb,checkStatus.data[i].uid,checkStatus.data[i].ip,state,time]);
+                }
+            }else{
+                header = ['管理员ID','管理员昵称','登陆IP','登陆设备','浏览器','时间'];
+                for(let i=0;i<checkStatus.data.length;i++){
+                    let time = new Date(checkStatus.data[i].logtime*1000).toLocaleString();
+                    data.push([checkStatus.data[i].uid,checkStatus.data[i].nichen,checkStatus.data[i].logip,checkStatus.data[i].machine,checkStatus.data[i].browser,time]);
+                }
+            }
+            table.exportFile(header,data,'xls');
         }
     };
     //默认模版设置

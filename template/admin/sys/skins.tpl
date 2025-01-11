@@ -100,8 +100,14 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <?php if($skins['pagejs'] > 1 AND $skins['pagejs'] > $page){ ?>
-                                    <div style="text-align: center;"><a class="tpltab" style="padding: 8px 30px;background: #e8e7e7;border-radius: 5px;" href="<?=links('skins/index/'.$cid.'/'.($page+1))?>">点击加载下一页</a></div>
+                                    <?php if($skins['pagejs'] > 1){ ?>
+                                    <div style="display:flex;justify-content: center;align-items: center;">
+                                        <?php if($page > 1){ ?>
+                                        <a class="tpltab" style="padding: 8px 30px;background: #e8e7e7;border-radius: 5px;margin-right:20px;" href="<?=links('skins/index/'.$cid.'/'.($page-1))?>"><i style="vertical-align:middle;" class="layui-icon layui-icon-prev"></i> 加载上一页</a>
+                                        <?php } if($skins['pagejs'] > $page){ ?>
+                                        <a class="tpltab" style="padding: 8px 30px;background: #e8e7e7;border-radius: 5px;margin-left:20px;" href="<?=links('skins/index/'.$cid.'/'.($page+1))?>">加载下一页 <i style="vertical-align:middle;" class="layui-icon layui-icon-next"></i></a>
+                                        <?php } ?>
+                                    </div>
                                     <?php } ?>
                                 </div>
                             </div>
@@ -142,7 +148,7 @@ $(function(){
             });
             form.on('submit(login)', function(data){
                 var index = layer.load();
-                $.getJSON('http:<?=base64decode(Apiurl)?>/skins/log?tel='+data.field.tel+'&pass='+data.field.pass+'&callback=?',function(res) {
+                $.getJSON('<?=base64decode(Apiurl)?>/skins/log?tel='+data.field.tel+'&pass='+data.field.pass+'&callback=?',function(res) {
                     layer.close(index);
                     if(res.code == 1){
                         layer.msg(res.msg,{icon: 1});
@@ -158,7 +164,7 @@ $(function(){
             });
         }else{
             var index = layer.load();
-            $.getJSON('http:<?=base64decode(Apiurl)?>/skins/pay?id='+id+'&token='+token+'&callback=?',function(res) {
+            $.getJSON('<?=base64decode(Apiurl)?>/skins/pay?id='+id+'&token='+token+'&callback=?',function(res) {
                 layer.close(index);
                 if(res.code == 1){
                     layer.msg(res.msg,{icon: 1});
@@ -172,7 +178,7 @@ $(function(){
                             btn: ['去充值', '在想想'], //按钮
                             shade:0.001
                         }, function(index) {
-                            window.open("http://www.chshcms.net/user/pay.html");
+                            window.open("//www.chshcms.net/user/pay.html");
                             layer.close(index);
                         }, function(index) {
                             layer.close(index);
