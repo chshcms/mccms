@@ -43,7 +43,7 @@ function get_url($type = '',$arr = array(),$html = 0){
 			if(!empty($arr)){
 				$ci = &get_instance();
 				$uarr = $arr;unset($uarr['page']);
-				$uri = $ci->uri->assoc_to_uri($uarr);
+				$uri = safe_replace($ci->uri->assoc_to_uri($uarr));
 				$link = Web_Path.'index.php/category/'.$uri.'/page/[page]';
 			}else{
 				$link = Web_Path.'index.php/category/page/'.$arr['page'];
@@ -121,7 +121,7 @@ function get_book_link($type = '',$arr = array(),$html = 0){
 			if(!empty($arr)){
 				$ci = &get_instance();
 				$uarr = $arr;unset($uarr['page']);
-				$uri = str_replace("\\",'',$ci->uri->assoc_to_uri($uarr));
+				$uri = str_replace("\\",'',safe_replace($ci->uri->assoc_to_uri($uarr)));
 				$link = Web_Path.'index.php/book/category/'.$uri.'/page/[page]';
 			}else{
 				$link = Web_Path.'index.php/book/category/page/'.$arr['page'];
@@ -168,7 +168,7 @@ function get_category_url($arr=array(),$type='comic'){
 		$i++;
 	}
 	$ci = &get_instance();
-    $uri = $ci->uri->uri_string();
+    $uri = safe_replace($ci->uri->uri_string());
     $yarr = array();
     if(strpos($uri,'category') !== false){
 	    $n = strpos($uri,'/index') !== false ? 3 : 2;
@@ -190,7 +190,7 @@ function get_category_url($arr=array(),$type='comic'){
     		$uarr[$key] = $value;
     	}
     }
-    $uri = $ci->uri->assoc_to_uri($uarr);
+    $uri = safe_replace($ci->uri->assoc_to_uri($uarr));
     if($type == 'book'){
     	$link = Web_Path.'index.php/book/category/'.$uri;
 		//判断独立域名

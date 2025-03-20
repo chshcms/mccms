@@ -221,6 +221,8 @@ function safe_replace($string){
 			$string = str_replace('>','&gt;',$string);
 			$string = str_replace('\\','',$string);
 			$string = str_replace('%','',$string);
+			$pattern = '/\b(base64_decode|eval|exec|system|passthru|shell_exec|proc_open|popen|pcntl_exec|assert|file.*|fopen|fwrite|fread|unlink|curl_exec|readfile|phpinfo|chmod|chown|symlink|putenv|dl|ini_set|error_log|mb_ereg_replace|preg_replace\s*\(.*\/e|create_function|str_decode|sys_auth|write_file)\s*\(/i';
+			$string = preg_replace($pattern, '', $string);
 			$string = str_encode($string);
 		}
 	}
