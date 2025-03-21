@@ -45,7 +45,7 @@
                             <select name="zd">
                                 <option value="dd">提现单号</option>
                                 <option value="uid">会员ID</option>
-                                <option value="ip">提现ip</option>
+                                <option value="ip">提现IP</option>
                                 <option value="msg">失败提示</option>
                             </select>
                         </div>
@@ -86,7 +86,7 @@
                     <th lay-data="{field:'dd'}">提现单号</th>
                     <th lay-data="{field:'rmb',width:80,align:'center'}">金额</th>
                     <th lay-data="{field:'uid',width:100,align:'center'}">会员ID</th>
-                    <th lay-data="{field:'ip',width:130,align:'center'}">提现ip</th>
+                    <th lay-data="{field:'ip',width:130,align:'center'}">提现IP</th>
                     <th lay-data="{field:'pid',width:60,align:'center',templet:'#ztTpl'}">状态</th>
                     <th lay-data="{field:'addtime',align:'center',width:160,sort: true,templet:'#dateTpl'}">提现时间</th>
                     <th lay-data="{align:'center',width:130,templet:'#cmdTpl'}">操作</th>
