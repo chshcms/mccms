@@ -36,7 +36,7 @@ var mccms = {
 	    		_post.fen = value;
 	    		$.getJSON('//'+Mcpath.url+Mcpath.web+'index.php/api/rend/score_send?callback=?', _post, function(res) {
 		            //回调
-		        	if(_callback != null){
+		        	if(typeof _callback == "function"){
 		        		_callback(res);
 		        	}else{
 			            if(res.code == 1){
@@ -53,7 +53,7 @@ var mccms = {
 	score_send : function(_post,_callback){
 		$.getJSON('//'+Mcpath.url+Mcpath.web+'index.php/api/rend/score_send?callback=?', _post, function(res) {
             //回调
-        	if(_callback != null){
+        	if(typeof _callback == "function"){
         		_callback(res);
         	}else{
 	            mccms.msg(res.msg,res.code);
@@ -64,7 +64,7 @@ var mccms = {
     comment : function(_post,_callback){
         $.getJSON('//'+Mcpath.url+Mcpath.web+'index.php/api/comment/lists?callback=?', _post, function(res) {
             //回调
-            if(_callback != null){
+            if(typeof _callback == "function"){
                 _callback(res);
             }else{
                 if(res.code == 1){
@@ -77,7 +77,7 @@ var mccms = {
     comment_send : function(_post,_callback){
         $.getJSON('//'+Mcpath.url+Mcpath.web+'index.php/api/comment/add?callback=?', _post, function(res) {
             //回调
-            if(_callback != null){
+            if(typeof _callback == "function"){
                 _callback(res);
             }else{
                 if(res.code == 1){
@@ -92,7 +92,7 @@ var mccms = {
     comment_zan : function(_post,_callback){
         $.getJSON('//'+Mcpath.url+Mcpath.web+'index.php/api/comment/zan?callback=?', _post, function(res) {
             //回调
-            if(_callback != null){
+            if(typeof _callback == "function"){
                 _callback(res);
             }else{
                 if(res.code == 1){
@@ -107,7 +107,7 @@ var mccms = {
     message : function(_callback){
         $.getJSON('//'+Mcpath.url+Mcpath.web+'index.php/api/rend/message?callback=?', {t:Math.random()}, function(res) {
             //回调
-            if(_callback != null){
+            if(typeof _callback == "function"){
                 _callback(res);
             }
         });
@@ -119,7 +119,7 @@ var mccms = {
             mccms.layer.close(index);
             if(res.code == 1) mccms.user.ticket = res.uticket;
             //回调
-            if(_callback != null){
+            if(typeof _callback == "function"){
                 _callback(res);
             }else{
                 if(res.code == 1){
@@ -139,7 +139,7 @@ var mccms = {
             mccms.layer.close(index);
             if(res.code == 1) mccms.user.cion = res.cion;
             //回调
-            if(_callback != null){
+            if(typeof _callback == "function"){
                 _callback(res);
             }else{
                 if(res.code == 1){
@@ -156,7 +156,7 @@ var mccms = {
     isfav : function(_post,_callback){
         $.getJSON('//'+Mcpath.url+Mcpath.web+'index.php/api/rend/isfav?callback=?', _post, function(res) {
             //回调
-            if(_callback != null){
+            if(typeof _callback == "function"){
                 _callback(res);
             }
         });
@@ -165,7 +165,7 @@ var mccms = {
     fav : function(_post,_callback){
         $.getJSON('//'+Mcpath.url+Mcpath.web+'index.php/api/rend/favadd?callback=?', _post, function(res) {
             //回调
-            if(_callback != null){
+            if(typeof _callback == "function"){
                 _callback(res);
             }else{
                 if(res.code == 1){
@@ -180,7 +180,7 @@ var mccms = {
     login : function(_name,_pass,_callback){
         $.getJSON('//'+Mcpath.url+Mcpath.web+'index.php/api/user/login?callback=?', {name:_name,pass:_pass}, function(res) {
             //回调
-            if(_callback != null){
+            if(typeof _callback == "function"){
                 _callback(res);
             }else{
                 if(res.code == 1){
@@ -199,7 +199,7 @@ var mccms = {
     logout : function(_callback){
         $.getJSON('//'+Mcpath.url+Mcpath.web+'index.php/api/user/logout?callback=?', {t:Math.random()}, function(res) {
             //回调
-            if(_callback != null){
+            if(typeof _callback == "function"){
                 _callback(res);
             }else{
                 if(res.code == 1) window.location.reload();

@@ -19,7 +19,7 @@ var mccms = {
 	code_send : function(_post,_callback){
 		$.getJSON('//'+Mcpath.url+Mcpath.web+'index.php/api/code/tel_send?callback=?', _post, function(res) {
 			//回调
-        	if(_callback != null){
+        	if(typeof _callback == "function"){
         		_callback(res);
         	}else{
 	            if(res.code == 1){
@@ -34,7 +34,7 @@ var mccms = {
 	comment : function(_post,_callback){
 		$.getJSON('//'+Mcpath.url+Mcpath.web+'index.php/api/comment/lists?callback=?', _post, function(res) {
 			//回调
-        	if(_callback != null){
+        	if(typeof _callback == "function"){
         		_callback(res);
         	}else{
 	            if(res.code == 1){
@@ -62,7 +62,7 @@ var mccms = {
 	comment_send : function(_post,_callback){
 		$.getJSON('//'+Mcpath.url+Mcpath.web+'index.php/api/comment/add?callback=?', _post, function(res) {
 			//回调
-        	if(_callback != null){
+        	if(typeof _callback == "function"){
         		_callback(res);
         	}else{
 	            if(res.code == 1){
@@ -77,7 +77,7 @@ var mccms = {
 	comment_zan : function(_post,_callback){
 		$.getJSON('//'+Mcpath.url+Mcpath.web+'index.php/api/comment/zan?callback=?', _post, function(res) {
 			//回调
-        	if(_callback != null){
+        	if(typeof _callback == "function"){
         		_callback(res);
         	}else{
 	            if(res.code == 1){
@@ -93,7 +93,7 @@ var mccms = {
 		var index = mccms.layer.open({type: 2,content: '请稍后'});
 		$.getJSON('//'+Mcpath.url+Mcpath.web+'index.php/api/rend/ticket_send?callback=?', _post, function(res) {
 			//回调
-        	if(_callback != null){
+        	if(typeof _callback == "function"){
         		_callback(res);
         	}else{
 	            if(res.code == 1){
@@ -110,7 +110,7 @@ var mccms = {
 	message : function(_callback){
 		$.getJSON('//'+Mcpath.url+Mcpath.web+'index.php/api/rend/message?callback=?', {t:Math.random()}, function(res) {
 			//回调
-        	if(_callback != null) _callback(res);
+        	if(typeof _callback == "function") _callback(res);
         });
 	},
 	//礼物打赏
@@ -119,7 +119,7 @@ var mccms = {
 		$.getJSON('//'+Mcpath.url+Mcpath.web+'index.php/api/rend/gift_send?callback=?', _post, function(res) {
 			mccms.layer.close(index);
 			//回调
-        	if(_callback != null){
+        	if(typeof _callback == "function"){
         		_callback(res);
         	}else{
 	            if(res.code == 1){
@@ -135,7 +135,7 @@ var mccms = {
 	isfav : function(_post,_callback){
 		$.getJSON('//'+Mcpath.url+Mcpath.web+'index.php/api/rend/isfav?callback=?', _post, function(res) {
 			//回调
-        	if(_callback != null){
+        	if(typeof _callback == "function"){
         		_callback(res);
         	}
         });
@@ -144,7 +144,7 @@ var mccms = {
 	fav : function(_post,_callback){
 		$.getJSON('//'+Mcpath.url+Mcpath.web+'index.php/api/rend/favadd?callback=?', _post, function(res) {
 			//回调
-        	if(_callback != null){
+        	if(typeof _callback == "function"){
         		_callback(res);
         	}else{
 	            if(res.code == 1){
@@ -159,7 +159,7 @@ var mccms = {
 	login : function(_name,_pass,_callback){
 		$.getJSON('//'+Mcpath.url+Mcpath.web+'index.php/api/user/login?callback=?', {name:_name,pass:_pass}, function(res) {
 			//回调
-        	if(_callback != null){
+        	if(typeof _callback == "function"){
         		_callback(res);
         	}else{
 	            if(res.code == 1){
@@ -179,7 +179,7 @@ var mccms = {
 		//会员信息
 		$.getJSON('//'+Mcpath.url+Mcpath.web+'index.php/api/user/logout?callback=?', {t:Math.random()}, function(res) {
 			//回调
-        	if(_callback != null){
+        	if(typeof _callback == "function"){
         		_callback(res);
         	}else{
             	if(res.code == 1) window.location.reload();
