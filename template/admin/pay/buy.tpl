@@ -51,7 +51,7 @@
                                     <div class="layui-input-inline h30">
                                         <select name="zd">
                                             <option value="uid">会员ID</option>
-                                            <option value="id">ip地址</option>
+                                            <option value="id">IP地址</option>
                                             <option value="text">备注</option>
                                         </select>
                                     </div>
@@ -82,7 +82,7 @@
                                 <th lay-data="{field:'text'}">备注</th>
                                 <th lay-data="{field:'cion',width:100,align:'center'}"><?=Pay_Cion_Name?></th>
                                 <th lay-data="{field:'uid',width:100,align:'center'}">会员ID</th>
-                                <th lay-data="{field:'ip',width:150,align:'center'}">消费ip</th>
+                                <th lay-data="{field:'ip',width:150,align:'center'}">消费IP</th>
                                 <th lay-data="{field:'addtime',align:'center',width:160,sort: true,templet:'#dateTpl'}">消费时间</th>
                                 <th lay-data="{align:'center',width:80,templet:'#cmdTpl'}">操作</th>
                             <?php } ?>
