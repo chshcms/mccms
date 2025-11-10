@@ -322,10 +322,11 @@ class Book extends Mccms_Controller {
         //章节表
         $chapter_table = get_chapter_table($bid);
  	    if($id == 0){
+	        $row = $this->mcdb->get_row_arr($chapter_table,"xid",array('bid'=>$bid),"xid desc");
 			$data = array(
 				'id' => 0,
 				'yid' => 0,
-				'xid' => 0,
+				'xid' => $row ? $row['xid']+1 : 1,
 				'text_num' => 0,
 				'text' => '',
 				'name' => '',

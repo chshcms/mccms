@@ -131,7 +131,7 @@ class Resources extends Mccms_Controller {
             //章节
             $chapter = $this->mcdb->get_select('comic_chapter','id,name',array('mid'=>$id),'xid asc',10000);
             foreach ($chapter as $k => $v) {
-                $chapter[$k]['url'] = is_ssl()?'https://':'http://'.Web_Url.Web_Path.'index.php/api/resources/parsing_comic_chapter/'.$v['id'];
+                $chapter[$k]['url'] = (is_ssl()?'https://':'http://').Web_Url.Web_Path.'index.php/api/resources/parsing_comic_chapter/'.$v['id'];
             }
             $row['chapter'] = $chapter;
             $d['code'] = 1;
@@ -288,7 +288,7 @@ class Resources extends Mccms_Controller {
     private function get_pic($pic){
         if($this->zyz['picurl'] == ''){
             $pic = getpic($pic);
-            if(strpos($pic,'://') === false) $pic = is_ssl()?'https://':'http://'.Web_Url.$pic;
+            if(strpos($pic,'://') === false) $pic = (is_ssl()?'https://':'http://').Web_Url.$pic;
         }else{
             if(strpos($pic,'://') === false) $pic = $this->zyz['picurl'].$pic;
         }

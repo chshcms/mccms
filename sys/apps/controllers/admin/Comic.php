@@ -316,10 +316,11 @@ class Comic extends Mccms_Controller {
  	    $id = (int)$this->input->get_post('id');
  	    if($mid == 0) exit('ID不能为空');
  	    if($id == 0){
+	        $row = $this->mcdb->get_row_arr("comic_chapter","xid",array('mid'=>$mid),"xid desc");
 			$data = array(
 				'id' => 0,
 				'yid' => 0,
-				'xid' => 0,
+				'xid' => $row ? $row['xid']+1 : 1,
 				'name' => '',
 				'jxurl' => '',
 				'vip' => 0,
