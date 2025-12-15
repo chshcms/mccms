@@ -133,18 +133,15 @@ $(function(){
     $('.tplpay').click(function(){
         var id = $(this).data('id'),token = $(this).data('token');
         if(token == ''){
-            w = wap ? '' : '500px';
-            h = wap ? '' : '300px';
             layer.open({
                 type: 1,
-                area: [w, h],
+                area: 'auto',
                 fix: false, //不固定
-                maxmin: true,
                 shadeClose: false,
                 maxmin: false,
-                shade:0.2,
+                shade: 0.2,
                 title: '用户登录',
-                content: '<div style="padding:10px 20px;"><fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;"><legend>登录崇胜账号</legend></fieldset><form class="layui-form" action=""><div class="layui-form-item"><label class="layui-form-label">手机</label><div class="layui-input-block"><input type="text" name="tel" required  lay-verify="required" placeholder="请输入手机号码" autocomplete="off" class="layui-input"></div></div><div class="layui-form-item"><label class="layui-form-label">密码</label><div class="layui-input-block"><input type="password" name="pass" required  lay-verify="required" placeholder="请输入登录密码" autocomplete="off" class="layui-input"></div></div><div class="layui-form-item"><button type="button" class="layui-btn layui-btn-fluid" lay-submit="" lay-filter="login">立即登录</button></div></div>'
+                content: '<div style="padding:10px 20px;min-width: 260px;"><fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;"><legend>登录崇胜账号</legend></fieldset><form class="layui-form" action=""><div class="layui-form-item"><input type="text" name="tel" required  lay-verify="required" placeholder="请输入手机号码" autocomplete="off" class="layui-input"></div><div class="layui-form-item"><input type="password" name="pass" required  lay-verify="required" placeholder="请输入登录密码" autocomplete="off" class="layui-input"></div><div class="layui-form-item"><button type="button" class="layui-btn layui-btn-fluid" lay-submit="" lay-filter="login">立即登录</button></div><div class="layui-form-item" style="text-align: center;"><a href="//www.chshsaas.net/user/reg.html" target="_blank">没有账号？去注册</a></div></div>'
             });
             form.on('submit(login)', function(data){
                 var index = layer.load();
@@ -163,7 +160,7 @@ $(function(){
                 return false;
             });
         }else{
-            var index = layer.load();
+            var index = layer.load(),timer = null;
             $.getJSON('<?=base64decode(Apiurl)?>/skins/pay?id='+id+'&token='+token+'&callback=?',function(res) {
                 layer.close(index);
                 if(res.code == 1){
@@ -173,15 +170,37 @@ $(function(){
                     }, 1000);
                 }else{
                     if(res.code == 2){
-                        layer.confirm(res.msg+'，要充值购买吗', {
-                            title:'友情提示',
-                            btn: ['去充值', '在想想'], //按钮
-                            shade:0.001
-                        }, function(index) {
-                            window.open("//www.chshcms.net/user/pay.html");
-                            layer.close(index);
-                        }, function(index) {
-                            layer.close(index);
+                        layer.open({
+                            type: 1,
+                            area: 'auto',
+                            fix: false, //不固定
+                            shadeClose: false,
+                            maxmin: false,
+                            shade: 0.2,
+                            title: '购买模板下单',
+                            content: '<div style="padding:20px;min-width: 260px;text-align: center;"><h3 style="font-size: 16px;line-height: 50px;font-weight: 600;color: #111;">'+res.data.row.name+'</h3><p style="font-size: 20px;color: red;margin-top: 5px;">￥'+res.data.row.rmb+'</p><p style="margin: 10px auto;width: 150px;height: 150px;border-radius: 4px;overflow: hidden;"><img width="100%" src="'+res.data.row.pay_qrcode+'"></p><p>请用支付宝或者微信扫一扫支付</p></div>',
+                            success: function(layero, index){
+                                function get_ispay(){
+                                    $.getJSON('<?=base64decode(Apiurl)?>/skins/ispay?id='+id+'&token='+token+'&callback=?',function(res) {
+                                        if(res.code == 1){
+                                            layer.msg(res.msg,{icon: 1});
+                                            setTimeout(function() {
+                                                window.location.reload();
+                                            }, 1000);
+                                        }else{
+                                            timer = setTimeout(function() {
+                                                get_ispay();
+                                            },3000);
+                                        }
+                                    },'json');
+                                }
+                                timer = setTimeout(function() {
+                                    get_ispay();
+                                },3000);
+                            },
+                            cancel: function(index, layero){ 
+                                clearTimeout(timer);
+                            }
                         });
                     }else{
                         layer.msg(res.msg,{shift:6});

@@ -38,5 +38,4 @@ MySQL 5.5 ~ 5.8
 
 QQ交流①群：[1054580990](https://jq.qq.com/?_wv=1027&k=ZKjEtsO5)<br>
 QQ交流②群：[653101097](https://jq.qq.com/?_wv=1027&k=krhigFAO)<br>
-Telegram群： [https://t.me/+caw5rz1Kbm1jOGJl](https://t.me/+caw5rz1Kbm1jOGJl)<br>
 <br>

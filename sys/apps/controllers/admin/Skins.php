@@ -54,7 +54,7 @@ class Skins extends Mccms_Controller {
 		}
 		$data = getcurl($zipurl);
 		if(empty($data)) get_json('获取压缩包失败');
-		$file_zip = FCPATH."caches/upzip/".end(explode('/',$zipurl));
+		$file_zip = FCPATH."caches/upzip/".time().".zip";
 		if(!file_put_contents($file_zip, $data)) get_json('压缩包下载失败');
 		//解压
 		$this->load->library('mczip');

@@ -28,7 +28,7 @@ class Update extends Mccms_Controller {
 		//下载文件
 		$zipurl = sys_auth($zipurl,1);
 		$zarr = explode('/',$zipurl);
-		if(empty($zipurl) || $zarr[2] != 'www.chshcms.net') $this->msg('更新包地址错误');
+		if(empty($zipurl)) $this->msg('更新包地址错误');
 		//获取文件头信息
 		$arr = get_headers($zipurl,true);
 		if($arr['Content-Type'] != 'application/zip' && $arr['Content-Type'][1] != 'application/zip') $this->msg('压缩包不zip的类型文件');
