@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>消费记录</title>
+<title>收入分成</title>
 <meta name="renderer" content="webkit|ie-comp|ie-stand">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
@@ -22,7 +22,7 @@
 <div class="breadcrumb-nav">
     <span class="layui-breadcrumb">
         <a>财务管理</a>
-        <a><cite>消费记录</cite></a>
+        <a><cite>收入分成</cite></a>
     </span>
     <a class="layui-btn layui-btn-sm" style="line-height:1.6em;margin-top:3px;float:right" onclick="Admin.get_load();" title="刷新"><i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>
 </div>
@@ -44,7 +44,7 @@
                         <div class="layui-input-inline h30">
                             <select name="zd">
                                 <option value="uid">会员ID</option>
-                                <option value="id">ip地址</option>
+                                <option value="zcion">总<?=Pay_Cion_Name?></option>
                                 <option value="text">备注</option>
                             </select>
                         </div>
